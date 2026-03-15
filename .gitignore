@@ -1,0 +1,11 @@
+.DS_Store
+.git.broken-empty/
+node_modules/
+docs/
+dist/
+npm-debug.log*
+private/
+.cache/
+playwright-report/
+test-results/
+
