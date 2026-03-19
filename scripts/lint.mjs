@@ -22,6 +22,9 @@ for (const lesson of data.lessons ?? []) {
     errors.push(`Missing slide source: ${lesson.source}`);
     continue;
   }
+  if (lesson.handout && !existsSync(join(rootDir, lesson.handout))) {
+    errors.push(`Missing handout notebook: ${lesson.handout}`);
+  }
   const content = readFileSync(sourcePath, "utf8");
   if (!content.includes("theme: seriph")) {
     errors.push(`${lesson.source}: missing 'theme: seriph' frontmatter.`);
@@ -37,4 +40,3 @@ if (errors.length > 0) {
 }
 
 console.log(`Validated ${data.lessons.length} lessons.`);
-

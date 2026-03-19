@@ -1,4 +1,4 @@
-import { rmSync, writeFileSync } from "node:fs";
+import { existsSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import {
   copyDir,
@@ -20,6 +20,9 @@ const data = loadCourseData();
 rmSync(docsDir, { recursive: true, force: true });
 ensureDir(docsDir);
 copyDir(join(rootDir, "public"), docsDir);
+if (existsSync(join(rootDir, "handouts"))) {
+  copyDir(join(rootDir, "handouts"), join(docsDir, "handouts"));
+}
 
 function renderLayout({ title, body, activeNav }) {
   const courseTitle = escapeHtml(data.course.title);
@@ -71,6 +74,9 @@ function renderLessonCard(lesson) {
   const slideHref = withBase(basePath, `slides/${lesson.slug}/`);
   const lessonHref = withBase(basePath, `lessons/${lesson.slug}/`);
   const pdfHref = withBase(basePath, `pdfs/${lesson.slug}.pdf`);
+  const handoutLink = lesson.handout
+    ? `<a class="button secondary" href="${withBase(basePath, lesson.handout)}">题目讲义</a>`
+    : "";
   return `<article class="lesson-card">
     <div class="lesson-order">${String(lesson.order).padStart(2, "0")}</div>
     <h3>${escapeHtml(lesson.title)}</h3>
@@ -84,6 +90,7 @@ function renderLessonCard(lesson) {
       <a class="button primary" href="${lessonHref}">查看课次页</a>
       <a class="button secondary" href="${slideHref}">在线课件</a>
       <a class="button secondary" href="${pdfHref}">PDF</a>
+      ${handoutLink}
     </div>
   </article>`;
 }
@@ -204,6 +211,10 @@ writePage(
 
 for (const lesson of data.lessons) {
   const topicHtml = lesson.topics.map((topic) => `<li>${escapeHtml(topic)}</li>`).join("");
+  const handoutMeta = lesson.handout ? `<li>讲义：${escapeHtml(lesson.handout)}</li>` : "";
+  const handoutAction = lesson.handout
+    ? `<a class="button secondary" href="${withBase(basePath, lesson.handout)}">下载题目讲义</a>`
+    : "";
   writePage(
     join("lessons", lesson.slug),
     renderLayout({
@@ -217,6 +228,7 @@ for (const lesson of data.lessons) {
           <div class="hero-actions">
             <a class="button primary" href="${withBase(basePath, `slides/${lesson.slug}/`)}">打开在线课件</a>
             <a class="button secondary" href="${withBase(basePath, `pdfs/${lesson.slug}.pdf`)}">下载 PDF</a>
+            ${handoutAction}
           </div>
         </div>
         <div class="panel">
@@ -226,6 +238,7 @@ for (const lesson of data.lessons) {
             <li>类型：${escapeHtml(lessonTypeLabel(lesson.type))}</li>
             <li>状态：${escapeHtml(lessonStatusLabel(lesson.status))}</li>
             <li>源文件：${escapeHtml(lesson.source)}</li>
+            ${handoutMeta}
           </ul>
         </div>
       </section>
@@ -239,6 +252,7 @@ for (const lesson of data.lessons) {
           <ul class="list">
             <li>课件使用 Slidev 编写，默认主题为 Seriph。</li>
             <li>每讲保持“知识梳理 + 典型例题 + 课堂练习 + 课后题”的结构。</li>
+            <li>题目讲义使用 Jupyter Notebook 维护，便于按题型增补与发放。</li>
             <li>若后续加课，本页将由同一套脚本自动生成。</li>
           </ul>
         </article>
@@ -264,4 +278,3 @@ writeFileSync(
     </section>`
   })
 );
-

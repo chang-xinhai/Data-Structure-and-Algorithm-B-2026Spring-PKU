@@ -18,6 +18,11 @@
       "date": "2026-03-16",
       "title": "课程仓库初始化",
       "content": "已建立 Slidev + 课程站点基础骨架，后续将按 6 次课程逐步填充正式内容。"
+    },
+    {
+      "date": "2026-03-19",
+      "title": "六讲课件与题目讲义已上线",
+      "content": "Lecture 01-06 已完成在线课件、配套题目讲义 notebook 与 PDF 导出，可通过课程首页统一访问。"
     }
   ],
   "lessons": [
@@ -27,7 +32,7 @@
       "slug": "lecture-01-foundation-linear",
       "title": "Lecture 01 · 基础、复杂度与线性表",
       "type": "lecture",
-      "status": "planned",
+      "status": "published",
       "summary": "Python 基础、数据结构与算法概论、复杂度分析、顺序表与线性表基础。",
       "topics": [
         "Python 基础与上机环境约定",
@@ -36,7 +41,8 @@
         "顺序表实现与增删操作"
       ],
       "source": "slides/lecture-01-foundation-linear/slides.md",
-      "pdf": "docs/pdfs/lecture-01-foundation-linear.pdf"
+      "pdf": "docs/pdfs/lecture-01-foundation-linear.pdf",
+      "handout": "handouts/lecture-01-foundation-linear/practice.ipynb"
     },
     {
       "id": "lecture-02",
@@ -44,7 +50,7 @@
       "slug": "lecture-02-string-stack-queue",
       "title": "Lecture 02 · 链表、串与线性结构应用",
       "type": "lecture",
-      "status": "planned",
+      "status": "published",
       "summary": "链表、字符串、模式匹配、栈、队列与基础算法思想。",
       "topics": [
         "单链表、双链表、循环链表",
@@ -53,7 +59,8 @@
         "分治、动态规划、穷举、回溯"
       ],
       "source": "slides/lecture-02-string-stack-queue/slides.md",
-      "pdf": "docs/pdfs/lecture-02-string-stack-queue.pdf"
+      "pdf": "docs/pdfs/lecture-02-string-stack-queue.pdf",
+      "handout": "handouts/lecture-02-string-stack-queue/practice.ipynb"
     },
     {
       "id": "lecture-03",
@@ -61,7 +68,7 @@
       "slug": "lecture-03-sorting-tree-search",
       "title": "Lecture 03 · 排序、树与检索",
       "type": "lecture",
-      "status": "planned",
+      "status": "published",
       "summary": "排序算法、树结构、堆、Huffman、树森林转换与字典检索。",
       "topics": [
         "基本排序算法与复杂度比较",
@@ -70,7 +77,8 @@
         "树和森林、线性表检索、散列表"
       ],
       "source": "slides/lecture-03-sorting-tree-search/slides.md",
-      "pdf": "docs/pdfs/lecture-03-sorting-tree-search.pdf"
+      "pdf": "docs/pdfs/lecture-03-sorting-tree-search.pdf",
+      "handout": "handouts/lecture-03-sorting-tree-search/practice.ipynb"
     },
     {
       "id": "lecture-04",
@@ -78,7 +86,7 @@
       "slug": "lecture-04-graph-wrap-up",
       "title": "Lecture 04 · 图算法与综合收束",
       "type": "lecture",
-      "status": "planned",
+      "status": "published",
       "summary": "图的表示、遍历与算法，并完成全课程考点收束。",
       "topics": [
         "图的存储表示与遍历",
@@ -87,7 +95,8 @@
         "Dijkstra、Floyd 与综合总结"
       ],
       "source": "slides/lecture-04-graph-wrap-up/slides.md",
-      "pdf": "docs/pdfs/lecture-04-graph-wrap-up.pdf"
+      "pdf": "docs/pdfs/lecture-04-graph-wrap-up.pdf",
+      "handout": "handouts/lecture-04-graph-wrap-up/practice.ipynb"
     },
     {
       "id": "lecture-05",
@@ -95,7 +104,7 @@
       "slug": "lecture-05-lab-review",
       "title": "Lecture 05 · 上机复习",
       "type": "lab-review",
-      "status": "planned",
+      "status": "published",
       "summary": "整理上机题型、模板代码、输入输出细节与常见实现错误。",
       "topics": [
         "顺序表、链表、栈、队列代码模板",
@@ -104,7 +113,8 @@
         "调试策略与时间复杂度控制"
       ],
       "source": "slides/lecture-05-lab-review/slides.md",
-      "pdf": "docs/pdfs/lecture-05-lab-review.pdf"
+      "pdf": "docs/pdfs/lecture-05-lab-review.pdf",
+      "handout": "handouts/lecture-05-lab-review/practice.ipynb"
     },
     {
       "id": "lecture-06",
@@ -112,7 +122,7 @@
       "slug": "lecture-06-written-review",
       "title": "Lecture 06 · 笔试复习",
       "type": "exam-review",
-      "status": "planned",
+      "status": "published",
       "summary": "梳理概念辨析、复杂度判断、手算题与综合题型。",
       "topics": [
         "概念辨析与高频易错点",
@@ -121,8 +131,8 @@
         "冲刺阶段答题顺序与复盘"
       ],
       "source": "slides/lecture-06-written-review/slides.md",
-      "pdf": "docs/pdfs/lecture-06-written-review.pdf"
+      "pdf": "docs/pdfs/lecture-06-written-review.pdf",
+      "handout": "handouts/lecture-06-written-review/practice.ipynb"
     }
   ]
 }
-
