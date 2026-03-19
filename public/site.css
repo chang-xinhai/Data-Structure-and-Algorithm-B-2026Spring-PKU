@@ -170,18 +170,33 @@ p {
   background: rgba(255, 255, 255, 0.5);
 }
 
+.button.tertiary {
+  border-color: rgba(196, 76, 53, 0.18);
+  background: rgba(196, 76, 53, 0.08);
+  color: var(--accent-dark);
+}
+
 .grid-3,
 .grid-2,
 .lesson-grid,
-.meta-grid {
+.meta-grid,
+.resource-collection-grid,
+.resource-lesson-grid,
+.resource-link-list {
   display: grid;
   gap: 18px;
 }
 
 .grid-3,
 .lesson-grid,
-.meta-grid {
+.meta-grid,
+.resource-link-list {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.resource-collection-grid,
+.resource-lesson-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .grid-2 {
@@ -255,6 +270,11 @@ p {
   font-weight: 700;
 }
 
+.pill.subtle {
+  background: rgba(24, 34, 46, 0.08);
+  color: var(--muted);
+}
+
 .notice {
   padding: 22px;
 }
@@ -290,12 +310,79 @@ p {
   border: 1px dashed var(--border);
 }
 
+.resource-collection,
+.resource-lesson {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.resource-block {
+  display: grid;
+  gap: 10px;
+}
+
+.resource-link {
+  display: grid;
+  gap: 10px;
+  text-decoration: none;
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.64);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.resource-link strong {
+  font-size: 1.02rem;
+  color: var(--ink);
+}
+
+.resource-link span:last-child {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.resource-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.resource-arrow {
+  color: var(--accent-dark);
+  font-weight: 800;
+}
+
+.resource-link-list.compact {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.note-stack {
+  display: grid;
+  gap: 12px;
+}
+
+.note-card {
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(196, 76, 53, 0.16);
+  background: linear-gradient(135deg, rgba(196, 76, 53, 0.12), rgba(255, 250, 241, 0.9));
+  color: var(--ink);
+  line-height: 1.7;
+}
+
 @media (max-width: 960px) {
   .hero,
   .grid-3,
   .grid-2,
   .lesson-grid,
-  .meta-grid {
+  .meta-grid,
+  .resource-collection-grid,
+  .resource-lesson-grid,
+  .resource-link-list,
+  .resource-link-list.compact {
     grid-template-columns: 1fr;
   }
 
@@ -327,4 +414,3 @@ p {
     padding: 24px;
   }
 }
-

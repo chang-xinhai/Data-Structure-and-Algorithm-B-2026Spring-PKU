@@ -6,12 +6,50 @@
     "instructor": "常欣海",
     "repository": "chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU",
     "basePath": "/Data-Structure-and-Algorithm-B-2026Spring-PKU/",
-    "description": "基于主课程教学大纲组织的 6 次讲师课，前 4 次覆盖全部核心内容，第 5 次进行上机复习，第 6 次进行笔试复习。仓库采用 Slidev 管理课件，并自动发布静态课程网站和 PDF。"
+    "description": "基于主课程教学大纲组织的 6 次讲师课，前 4 次覆盖全部核心内容，第 5 次进行上机复习，第 6 次进行笔试复习。仓库采用 Slidev 管理课件，并整合 Hello 算法作为公开补强资源库，统一发布静态课程网站和 PDF。"
   },
   "highlights": [
     "前 4 讲讲完全部大纲内容，后 2 讲专注复习与冲刺。",
     "每讲统一采用“知识梳理 + 典型例题 + 课堂练习 + 课后题”模板。",
+    "Hello 算法已按课次对照接入，方便课前预习、课中图解和课后补强。",
     "站点与课件按元数据驱动，支持后续加课或调整节奏。"
+  ],
+  "resourceCollections": [
+    {
+      "id": "hello-algo",
+      "title": "Hello 算法整合",
+      "summary": "把 Hello 算法作为本课程的公开补强资源库使用，承担动画图解、章节导读、多语言代码对照和离线阅读入口，不替代本仓库的 6 讲授课主线。",
+      "attribution": "来源为 Hello 算法官网与 GitHub 仓库 krahets/hello-algo。根据官网页脚和仓库 README 的公开说明，其文本、代码、图片、照片与视频采用 CC BY-NC-SA 4.0 授权；本仓库当前采用链接整合而非镜像拷贝。",
+      "usage": [
+        "课前预习：按本讲对照链接先读 2-4 个小节，建立图像直觉。",
+        "课中讲解：需要动画时打开官网页面，需要代码模板时跳转仓库。",
+        "课后补强：不会的知识点回到对应小节，而不是在整站里盲搜。"
+      ],
+      "caveats": [
+        "Hello 算法的章节组织与本课程不完全同构，课程节奏仍以 content/course.json 与本仓库 slides 为准。",
+        "字符串模式匹配、KMP、最短路、最小生成树、拓扑排序等考点，本仓库课件仍然是主入口。"
+      ],
+      "links": [
+        {
+          "label": "Hello 算法官网",
+          "url": "https://www.hello-algo.com/",
+          "kind": "website",
+          "note": "动画图解与按章节阅读入口。"
+        },
+        {
+          "label": "GitHub 源码仓库",
+          "url": "https://github.com/krahets/hello-algo",
+          "kind": "repository",
+          "note": "多语言代码、构建文件与发行版下载入口。"
+        },
+        {
+          "label": "仓库 README / Releases",
+          "url": "https://github.com/krahets/hello-algo#readme",
+          "kind": "download",
+          "note": "适合离线备课、查看发行版与 PDF/EPUB 入口。"
+        }
+      ]
+    }
   ],
   "announcements": [
     {
@@ -23,6 +61,11 @@
       "date": "2026-03-19",
       "title": "六讲课件与题目讲义已上线",
       "content": "Lecture 01-06 已完成在线课件、配套题目讲义 notebook 与 PDF 导出，可通过课程首页统一访问。"
+    },
+    {
+      "date": "2026-03-19",
+      "title": "Hello 算法资源整合已接入",
+      "content": "课程站已新增外部资源页，并按 Lecture 01-06 建立 Hello 算法对照阅读入口，便于备课、讲课与课后补强。"
     }
   ],
   "lessons": [
@@ -42,7 +85,42 @@
       ],
       "source": "slides/lecture-01-foundation-linear/slides.md",
       "pdf": "docs/pdfs/lecture-01-foundation-linear.pdf",
-      "handout": "handouts/lecture-01-foundation-linear/practice.ipynb"
+      "handout": "handouts/lecture-01-foundation-linear/practice.ipynb",
+      "resourceNotes": [
+        "这一讲的目标是把“结构 + 操作 + 代价”讲透，Hello 算法主要负责图解补强和概念铺垫。"
+      ],
+      "resources": [
+        {
+          "label": "1.2 算法是什么",
+          "url": "https://www.hello-algo.com/chapter_introduction/what_is_dsa/",
+          "kind": "reading",
+          "note": "用来讲清数据结构与算法的关系。"
+        },
+        {
+          "label": "2.1 算法效率评估",
+          "url": "https://www.hello-algo.com/chapter_computational_complexity/performance_evaluation/",
+          "kind": "reading",
+          "note": "适合引入“测试 vs 理论估算”。"
+        },
+        {
+          "label": "2.3 时间复杂度",
+          "url": "https://www.hello-algo.com/chapter_computational_complexity/time_complexity/",
+          "kind": "reading",
+          "note": "用动画和表格补强复杂度直觉。"
+        },
+        {
+          "label": "3.1 数据结构分类",
+          "url": "https://www.hello-algo.com/chapter_data_structure/classification_of_data_structure/",
+          "kind": "reading",
+          "note": "对应逻辑结构 / 存储结构的课堂切入。"
+        },
+        {
+          "label": "4.1 数组",
+          "url": "https://www.hello-algo.com/chapter_array_and_linkedlist/array/",
+          "kind": "reading",
+          "note": "帮助学生建立顺序表的空间连续直觉。"
+        }
+      ]
     },
     {
       "id": "lecture-02",
@@ -60,7 +138,54 @@
       ],
       "source": "slides/lecture-02-string-stack-queue/slides.md",
       "pdf": "docs/pdfs/lecture-02-string-stack-queue.pdf",
-      "handout": "handouts/lecture-02-string-stack-queue/practice.ipynb"
+      "handout": "handouts/lecture-02-string-stack-queue/practice.ipynb",
+      "resourceNotes": [
+        "Hello 算法当前主线不覆盖串匹配 / KMP，本讲字符串部分仍以本仓库 slides 与 notebook 为准。"
+      ],
+      "resources": [
+        {
+          "label": "4.2 链表",
+          "url": "https://www.hello-algo.com/chapter_array_and_linkedlist/linked_list/",
+          "kind": "reading",
+          "note": "适合拿来解释“增删快，访问慢”的代价来源。"
+        },
+        {
+          "label": "5.1 栈",
+          "url": "https://www.hello-algo.com/chapter_stack_and_queue/stack/",
+          "kind": "reading",
+          "note": "图解 LIFO 与括号 / 递归应用。"
+        },
+        {
+          "label": "5.2 队列",
+          "url": "https://www.hello-algo.com/chapter_stack_and_queue/queue/",
+          "kind": "reading",
+          "note": "配合顺序队列与链式队列对照讲。"
+        },
+        {
+          "label": "5.3 双向队列",
+          "url": "https://www.hello-algo.com/chapter_stack_and_queue/deque/",
+          "kind": "reading",
+          "note": "可作为补充材料解释更灵活的线性结构。"
+        },
+        {
+          "label": "12.1 分治算法",
+          "url": "https://www.hello-algo.com/chapter_divide_and_conquer/divide_and_conquer/",
+          "kind": "reading",
+          "note": "用于串联算法思想部分。"
+        },
+        {
+          "label": "13.1 回溯算法",
+          "url": "https://www.hello-algo.com/chapter_backtracking/backtracking_algorithm/",
+          "kind": "reading",
+          "note": "配合搜索树与状态恢复讲。"
+        },
+        {
+          "label": "14.1 初探动态规划",
+          "url": "https://www.hello-algo.com/chapter_dynamic_programming/intro_to_dynamic_programming/",
+          "kind": "reading",
+          "note": "用于建立“记忆化 / 递推”直觉。"
+        }
+      ]
     },
     {
       "id": "lecture-03",
@@ -78,7 +203,72 @@
       ],
       "source": "slides/lecture-03-sorting-tree-search/slides.md",
       "pdf": "docs/pdfs/lecture-03-sorting-tree-search.pdf",
-      "handout": "handouts/lecture-03-sorting-tree-search/practice.ipynb"
+      "handout": "handouts/lecture-03-sorting-tree-search/practice.ipynb",
+      "resourceNotes": [
+        "本讲知识点密度最高，建议把 Hello 算法当作“树形图解 + 排序动画 + 代码对照”三件套来用。"
+      ],
+      "resources": [
+        {
+          "label": "11.1 排序算法",
+          "url": "https://www.hello-algo.com/chapter_sorting/sorting_algorithm/",
+          "kind": "reading",
+          "note": "先用总览建立全局排序地图。"
+        },
+        {
+          "label": "11.5 快速排序",
+          "url": "https://www.hello-algo.com/chapter_sorting/quick_sort/",
+          "kind": "reading",
+          "note": "适合讲 partition 的移动逻辑。"
+        },
+        {
+          "label": "11.6 归并排序",
+          "url": "https://www.hello-algo.com/chapter_sorting/merge_sort/",
+          "kind": "reading",
+          "note": "适合配合分治框架讲递归树。"
+        },
+        {
+          "label": "7.1 二叉树",
+          "url": "https://www.hello-algo.com/chapter_tree/binary_tree/",
+          "kind": "reading",
+          "note": "建立父子层次关系的第一入口。"
+        },
+        {
+          "label": "7.2 二叉树遍历",
+          "url": "https://www.hello-algo.com/chapter_tree/binary_tree_traversal/",
+          "kind": "reading",
+          "note": "用于讲前中后序和非递归视角。"
+        },
+        {
+          "label": "7.4 二叉搜索树",
+          "url": "https://www.hello-algo.com/chapter_tree/binary_search_tree/",
+          "kind": "reading",
+          "note": "对应查找、插入、删除的局部规则。"
+        },
+        {
+          "label": "8.1 堆",
+          "url": "https://www.hello-algo.com/chapter_heap/heap/",
+          "kind": "reading",
+          "note": "适合解释完全二叉树和优先级维护。"
+        },
+        {
+          "label": "10.1 二分查找",
+          "url": "https://www.hello-algo.com/chapter_searching/binary_search/",
+          "kind": "reading",
+          "note": "补强判定区间与边界意识。"
+        },
+        {
+          "label": "6.1 哈希表",
+          "url": "https://www.hello-algo.com/chapter_hashing/hash_map/",
+          "kind": "reading",
+          "note": "对应字典检索的平均效率直觉。"
+        },
+        {
+          "label": "6.2 哈希冲突",
+          "url": "https://www.hello-algo.com/chapter_hashing/hash_collision/",
+          "kind": "reading",
+          "note": "用于解释开放定址和链地址的代价。"
+        }
+      ]
     },
     {
       "id": "lecture-04",
@@ -96,7 +286,36 @@
       ],
       "source": "slides/lecture-04-graph-wrap-up/slides.md",
       "pdf": "docs/pdfs/lecture-04-graph-wrap-up.pdf",
-      "handout": "handouts/lecture-04-graph-wrap-up/practice.ipynb"
+      "handout": "handouts/lecture-04-graph-wrap-up/practice.ipynb",
+      "resourceNotes": [
+        "Hello 算法的图章节更适合补图表示与 DFS / BFS 直觉；最短路、最小生成树、拓扑排序仍以本仓库课件为主。"
+      ],
+      "resources": [
+        {
+          "label": "9.1 图",
+          "url": "https://www.hello-algo.com/chapter_graph/graph/",
+          "kind": "reading",
+          "note": "讲清点边关系、无向 / 有向、加权 / 非加权。"
+        },
+        {
+          "label": "9.2 图基础操作",
+          "url": "https://www.hello-algo.com/chapter_graph/graph_operations/",
+          "kind": "reading",
+          "note": "适合补邻接表 / 邻接矩阵的实现直觉。"
+        },
+        {
+          "label": "9.3 图的遍历",
+          "url": "https://www.hello-algo.com/chapter_graph/graph_traversal/",
+          "kind": "reading",
+          "note": "图解 DFS / BFS 的访问过程。"
+        },
+        {
+          "label": "15.1 贪心算法",
+          "url": "https://www.hello-algo.com/chapter_greedy/greedy_algorithm/",
+          "kind": "reading",
+          "note": "可作为 Prim / Kruskal 的策略铺垫。"
+        }
+      ]
     },
     {
       "id": "lecture-05",
@@ -114,7 +333,60 @@
       ],
       "source": "slides/lecture-05-lab-review/slides.md",
       "pdf": "docs/pdfs/lecture-05-lab-review.pdf",
-      "handout": "handouts/lecture-05-lab-review/practice.ipynb"
+      "handout": "handouts/lecture-05-lab-review/practice.ipynb",
+      "resourceNotes": [
+        "上机复习优先把 Hello 算法当作代码对照库来用，尤其适合补齐“会看图但不会写”的环节。"
+      ],
+      "resources": [
+        {
+          "label": "Hello 算法官网",
+          "url": "https://www.hello-algo.com/",
+          "kind": "website",
+          "note": "需要动画解释时从这里进入。"
+        },
+        {
+          "label": "GitHub 源码仓库",
+          "url": "https://github.com/krahets/hello-algo",
+          "kind": "repository",
+          "note": "适合按语言切换代码实现。"
+        },
+        {
+          "label": "4.2 链表",
+          "url": "https://www.hello-algo.com/chapter_array_and_linkedlist/linked_list/",
+          "kind": "reading",
+          "note": "重点看插删时指针改动。"
+        },
+        {
+          "label": "5.1 栈",
+          "url": "https://www.hello-algo.com/chapter_stack_and_queue/stack/",
+          "kind": "reading",
+          "note": "复习顺序栈与语言内置容器。"
+        },
+        {
+          "label": "5.2 队列",
+          "url": "https://www.hello-algo.com/chapter_stack_and_queue/queue/",
+          "kind": "reading",
+          "note": "看出队 / 入队模板与边界。"
+        },
+        {
+          "label": "6.1 哈希表",
+          "url": "https://www.hello-algo.com/chapter_hashing/hash_map/",
+          "kind": "reading",
+          "note": "适合回顾字典接口与常见容器。"
+        },
+        {
+          "label": "7.2 二叉树遍历",
+          "url": "https://www.hello-algo.com/chapter_tree/binary_tree_traversal/",
+          "kind": "reading",
+          "note": "复习递归 / 栈模拟模板。"
+        },
+        {
+          "label": "9.3 图的遍历",
+          "url": "https://www.hello-algo.com/chapter_graph/graph_traversal/",
+          "kind": "reading",
+          "note": "复习 DFS / BFS 模板与 visited 处理。"
+        }
+      ]
     },
     {
       "id": "lecture-06",
@@ -132,7 +404,48 @@
       ],
       "source": "slides/lecture-06-written-review/slides.md",
       "pdf": "docs/pdfs/lecture-06-written-review.pdf",
-      "handout": "handouts/lecture-06-written-review/practice.ipynb"
+      "handout": "handouts/lecture-06-written-review/practice.ipynb",
+      "resourceNotes": [
+        "笔试冲刺阶段优先看图、表和复杂度对比，别把时间耗在长代码实现上。"
+      ],
+      "resources": [
+        {
+          "label": "2.3 时间复杂度",
+          "url": "https://www.hello-algo.com/chapter_computational_complexity/time_complexity/",
+          "kind": "reading",
+          "note": "适合手算与复杂度比较前快速回顾。"
+        },
+        {
+          "label": "3.1 数据结构分类",
+          "url": "https://www.hello-algo.com/chapter_data_structure/classification_of_data_structure/",
+          "kind": "reading",
+          "note": "整理线性 / 非线性、连续 / 分散等概念。"
+        },
+        {
+          "label": "11.1 排序算法",
+          "url": "https://www.hello-algo.com/chapter_sorting/sorting_algorithm/",
+          "kind": "reading",
+          "note": "总览不同排序的稳定性与复杂度。"
+        },
+        {
+          "label": "10.1 二分查找",
+          "url": "https://www.hello-algo.com/chapter_searching/binary_search/",
+          "kind": "reading",
+          "note": "复盘边界题最容易错的地方。"
+        },
+        {
+          "label": "7.4 二叉搜索树",
+          "url": "https://www.hello-algo.com/chapter_tree/binary_search_tree/",
+          "kind": "reading",
+          "note": "适合手推查找 / 插入 / 删除。"
+        },
+        {
+          "label": "9.1 图",
+          "url": "https://www.hello-algo.com/chapter_graph/graph/",
+          "kind": "reading",
+          "note": "考试前最后整理图的基本概念。"
+        }
+      ]
     }
   ]
 }

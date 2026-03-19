@@ -32,6 +32,8 @@ const lesson = {
   status: "drafting",
   summary: "待补充课程摘要。",
   topics: ["待补充知识梳理", "待补充例题", "待补充课堂练习", "待补充课后题"],
+  resourceNotes: [],
+  resources: [],
   source: `slides/${slugInput}/slides.md`,
   pdf: `docs/pdfs/${slugInput}.pdf`
 };
@@ -78,4 +80,3 @@ layout: section
 }
 
 console.log(`Created lesson ${titleInput}`);
-
