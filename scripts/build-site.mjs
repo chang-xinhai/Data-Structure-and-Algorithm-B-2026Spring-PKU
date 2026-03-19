@@ -24,11 +24,54 @@ if (existsSync(join(rootDir, "handouts"))) {
   copyDir(join(rootDir, "handouts"), join(docsDir, "handouts"));
 }
 
+function resourceKindLabel(kind) {
+  const labels = {
+    reading: "Reading",
+    repository: "Repository",
+    website: "Website",
+    download: "Download"
+  };
+  return labels[kind] ?? kind;
+}
+
+function renderResourceLinks(resources, { compact = false } = {}) {
+  if (!resources?.length) {
+    return '<div class="empty">暂无外部资源。</div>';
+  }
+
+  const className = compact ? "resource-link-list compact" : "resource-link-list";
+  return `<div class="${className}">
+    ${resources
+      .map(
+        (resource) => `<a class="resource-link" href="${escapeHtml(resource.url)}" target="_blank" rel="noreferrer noopener">
+          <span class="resource-topline">
+            <span class="pill subtle">${escapeHtml(resourceKindLabel(resource.kind))}</span>
+            <span class="resource-arrow">↗</span>
+          </span>
+          <strong>${escapeHtml(resource.label)}</strong>
+          <span>${escapeHtml(resource.note ?? "")}</span>
+        </a>`
+      )
+      .join("")}
+  </div>`;
+}
+
+function renderNoteStack(notes) {
+  if (!notes?.length) {
+    return "";
+  }
+
+  return `<div class="note-stack">
+    ${notes.map((note) => `<div class="note-card">${escapeHtml(note)}</div>`).join("")}
+  </div>`;
+}
+
 function renderLayout({ title, body, activeNav }) {
   const courseTitle = escapeHtml(data.course.title);
   const titleText = escapeHtml(title);
   const navItems = [
     { href: withBase(basePath, ""), label: "首页", key: "home" },
+    { href: withBase(basePath, "resources/"), label: "资源", key: "resources" },
     { href: withBase(basePath, "progress/"), label: "进度", key: "progress" },
     { href: withBase(basePath, "announcements/"), label: "公告", key: "announcements" }
   ];
@@ -77,6 +120,9 @@ function renderLessonCard(lesson) {
   const handoutLink = lesson.handout
     ? `<a class="button secondary" href="${withBase(basePath, lesson.handout)}">题目讲义</a>`
     : "";
+  const resourceLink = lesson.resources?.length
+    ? `<a class="button tertiary" href="${lessonHref}#resources">补强资源</a>`
+    : "";
   return `<article class="lesson-card">
     <div class="lesson-order">${String(lesson.order).padStart(2, "0")}</div>
     <h3>${escapeHtml(lesson.title)}</h3>
@@ -84,6 +130,7 @@ function renderLessonCard(lesson) {
     <div class="badge-row">
       <span class="badge">${escapeHtml(lessonTypeLabel(lesson.type))}</span>
       <span class="badge">${escapeHtml(lessonStatusLabel(lesson.status))}</span>
+      <span class="badge">${lesson.resources?.length ?? 0} external links</span>
     </div>
     <ul class="topics">${topicHtml}</ul>
     <div class="action-row">
@@ -91,8 +138,62 @@ function renderLessonCard(lesson) {
       <a class="button secondary" href="${slideHref}">在线课件</a>
       <a class="button secondary" href="${pdfHref}">PDF</a>
       ${handoutLink}
+      ${resourceLink}
     </div>
   </article>`;
+}
+
+function renderResourceCollection(collection) {
+  const usageList = collection.usage.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  const caveatList = collection.caveats.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  const links = renderResourceLinks(collection.links);
+  return `<article class="panel resource-collection">
+    <div class="eyebrow">${escapeHtml(collection.id)}</div>
+    <h2 style="margin-top: 12px">${escapeHtml(collection.title)}</h2>
+    <p style="margin-top: 14px">${escapeHtml(collection.summary)}</p>
+    <div class="resource-block">
+      <div class="kicker">使用方式</div>
+      <ul class="list">${usageList}</ul>
+    </div>
+    <div class="resource-block">
+      <div class="kicker">整合边界</div>
+      <ul class="list">${caveatList}</ul>
+    </div>
+    <div class="resource-block">
+      <div class="kicker">公开署名与授权</div>
+      <p>${escapeHtml(collection.attribution)}</p>
+    </div>
+    ${links}
+  </article>`;
+}
+
+function renderLessonResourceCard(lesson) {
+  return `<article class="panel resource-lesson">
+    <div class="lesson-order">${String(lesson.order).padStart(2, "0")}</div>
+    <h3>${escapeHtml(lesson.title)}</h3>
+    <p style="margin-top: 12px">${escapeHtml(lesson.summary)}</p>
+    ${renderNoteStack(lesson.resourceNotes)}
+    ${renderResourceLinks(lesson.resources, { compact: true })}
+    <div class="action-row">
+      <a class="button secondary" href="${withBase(basePath, `lessons/${lesson.slug}/`)}">打开课次页</a>
+      <a class="button secondary" href="${withBase(basePath, `slides/${lesson.slug}/`)}">在线课件</a>
+    </div>
+  </article>`;
+}
+
+function renderLessonResourcesSection(lesson) {
+  if (!lesson.resources?.length && !lesson.resourceNotes?.length) {
+    return "";
+  }
+
+  return `<section class="section-title" id="resources">
+      <div>
+        <h2>补强资源</h2>
+        <p>优先使用本讲对照入口，不要在外部资料站里重新按关键词盲搜。</p>
+      </div>
+    </section>
+    ${renderNoteStack(lesson.resourceNotes)}
+    ${renderResourceLinks(lesson.resources)}`;
 }
 
 const lessonCards = data.lessons.map(renderLessonCard).join("");
@@ -106,6 +207,8 @@ const announcements = data.announcements
   )
   .join("");
 const highlightList = data.highlights.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+const resourceCollections = data.resourceCollections.map(renderResourceCollection).join("");
+const lessonResourceCards = data.lessons.map(renderLessonResourceCard).join("");
 
 writePage(
   "",
@@ -119,7 +222,7 @@ writePage(
         <p>${escapeHtml(data.course.description)}</p>
         <div class="hero-actions">
           <a class="button primary" href="#lessons">进入课次目录</a>
-          <a class="button secondary" href="${withBase(basePath, "progress/")}">查看教学进度</a>
+          <a class="button secondary" href="${withBase(basePath, "resources/")}">打开资源中枢</a>
         </div>
       </div>
       <div class="panel">
@@ -130,10 +233,18 @@ writePage(
     <section class="section-title" id="lessons">
       <div>
         <h2>课次目录</h2>
-        <p>前 4 次课覆盖全部核心大纲，第 5 次课做上机复习，第 6 次课做笔试复习。后续新增课程时，目录将自动扩展。</p>
+        <p>前 4 次课覆盖全部核心大纲，第 5 次课做上机复习，第 6 次课做笔试复习。课次页现在同时提供课件、PDF、讲义和 Hello 算法对照资源。</p>
       </div>
     </section>
     <section class="lesson-grid">${lessonCards}</section>
+    <section class="section-title">
+      <div>
+        <h2>补强资源库</h2>
+        <p>把优质公开资源纳入同一套元数据管理，而不是手工在各页乱放链接。</p>
+      </div>
+      <a class="button secondary" href="${withBase(basePath, "resources/")}">查看完整对照</a>
+    </section>
+    <section class="resource-collection-grid">${resourceCollections}</section>
     <section class="section-title">
       <div>
         <h2>课程公告</h2>
@@ -148,6 +259,37 @@ writePage(
 );
 
 writePage(
+  "resources",
+  renderLayout({
+    title: "资源中枢",
+    activeNav: "resources",
+    body: `<section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Resource Hub</span>
+        <h1>资源中枢</h1>
+        <p>当前先接入 Hello 算法，形成“官网图解 + GitHub 代码 + 逐讲导读”的统一入口。后续若要接入更多公开资源，也继续走同一套元数据和页面结构。</p>
+      </div>
+      <div class="panel">
+        <div class="kicker">使用原则</div>
+        <ul class="list">
+          <li>本仓库课件负责授课主线，外部资源负责补图解、补代码、补回看。</li>
+          <li>所有外部链接统一挂在课程元数据下，避免站点多处重复维护。</li>
+          <li>如未来需要本地镜像资源，应先补署名与授权说明，再决定是否纳入仓库。</li>
+        </ul>
+      </div>
+    </section>
+    <section class="resource-collection-grid">${resourceCollections}</section>
+    <section class="section-title">
+      <div>
+        <h2>逐讲对照</h2>
+        <p>每讲都给出最值得打开的外部链接，方便备课、讲课和学生补弱。</p>
+      </div>
+    </section>
+    <section class="resource-lesson-grid">${lessonResourceCards}</section>`
+  })
+);
+
+writePage(
   "progress",
   renderLayout({
     title: "教学进度",
@@ -156,7 +298,7 @@ writePage(
       <div class="hero-copy">
         <span class="eyebrow">Course Progress</span>
         <h1>教学进度</h1>
-        <p>使用统一元数据管理课次状态、内容摘要和公开入口。后续加课时无需改站点代码。</p>
+        <p>使用统一元数据管理课次状态、内容摘要和公开入口。后续加课时无需改站点代码，资源中枢也会自动扩展。</p>
       </div>
       <div class="panel">
         <div class="kicker">当前默认节奏</div>
@@ -174,6 +316,9 @@ writePage(
             <span class="pill">${escapeHtml(lessonStatusLabel(lesson.status))}</span>
             <h3 style="margin-top: 14px">${escapeHtml(lesson.title)}</h3>
             <p style="margin-top: 12px">${escapeHtml(lesson.summary)}</p>
+            <div class="badge-row">
+              <span class="badge">${lesson.resources?.length ?? 0} external links</span>
+            </div>
             <div class="action-row">
               <a class="button secondary" href="${withBase(basePath, `lessons/${lesson.slug}/`)}">课次页</a>
             </div>
@@ -215,6 +360,10 @@ for (const lesson of data.lessons) {
   const handoutAction = lesson.handout
     ? `<a class="button secondary" href="${withBase(basePath, lesson.handout)}">下载题目讲义</a>`
     : "";
+  const resourceAction = lesson.resources?.length
+    ? `<a class="button tertiary" href="#resources">查看补强资源</a>`
+    : "";
+
   writePage(
     join("lessons", lesson.slug),
     renderLayout({
@@ -229,6 +378,7 @@ for (const lesson of data.lessons) {
             <a class="button primary" href="${withBase(basePath, `slides/${lesson.slug}/`)}">打开在线课件</a>
             <a class="button secondary" href="${withBase(basePath, `pdfs/${lesson.slug}.pdf`)}">下载 PDF</a>
             ${handoutAction}
+            ${resourceAction}
           </div>
         </div>
         <div class="panel">
@@ -238,6 +388,7 @@ for (const lesson of data.lessons) {
             <li>类型：${escapeHtml(lessonTypeLabel(lesson.type))}</li>
             <li>状态：${escapeHtml(lessonStatusLabel(lesson.status))}</li>
             <li>源文件：${escapeHtml(lesson.source)}</li>
+            <li>外部资源：${lesson.resources?.length ?? 0} 条</li>
             ${handoutMeta}
           </ul>
         </div>
@@ -253,10 +404,11 @@ for (const lesson of data.lessons) {
             <li>课件使用 Slidev 编写，默认主题为 Seriph。</li>
             <li>每讲保持“知识梳理 + 典型例题 + 课堂练习 + 课后题”的结构。</li>
             <li>题目讲义使用 Jupyter Notebook 维护，便于按题型增补与发放。</li>
-            <li>若后续加课，本页将由同一套脚本自动生成。</li>
+            <li>外部资源页统一挂在元数据下，后续扩展不改页面模板。</li>
           </ul>
         </article>
-      </section>`
+      </section>
+      ${renderLessonResourcesSection(lesson)}`
     })
   );
 }
@@ -270,7 +422,7 @@ writeFileSync(
       <div class="hero-copy">
         <span class="eyebrow">404</span>
         <h1>页面未找到</h1>
-        <p>返回课程首页继续浏览课件与公告。</p>
+        <p>返回课程首页继续浏览课件、资源和公告。</p>
         <div class="hero-actions">
           <a class="button primary" href="${withBase(basePath, "")}">返回首页</a>
         </div>
