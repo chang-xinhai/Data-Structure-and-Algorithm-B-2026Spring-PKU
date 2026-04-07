@@ -6,23 +6,125 @@
   <title>数据结构与算法 B · 2026 Spring</title>
   <meta name="description" content="北京大学 数据结构与算法 B 小班课 授课网站 · 2026 年春季学期" />
   <link rel="stylesheet" href="site.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%235b8dee'/><text x='50%' y='54%25' dominant-baseline='central' text-anchor='middle' font-size='16' font-weight='700' fill='white' font-family='monospace'>DS</text></svg>" />
 </head>
 <body>
+
+  <!-- SVG Sprite — Filled icon style for premium feel -->
+  <svg style="display:none">
+
+    <!-- Logo: four squares like a grid -->
+    <symbol id="icon-logo" viewBox="0 0 18 18">
+      <rect x="0.5" y="0.5" width="7.5" height="7.5" rx="1.5" fill="white" opacity="0.95"/>
+      <rect x="10" y="0.5" width="7.5" height="7.5" rx="1.5" fill="white" opacity="0.65"/>
+      <rect x="0.5" y="10" width="7.5" height="7.5" rx="1.5" fill="white" opacity="0.65"/>
+      <rect x="10" y="10" width="7.5" height="7.5" rx="1.5" fill="white" opacity="0.95"/>
+    </symbol>
+
+    <!-- Map pin -->
+    <symbol id="icon-location" viewBox="0 0 16 16">
+      <path d="M8 1.2C5.44 1.2 3.33 3.3 3.33 5.87c0 3.64 4.67 8.87 4.67 8.87S12.67 9.51 12.67 5.87C12.67 3.3 10.56 1.2 8 1.2zm0 6.53c-1.39 0-2.53-1.13-2.53-2.53S6.61 2.67 8 2.67s2.53 1.13 2.53 2.53S9.39 7.73 8 7.73z" fill="currentColor"/>
+    </symbol>
+
+    <!-- GitHub -->
+    <symbol id="icon-github" viewBox="0 0 16 16">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </symbol>
+
+    <!-- Calendar -->
+    <symbol id="icon-calendar" viewBox="0 0 16 16">
+      <path d="M3 2.5A1.5 1.5 0 014.5 1h7A1.5 1.5 0 0113 2.5v11A1.5 1.5 0 0111.5 15h-7A1.5 1.5 0 013 13.5v-11zM5 0v2M11 0v2M2.5 5h11" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- Slides -->
+    <symbol id="icon-slides" viewBox="0 0 16 16">
+      <rect x="1" y="1.5" width="14" height="10" rx="1.5" stroke="currentColor" fill="none" stroke-width="1.3"/>
+      <path d="M5 14.5h6M8 11.5v3" stroke="currentColor" fill="none" stroke-width="1.3" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Star (exercises) -->
+    <symbol id="icon-star" viewBox="0 0 16 16">
+      <path d="M8 1.3L9.8 5.6H14.5L10.9 8.3L12.4 13L8 10.2L3.6 13L5.1 8.3L1.5 5.6H6.2L8 1.3z" stroke="currentColor" fill="none" stroke-width="1.2" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- PDF -->
+    <symbol id="icon-pdf" viewBox="0 0 16 16">
+      <rect x="2" y="1" width="9" height="12" rx="1.5" stroke="currentColor" fill="none" stroke-width="1.3"/>
+      <path d="M11 1l3 3v9a1 1 0 01-1 1H5a1 1 0 01-1-1V4a1 1 0 011-1h6" stroke="currentColor" fill="none" stroke-width="1.3"/>
+      <path d="M5 7h6M5 9.5h4" stroke="currentColor" fill="none" stroke-width="1.2" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Notebook -->
+    <symbol id="icon-notebook" viewBox="0 0 16 16">
+      <rect x="2.5" y="1.5" width="11" height="13" rx="1.5" stroke="currentColor" fill="none" stroke-width="1.3"/>
+      <path d="M5 5h6M5 8h6M5 11h3" stroke="currentColor" fill="none" stroke-width="1.2" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- OJ (checkmark box) -->
+    <symbol id="icon-oj" viewBox="0 0 16 16">
+      <rect x="1.5" y="3.5" width="13" height="9" rx="1.5" stroke="currentColor" fill="none" stroke-width="1.3"/>
+      <path d="M4.5 1.5v2M11.5 1.5v2" stroke="currentColor" fill="none" stroke-width="1.3" stroke-linecap="round"/>
+      <path d="M5 8l2.5 2L11 6.5" stroke="currentColor" fill="none" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- Checkmark circle -->
+    <symbol id="icon-check" viewBox="0 0 12 12">
+      <path d="M2 6.2l2.8 2.8L10 3.5" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- Lock -->
+    <symbol id="icon-lock" viewBox="0 0 16 16">
+      <rect x="3.5" y="7" width="9" height="7" rx="1.5" stroke="currentColor" fill="none" stroke-width="1.3"/>
+      <path d="M5.5 7V5a2.5 2.5 0 015 0v2" stroke="currentColor" fill="none" stroke-width="1.3" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- External link arrow -->
+    <symbol id="icon-external" viewBox="0 0 12 12">
+      <path d="M5 2.5H2.5v7M9.5 2.5L6 9.5M6 2.5h4v4" stroke="currentColor" fill="none" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- Clock -->
+    <symbol id="icon-clock" viewBox="0 0 16 16">
+      <circle cx="8" cy="8" r="6.5" stroke="currentColor" fill="none" stroke-width="1.3"/>
+      <path d="M8 4.5V8l2.5 2" stroke="currentColor" fill="none" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <!-- Globe (for hello-algo website) -->
+    <symbol id="icon-globe" viewBox="0 0 16 16">
+      <circle cx="8" cy="8" r="6.5" stroke="currentColor" fill="none" stroke-width="1.3"/>
+      <path d="M8 1.5c-1.8 1.8-2.5 5.5-2.5 6.5s.7 3.2 2.5 6.5M8 1.5c1.8 1.8 2.5 5.5 2.5 6.5s-.7 3.2-2.5 6.5M1.5 8h13" stroke="currentColor" fill="none" stroke-width="1.3"/>
+    </symbol>
+
+  </svg>
 
   <!-- Header -->
   <header class="site-header">
     <div class="container">
-      <div class="site-title">
-        DS&A B <span>2026 Spring</span>
+      <div class="header-left">
+        <div class="site-logo">
+          <svg><use href="#icon-logo"/></svg>
+        </div>
+        <div class="site-title">
+          DS&A B <span class="term">2026 Spring</span>
+        </div>
       </div>
-      <div class="header-badge">🪄 PKU 小班课</div>
+      <nav class="header-nav">
+        <a href="https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU" class="header-link" target="_blank" rel="noopener">
+          <svg><use href="#icon-github"/></svg>
+          GitHub
+        </a>
+        <div class="header-badge">PKU 小班课</div>
+      </nav>
     </div>
   </header>
 
   <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <div class="hero-eyebrow">2026 春 · 北京大学</div>
+      <div class="hero-eyebrow">
+        <svg><use href="#icon-location"/></svg>
+        2026 春 · 北京大学
+      </div>
       <h1 class="hero-title">数据结构与算法 B</h1>
       <p class="hero-subtitle">小班课授课网站</p>
       <div class="hero-meta">
@@ -46,7 +148,13 @@
 
     <!-- Schedule -->
     <section class="section">
-      <div class="section-title">📅 授课计划</div>
+      <div class="section-header">
+        <div class="section-title">
+          <svg><use href="#icon-calendar"/></svg>
+          授课计划
+        </div>
+      </div>
+      <div class="schedule-table-wrapper">
       <table class="schedule-table">
         <thead>
           <tr>
@@ -95,174 +203,322 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </section>
+
+    <div class="section-divider"></div>
 
     <!-- Slides -->
     <section class="section">
-      <div class="section-title">📋 授课 Slides</div>
+      <div class="section-header">
+        <div class="section-title">
+          <svg><use href="#icon-slides"/></svg>
+          授课 Slides
+          <span class="section-count">· PDF</span>
+        </div>
+      </div>
       <div class="lectures-grid">
 
-        <!-- L01 -->
-        <a href="slides/L1%20基础、复杂度和线性表.pdf" class="lecture-card" target="_blank">
+        <!-- L01 — Available -->
+        <a href="slides/L1%20基础、复杂度和线性表.pdf" class="lecture-card" target="_blank" rel="noopener">
           <div class="lecture-card-header">
             <div class="lecture-number">01</div>
-            <div class="lecture-status">📝 制作中</div>
+            <div class="lecture-status available">
+              <svg><use href="#icon-check"/></svg>
+              已发布
+            </div>
           </div>
           <div class="lecture-title">基础、复杂度与线性表</div>
-          <div class="lecture-date">W3 · 3月21日</div>
+          <div class="lecture-date">
+            <svg><use href="#icon-calendar"/></svg>
+            W3 · 3月21日
+          </div>
           <div class="lecture-links">
-            <span class="link-btn">📄 PDF</span>
+            <span class="link-btn">
+              <svg><use href="#icon-pdf"/></svg>
+              PDF
+              <svg class="arrow" style=""><use href="#icon-external"/></svg>
+            </span>
           </div>
         </a>
 
-        <!-- L02 -->
-        <div class="lecture-card">
+        <!-- L02–L06 — Coming Soon -->
+        <div class="lecture-card disabled">
           <div class="lecture-card-header">
             <div class="lecture-number">02</div>
-            <div class="lecture-status">🔲 待制作</div>
+            <div class="lecture-status">
+              <svg><use href="#icon-lock"/></svg>
+              待发布
+            </div>
           </div>
           <div class="lecture-title">链表、串与线性结构应用</div>
-          <div class="lecture-date">W6 · 4月11日</div>
+          <div class="lecture-date">
+            <svg><use href="#icon-calendar"/></svg>
+            W6 · 4月11日
+          </div>
           <div class="lecture-links">
-            <span class="link-btn disabled">📄 PDF</span>
+            <span class="link-btn disabled">
+              <svg><use href="#icon-pdf"/></svg>
+              PDF
+            </span>
           </div>
         </div>
 
-        <!-- L03 -->
-        <div class="lecture-card">
+        <div class="lecture-card disabled">
           <div class="lecture-card-header">
             <div class="lecture-number">03</div>
-            <div class="lecture-status">🔲 待制作</div>
+            <div class="lecture-status">
+              <svg><use href="#icon-lock"/></svg>
+              待发布
+            </div>
           </div>
           <div class="lecture-title">排序、树与检索</div>
-          <div class="lecture-date">W8 · 4月25日</div>
+          <div class="lecture-date">
+            <svg><use href="#icon-calendar"/></svg>
+            W8 · 4月25日
+          </div>
           <div class="lecture-links">
-            <span class="link-btn disabled">📄 PDF</span>
+            <span class="link-btn disabled">
+              <svg><use href="#icon-pdf"/></svg>
+              PDF
+            </span>
           </div>
         </div>
 
-        <!-- L04 -->
-        <div class="lecture-card">
+        <div class="lecture-card disabled">
           <div class="lecture-card-header">
             <div class="lecture-number">04</div>
-            <div class="lecture-status">🔲 待制作</div>
+            <div class="lecture-status">
+              <svg><use href="#icon-lock"/></svg>
+              待发布
+            </div>
           </div>
           <div class="lecture-title">图算法与综合收束</div>
-          <div class="lecture-date">W10 · 5月9日</div>
+          <div class="lecture-date">
+            <svg><use href="#icon-calendar"/></svg>
+            W10 · 5月9日
+          </div>
           <div class="lecture-links">
-            <span class="link-btn disabled">📄 PDF</span>
+            <span class="link-btn disabled">
+              <svg><use href="#icon-pdf"/></svg>
+              PDF
+            </span>
           </div>
         </div>
 
-        <!-- L05 -->
-        <div class="lecture-card">
+        <div class="lecture-card disabled">
           <div class="lecture-card-header">
             <div class="lecture-number">05</div>
-            <div class="lecture-status">🔲 待制作</div>
+            <div class="lecture-status">
+              <svg><use href="#icon-lock"/></svg>
+              待发布
+            </div>
           </div>
           <div class="lecture-title">期末上机复习</div>
-          <div class="lecture-date">W13 · 5月30日</div>
+          <div class="lecture-date">
+            <svg><use href="#icon-calendar"/></svg>
+            W13 · 5月30日
+          </div>
           <div class="lecture-links">
-            <span class="link-btn disabled">📄 PDF</span>
+            <span class="link-btn disabled">
+              <svg><use href="#icon-pdf"/></svg>
+              PDF
+            </span>
           </div>
         </div>
 
-        <!-- L06 -->
-        <div class="lecture-card">
+        <div class="lecture-card disabled">
           <div class="lecture-card-header">
             <div class="lecture-number">06</div>
-            <div class="lecture-status">🔲 待制作</div>
+            <div class="lecture-status">
+              <svg><use href="#icon-lock"/></svg>
+              待发布
+            </div>
           </div>
           <div class="lecture-title">期末笔试复习</div>
-          <div class="lecture-date">W14 · 6月6日</div>
+          <div class="lecture-date">
+            <svg><use href="#icon-calendar"/></svg>
+            W14 · 6月6日
+          </div>
           <div class="lecture-links">
-            <span class="link-btn disabled">📄 PDF</span>
+            <span class="link-btn disabled">
+              <svg><use href="#icon-pdf"/></svg>
+              PDF
+            </span>
           </div>
         </div>
 
       </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- Handouts -->
     <section class="section">
-      <div class="section-title">🖊️ 习题讲义</div>
+      <div class="section-header">
+        <div class="section-title">
+          <svg><use href="#icon-star"/></svg>
+          习题讲义
+          <span class="section-count">· OJ &amp; Notebook</span>
+        </div>
+      </div>
       <div class="lectures-grid">
 
-        <!-- H01 -->
-        <a href="handouts/lecture-01-foundation-linear/practice.ipynb" class="lecture-card" target="_blank">
-          <div class="lecture-card-header">
-            <div class="lecture-number">H01</div>
-            <div class="lecture-status">📝 制作中</div>
-          </div>
-          <div class="lecture-title">基础、复杂度与线性表</div>
-          <div class="lecture-date">Jupyter Notebook</div>
-          <div class="lecture-links">
-            <span class="link-btn">📓 Notebook</span>
-          </div>
-        </a>
-
-        <!-- H02 -->
+        <!-- H01 — OJ + Notebook -->
         <div class="lecture-card">
           <div class="lecture-card-header">
+            <div class="lecture-number">H01</div>
+            <div class="lecture-status available">
+              <svg><use href="#icon-check"/></svg>
+              已发布
+            </div>
+          </div>
+          <div class="lecture-title">基础、复杂度与线性表</div>
+          <div class="lecture-date">
+            <svg><use href="#icon-star"/></svg>
+            习题讲义
+          </div>
+          <div class="lecture-links">
+            <a href="#" class="link-btn oj" target="_blank" rel="noopener" title="在线评测系统">
+              <svg><use href="#icon-oj"/></svg>
+              OJ
+              <svg class="arrow"><use href="#icon-external"/></svg>
+            </a>
+            <a href="#" class="link-btn notebook" target="_blank" rel="noopener" title="Jupyter Notebook">
+              <svg><use href="#icon-notebook"/></svg>
+              Notebook
+              <svg class="arrow"><use href="#icon-external"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- H02 -->
+        <div class="lecture-card disabled">
+          <div class="lecture-card-header">
             <div class="lecture-number">H02</div>
-            <div class="lecture-status">🔲 待制作</div>
+            <div class="lecture-status">
+              <svg><use href="#icon-lock"/></svg>
+              待发布
+            </div>
           </div>
           <div class="lecture-title">链表、串与线性结构应用</div>
-          <div class="lecture-date">Jupyter Notebook</div>
+          <div class="lecture-date">
+            <svg><use href="#icon-star"/></svg>
+            习题讲义
+          </div>
           <div class="lecture-links">
-            <span class="link-btn disabled">📓 Notebook</span>
+            <span class="link-btn oj disabled">
+              <svg><use href="#icon-oj"/></svg>
+              OJ
+            </span>
+            <span class="link-btn notebook disabled">
+              <svg><use href="#icon-notebook"/></svg>
+              Notebook
+            </span>
           </div>
         </div>
 
         <!-- H03 -->
-        <div class="lecture-card">
+        <div class="lecture-card disabled">
           <div class="lecture-card-header">
             <div class="lecture-number">H03</div>
-            <div class="lecture-status">🔲 待制作</div>
+            <div class="lecture-status">
+              <svg><use href="#icon-lock"/></svg>
+              待发布
+            </div>
           </div>
           <div class="lecture-title">排序、树与检索</div>
-          <div class="lecture-date">Jupyter Notebook</div>
+          <div class="lecture-date">
+            <svg><use href="#icon-star"/></svg>
+            习题讲义
+          </div>
           <div class="lecture-links">
-            <span class="link-btn disabled">📓 Notebook</span>
+            <span class="link-btn oj disabled">
+              <svg><use href="#icon-oj"/></svg>
+              OJ
+            </span>
+            <span class="link-btn notebook disabled">
+              <svg><use href="#icon-notebook"/></svg>
+              Notebook
+            </span>
           </div>
         </div>
 
         <!-- H04 -->
-        <div class="lecture-card">
+        <div class="lecture-card disabled">
           <div class="lecture-card-header">
             <div class="lecture-number">H04</div>
-            <div class="lecture-status">🔲 待制作</div>
+            <div class="lecture-status">
+              <svg><use href="#icon-lock"/></svg>
+              待发布
+            </div>
           </div>
           <div class="lecture-title">图算法与综合收束</div>
-          <div class="lecture-date">Jupyter Notebook</div>
+          <div class="lecture-date">
+            <svg><use href="#icon-star"/></svg>
+            习题讲义
+          </div>
           <div class="lecture-links">
-            <span class="link-btn disabled">📓 Notebook</span>
+            <span class="link-btn oj disabled">
+              <svg><use href="#icon-oj"/></svg>
+              OJ
+            </span>
+            <span class="link-btn notebook disabled">
+              <svg><use href="#icon-notebook"/></svg>
+              Notebook
+            </span>
           </div>
         </div>
 
         <!-- H05 -->
-        <div class="lecture-card">
+        <div class="lecture-card disabled">
           <div class="lecture-card-header">
             <div class="lecture-number">H05</div>
-            <div class="lecture-status">🔲 待制作</div>
+            <div class="lecture-status">
+              <svg><use href="#icon-lock"/></svg>
+              待发布
+            </div>
           </div>
           <div class="lecture-title">期末上机复习</div>
-          <div class="lecture-date">Jupyter Notebook</div>
+          <div class="lecture-date">
+            <svg><use href="#icon-star"/></svg>
+            习题讲义
+          </div>
           <div class="lecture-links">
-            <span class="link-btn disabled">📓 Notebook</span>
+            <span class="link-btn oj disabled">
+              <svg><use href="#icon-oj"/></svg>
+              OJ
+            </span>
+            <span class="link-btn notebook disabled">
+              <svg><use href="#icon-notebook"/></svg>
+              Notebook
+            </span>
           </div>
         </div>
 
         <!-- H06 -->
-        <div class="lecture-card">
+        <div class="lecture-card disabled">
           <div class="lecture-card-header">
             <div class="lecture-number">H06</div>
-            <div class="lecture-status">🔲 待制作</div>
+            <div class="lecture-status">
+              <svg><use href="#icon-lock"/></svg>
+              待发布
+            </div>
           </div>
           <div class="lecture-title">期末笔试复习</div>
-          <div class="lecture-date">Jupyter Notebook</div>
+          <div class="lecture-date">
+            <svg><use href="#icon-star"/></svg>
+            习题讲义
+          </div>
           <div class="lecture-links">
-            <span class="link-btn disabled">📓 Notebook</span>
+            <span class="link-btn oj disabled">
+              <svg><use href="#icon-oj"/></svg>
+              OJ
+            </span>
+            <span class="link-btn notebook disabled">
+              <svg><use href="#icon-notebook"/></svg>
+              Notebook
+            </span>
           </div>
         </div>
 
@@ -271,10 +527,28 @@
 
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
-      数据结构与算法 B · 2026 春 · 北京大学小班课<br/>
-      课程资源参考 <a href="https://github.com/krahets/hello-algo" target="_blank" style="color: var(--accent);">hello-algo</a>
+      <div class="footer-left">
+        <div class="footer-text">
+          数据结构与算法 B · 2026 春 · 北京大学小班课
+        </div>
+      </div>
+      <div class="footer-right">
+        <a href="https://www.hello-algo.com/" class="icon-link hello-algo" target="_blank" rel="noopener" title="课程参考：hello-algo">
+          <svg><use href="#icon-globe"/></svg>
+          hello-algo
+        </a>
+        <a href="https://chang-xinhai.github.io/" class="icon-link" target="_blank" rel="noopener" title="作者">
+          <svg><use href="#icon-globe"/></svg>
+          关于作者
+        </a>
+        <a href="https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU" class="icon-link github" target="_blank" rel="noopener">
+          <svg><use href="#icon-github"/></svg>
+          GitHub
+        </a>
+      </div>
     </div>
   </footer>
 
