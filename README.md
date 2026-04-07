@@ -6,7 +6,7 @@
 
 Spring 2026 · PKU Course Website
 
-[![Website](https://img.shields.io/badge/website-🚀-?style=flat-square)](https://chang-xinhai.github.io/Data-Structure-and-Algorithm-B-2026Spring-PKU/)
+[![Website](https://img.shields.io/website?down_message=offline&style=flat-square&up_message=online&url=https://chang-xinhai.github.io/Data-Structure-and-Algorithm-B-2026Spring-PKU/)
 [![Last Commit](https://img.shields.io/github/last-commit/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU?style=flat-square)](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/commits/main)
 [![Reference](https://img.shields.io/badge/reference-hello--algo-5b8dee?style=flat-square)](https://github.com/krahets/hello-algo)
 
