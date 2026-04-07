@@ -8,13 +8,13 @@ Spring 2026 · PKU Course Website
 
 <div style="line-height: 1;">
   <a href="https://chang-xinhai.github.io/Data-Structure-and-Algorithm-B-2026Spring-PKU/" target="_blank" style="margin: 2px;">
-    <img alt="Website" src="https://img.shields.io/badge/Website-DS%26A%20B-ff7f40?color=ff7f40&logoColor=white" style="display: inline-block; vertical-align: middle;"/>
+    <img alt="Website" src="https://img.shields.io/badge/Website-DS%26A%20B-ff6b35?color=ff6b35&logoColor=white" style="display: inline-block; vertical-align: middle;"/>
   </a>
   <a href="https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/commits/main" target="_blank" style="margin: 2px;">
-    <img alt="Last Commit" src="https://img.shields.io/badge/Last%20Commit-main-30b860?color=30b860&logoColor=white" style="display: inline-block; vertical-align: middle;"/>
+    <img alt="Last Commit" src="https://img.shields.io/badge/Last%20Commit-main-22c55e?color=22c55e&logoColor=white" style="display: inline-block; vertical-align: middle;"/>
   </a>
   <a href="https://github.com/krahets/hello-algo" target="_blank" style="margin: 2px;">
-    <img alt="Reference" src="https://img.shields.io/badge/Reference-hello--algo-5b8dee?color=5b8dee&logoColor=white" style="display: inline-block; vertical-align: middle;"/>
+    <img alt="Reference" src="https://img.shields.io/badge/Reference-hello--algo-3b82f6?color=3b82f6&logoColor=white" style="display: inline-block; vertical-align: middle;"/>
   </a>
 </div>
 
