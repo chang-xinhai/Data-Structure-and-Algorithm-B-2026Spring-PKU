@@ -129,6 +129,12 @@ PDF 归档到 `slides-pdf/` 目录。
   ![Website](https://img.shields.io/website?down_message=offline&style=flat-square&up_message=online&url=...)
   ```
 
+### PDF 内联预览注意事项
+- **不要用 GitHub raw URL**（`github.com/.../raw/` 或 `raw.githubusercontent.com/`）链接 PDF，GitHub 总是强制下载而不是内联预览
+- **正确做法**：`public/index.html` 用相对路径如 `slides/L1.pdf`，构建后 GitHub Pages 以正确 `Content-Type: application/pdf` 提供文件，浏览器直接渲染
+- 构建流程：`slides-pdf/*.pdf` → 复制到 `public/slides/` → GitHub Pages 部署
+- README 中如需链接 PDF，用 GitHub Pages URL（`https://chang-xinhai.github.io/Data-Structure-and-Algorithm-B-2026Spring-PKU/slides/`），不要用 GitHub raw URL
+
 ### 快速命令
 ```bash
 npm run build   # 构建输出至 public/
