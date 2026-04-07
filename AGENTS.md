@@ -96,3 +96,17 @@ handouts/lecture-02-string-stack-queue/practice.ipynb
 - All course content (slides, handouts, reference) goes in git
 - `hello-algo/` is a submodule — do not edit directly; pull updates from upstream
 - PDF filenames in `slides-pdf/` must match the canonical naming table above for consistent URL routing
+
+### PPTX Workflow
+
+初始化新章节 pptx 时，**永远复制上一个文件再重命名**，而不是重头构建：
+
+```bash
+# L2 初始化（复制 L1）
+cp "slides-pptx/L1 基础、复杂度和线性表.pptx" "slides-pptx/L2 栈、队列和递归.pptx"
+
+# L3 初始化（复制 L2）
+cp "slides-pptx/L2 栈、队列和递归.pptx" "slides-pptx/L3 排序、树与检索.pptx"
+```
+
+PDF 归档到 `slides pdf/` 目录。
