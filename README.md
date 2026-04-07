@@ -39,12 +39,12 @@ Spring 2026 · PKU Course Website
 
 | # | 讲次 | Slides | 状态 |
 |:--:|:----:|--------|:-----|
-| L01 | 基础、复杂度与线性表 | [PDF](public/slides/L1%20基础、复杂度和线性表.pdf) | ✅ 已发布 |
-| L02 | 链表、串与线性结构应用 | [PDF](public/slides/) | 🔲 待制作 |
-| L03 | 排序、树与检索 | [PDF](public/slides/) | 🔲 待制作 |
-| L04 | 图算法与综合收束 | [PDF](public/slides/) | 🔲 待制作 |
-| L05 | 期末上机复习 | [PDF](public/slides/) | 🔲 待制作 |
-| L06 | 期末笔试复习 | [PDF](public/slides/) | 🔲 待制作 |
+| L01 | 基础、复杂度与线性表 | [PDF](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/slides-pdf/L1%20基础、复杂度和线性表.pdf) | ✅ 已发布 |
+| L02 | 链表、串与线性结构应用 | [PDF](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/slides-pdf/) | 🔲 待制作 |
+| L03 | 排序、树与检索 | [PDF](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/slides-pdf/) | 🔲 待制作 |
+| L04 | 图算法与综合收束 | [PDF](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/slides-pdf/) | 🔲 待制作 |
+| L05 | 期末上机复习 | [PDF](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/slides-pdf/) | 🔲 待制作 |
+| L06 | 期末笔试复习 | [PDF](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/slides-pdf/) | 🔲 待制作 |
 
 ### 习题讲义
 
@@ -52,12 +52,12 @@ Spring 2026 · PKU Course Website
 
 | # | 讲次 | OJ | Notebook |
 |:--:|:----:|:--:|----------|
-| H01 | 基础、复杂度与线性表 | 🔗 待补 | [practice.ipynb](public/handouts/lecture-01-foundation-linear/practice.ipynb) |
-| H02 | 链表、串与线性结构应用 | 🔗 待补 | [practice.ipynb](public/handouts/lecture-02-string-stack-queue/practice.ipynb) |
-| H03 | 排序、树与检索 | 🔗 待补 | [practice.ipynb](public/handouts/lecture-03-sorting-tree-search/practice.ipynb) |
-| H04 | 图算法与综合收束 | 🔗 待补 | [practice.ipynb](public/handouts/lecture-04-graph-wrap-up/practice.ipynb) |
-| H05 | 期末上机复习 | 🔗 待补 | [practice.ipynb](public/handouts/lecture-05-lab-review/practice.ipynb) |
-| H06 | 期末笔试复习 | 🔗 待补 | [practice.ipynb](public/handouts/lecture-06-written-review/practice.ipynb) |
+| H01 | 基础、复杂度与线性表 | 🔗 待补 | [practice.ipynb](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/handouts/lecture-01-foundation-linear/practice.ipynb) |
+| H02 | 链表、串与线性结构应用 | 🔗 待补 | [practice.ipynb](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/handouts/lecture-02-string-stack-queue/practice.ipynb) |
+| H03 | 排序、树与检索 | 🔗 待补 | [practice.ipynb](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/handouts/lecture-03-sorting-tree-search/practice.ipynb) |
+| H04 | 图算法与综合收束 | 🔗 待补 | [practice.ipynb](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/handouts/lecture-04-graph-wrap-up/practice.ipynb) |
+| H05 | 期末上机复习 | 🔗 待补 | [practice.ipynb](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/handouts/lecture-05-lab-review/practice.ipynb) |
+| H06 | 期末笔试复习 | 🔗 待补 | [practice.ipynb](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/handouts/lecture-06-written-review/practice.ipynb) |
 
 ---
 
