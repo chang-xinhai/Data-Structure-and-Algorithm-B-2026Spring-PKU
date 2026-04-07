@@ -1,5 +1,5 @@
-# Build output
-public/
+# Build output (disabled - needed for GitHub Pages)
+# public/
 
 # Dependencies
 node_modules/
