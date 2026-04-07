@@ -12,12 +12,10 @@ Spring 2026 · PKU Course Website
 
 ---
 
-</div>
-
 ## 📅 授课计划
 
 | # | 周次 | 日期 | 时间 | 主题 |
-|:-:|------|------|------|------|
+|:--:|:----:|------|:----:|------|
 | 01 | W3  | 3月21日（周六） | 18:40–20:30 | 基础、复杂度与线性表 |
 | 02 | W6  | 4月11日（周六） | 18:40–20:30 | 链表、串与线性结构应用 |
 | 03 | W8  | 4月25日（周六） | 18:40–20:30 | 排序、树与检索 |
@@ -32,7 +30,7 @@ Spring 2026 · PKU Course Website
 ### 授课 Slides
 
 | # | 讲次 | Slides | 状态 |
-|:-:|------|--------|------|
+|:--:|:----:|--------|:-----|
 | L01 | 基础、复杂度与线性表 | [PDF](slides/lecture-01-foundation-linear.pdf) | 📝 制作中 |
 | L02 | 链表、串与线性结构应用 | [PDF](slides/lecture-02-string-stack-queue.pdf) | 🔲 待制作 |
 | L03 | 排序、树与检索 | [PDF](slides/lecture-03-sorting-tree-search.pdf) | 🔲 待制作 |
@@ -45,7 +43,7 @@ Spring 2026 · PKU Course Website
 每讲配套可运行 Jupyter Notebook，含例题与练习题。
 
 | # | 讲次 | Notebook | 浴谷 |
-|:-:|------|----------|------|
+|:--:|:----:|----------|:-----|
 | L01 | 基础、复杂度与线性表 | [practice.ipynb](handouts/lecture-01-foundation-linear/practice.ipynb) | 🔗 链接待补 |
 | L02 | 链表、串与线性结构应用 | [practice.ipynb](handouts/lecture-02-string-stack-queue/practice.ipynb) | 🔗 链接待补 |
 | L03 | 排序、树与检索 | [practice.ipynb](handouts/lecture-03-sorting-tree-search/practice.ipynb) | 🔗 链接待补 |
@@ -55,23 +53,9 @@ Spring 2026 · PKU Course Website
 
 ---
 
-## 🗂️ 目录结构
-
-```
-hello-algo/          ← 算法学习资源 hub (submodule)
-slides/              ← WPS 手绘 Slides PDF（发布版）
-handouts/            ← 每讲配套 Jupyter Notebook 习题讲义
-reference/           ← 往年参考资料归档（仅供备课参考）
-scripts/             ← 构建脚本
-public/              ← GitHub Pages 部署目标（自动生成）
-private/              ← 行政文件、评分表等（不进 Git）
-```
-
-> ⚠️ `private/` 目录不进 Git，包含敏感行政文件。
-
----
-
 ## 🔧 本地构建
+
+</div>
 
 ```bash
 # 安装依赖
@@ -84,6 +68,8 @@ npm run build
 npm run preview
 ```
 
+<div align="center">
+
 ---
 
 ## 🙏 致谢
@@ -91,8 +77,6 @@ npm run preview
 课程内容参考 [hello-algo](https://github.com/krahets/hello-algo)，一个通俗易懂的算法学习项目。
 
 ---
-
-<div align="center">
 
 Made with ❤️ for PKU DS&A Class B · 2026 Spring
 
