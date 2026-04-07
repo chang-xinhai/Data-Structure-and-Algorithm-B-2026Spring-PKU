@@ -1,87 +1,98 @@
-# AGENTS.md
+# Data Structure and Algorithm B · 2026 Spring
 
-本仓库是 `26 春 数据结构与算法 B 小班课` 的长期协作仓库。你应把它当成一个公开发布的教学内容工程，而不是临时文件夹。默认目标是：维护课程结构、生成 Slidev 课件、发布静态课程网站、导出 PDF，并保持仓库长期整洁、可扩展、可持续协作。
+Course website repo for PKU Data Structure and Algorithm B small-class (数算B小班课), Spring 2026.
 
-## 最高优先级
+## Course Plan
 
-1. 先维护仓库结构和自动化，再补内容，再做视觉微调。
-2. 公开仓库只能放可公开教学内容，绝不提交学生信息、班级联系方式、教学计划表、教学日志、作业样本等敏感材料。
-3. 所有课次必须通过统一元数据驱动，不能手工在多个地方重复维护标题、编号、链接。
-4. 新增或调整课程时，优先保持编号体系、命名规范和站点结构稳定。
+| # | Week | Date | Time | Lecture | Topic |
+|---|------|------|------|---------|-------|
+| 01 | W3 | Sat Mar 21 | 18:40–20:30 | 基础、复杂度与线性表 | Foundations, complexity, linear tables |
+| 02 | W6 | Sat Apr 11 | 18:40–20:30 | 链表、串与线性结构应用 | Linked lists, strings, applications of linear structures |
+| 03 | W8 | Sat Apr 25 | 18:40–20:30 | 排序、树与检索 | Sorting, trees, and searching |
+| 04 | W10 | Sat May 9 | 18:40–20:30 | 图算法与综合收束 | Graph algorithms and synthesis |
+| 05 | W13 | Sat May 30 | 18:40–20:30 | 期末上机复习 | Lab review |
+| 06 | W14 | Sat Jun 6 | 18:40–20:30 | 期末笔试复习 | Written exam review |
 
-## 仓库目标
+## Repository Structure
 
-- 使用 `Slidev` 编写每一节课的课件，默认主题是 `Seriph`。
-- 通过静态网站展示课程首页、课次页、公告页和教学进度页。
-- 自动为每节课导出 PDF，供下载和归档。
-- 支持从当前 6 次课扩展到更多课次，不要求重构目录或脚本。
+```
+hello-algo/          # Submodule: krahets/hello-algo (resource hub)
+slides/              # WPS PPTX source files (hand-authored)
+slides-pdf/          # PDF exports from WPS (lecture slides for web)
+handouts/            # .ipynb practice notebooks (runnable, self-contained)
+reference/           # Archived materials from prior years (read-only reference)
+  ├── lectures/      # Prior-year lecture PDFs
+  ├── homework/      # Prior-year homework PDFs/DOCX
+  ├── review-sessions/
+  └── ...
+public/              # Build output (GitHub Pages deployment target)
+scripts/             # Build scripts
+.github/workflows/   # GitHub Actions
+private/             # Admin files (grading sheets, course plan docs) — NEVER commit
+```
 
-## 课程组织约定
+## Content Naming Convention
 
-当前默认课次结构为：
+### Slides (PPTX → PDF)
 
-1. `Lecture 01 · 基础、复杂度与线性表`
-2. `Lecture 02 · 链表、串与线性结构应用`
-3. `Lecture 03 · 排序、树与检索`
-4. `Lecture 04 · 图算法与综合收束`
-5. `Lecture 05 · 上机复习`
-6. `Lecture 06 · 笔试复习`
+Source PPTX lives in `slides/`. After exporting to PDF via WPS, place in `slides-pdf/` with the canonical name:
 
-固定原则：
+| Lecture | Filename |
+|---------|----------|
+| L01 | `lecture-01-foundation-linear.pdf` |
+| L02 | `lecture-02-string-stack-queue.pdf` |
+| L03 | `lecture-03-sorting-tree-search.pdf` |
+| L04 | `lecture-04-graph-wrap-up.pdf` |
+| L05 | `lecture-05-lab-review.pdf` |
+| L06 | `lecture-06-written-review.pdf` |
 
-- 前 4 次课讲完全部主课程核心大纲。
-- 第 5 次课是上机复习。
-- 第 6 次课是笔试复习。
-- 允许后续加课、换序、拆分内容，但必须继续使用统一命名规则，例如 `Lecture 07 · 某某主题`。
-- 所有标题、slug、PDF 名称、页面入口都来源于 `content/course.json`。
+### Handouts
 
-## 目录约定
+Each lecture has a `handouts/` subdirectory:
+```
+handouts/lecture-01-foundation-linear/practice.ipynb
+handouts/lecture-02-string-stack-queue/practice.ipynb
+...
+```
 
-- `content/course.json`：课程元数据唯一事实来源，包含课程信息、课次、公告。
-- `slides/<lesson-slug>/slides.md`：单节课的 Slidev 源文件。
-- `public/`：公开站点资源，如样式和图片。
-- `scripts/`：构建、导出、校验、脚手架脚本。
-- `reference/`：往年资料归档，只作为备课参考输入，不直接代表本学期输出结构。
-- `docs/`：生成产物目录，不手工编辑。
-- `private/`：本地私有目录，放教学计划、日志、学生信息等，不纳入 Git。
+## Workflow
 
-## Slidev 编写规范
+1. **Authoring**: Slides are hand-made in WPS, exported as PDF. Practice notebooks are `.ipynb` files in `handouts/`.
+2. **Building**: `scripts/build-site.mjs` assembles `public/` from source files.
+3. **Publishing**: GitHub Actions on push to `main` builds and deploys to GitHub Pages.
 
-- 每讲默认使用 `theme: seriph`。
-- 每讲保持统一结构：`知识梳理`、`典型例题`、`课堂练习`、`课后题`。
-- 课件内容面向基础薄弱、需要应试支持的学生，强调拆解、对比、易错点和题型识别。
-- 尽量少堆砌大段定义；优先使用结构化总结、对照表、手推步骤和典型题。
-- 如果课件中加入动画、流程图或自定义样式，必须服务于讲解，不得只为炫技。
-- 如非必要，不新建与当前体系冲突的第二套主题或模板。
+## Design Direction
 
-## 工作流约定
+- **Style**: macOS-inspired, minimalist, premium
+- **Typography**: SF Pro / system-ui stack
+- **Color**: Near-white background, deep charcoal text, subtle blue accent
+- **Layout**: Generous whitespace, clean card-based lecture listing
 
-新增或调整一讲时默认遵循：
+## Development Practices
 
-1. 更新 `content/course.json`，维护标题、编号、状态、摘要、topics、source、pdf。
-2. 在 `slides/<lesson-slug>/slides.md` 中创建或修改 Slidev 内容。
-3. 运行 `npm run lint` 检查命名与元数据一致性。
-4. 运行 `npm run build` 生成站点和在线课件。
-5. 需要 PDF 时运行 `npm run export`。
-6. 如果只是新增课次，优先使用 `npm run new:lesson -- <order> <slug> <title> [type]` 生成骨架。
+### Version Control
 
-## 发布约定
+- **Commits follow [Conventional Commits](https://www.conventionalcommits.org/)**:
+  - `feat:` new feature or content (e.g., `feat: add lecture-03 slides and handout`)
+  - `fix:` bug fix (e.g., `fix: correct PDF naming in build script`)
+  - `docs:` documentation only
+  - `refactor:` code restructure without behavior change
+  - `chore:` build script, dependency updates, config changes
 
-- 包管理器固定使用 `npm`。
-- GitHub 远程仓库固定为 `git@github.com:chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU.git`。
-- GitHub Pages 默认部署到仓库子路径：`/Data-Structure-and-Algorithm-B-2026Spring-PKU/`。
-- `docs/` 是 Pages 构建产物目录，由脚本生成，不作为手工内容目录。
-- 默认工作流是：安装依赖 -> 构建站点 -> 构建课件 -> 导出 PDF -> 发布 Pages。
+- **Commit + push promptly**: After each unit of work is confirmed working (build succeeds, site renders correctly, Actions green), commit immediately and push. Do not batch multiple unrelated changes into one commit.
 
-## 内容边界
+- **Branch strategy**: Work on feature branches; merge to `main` via PR or direct push after review. `main` is always deployable.
 
-- `reference/` 中的内容可以用于提炼知识点、选题、比对结构，但不要原样照搬为本学期课件。
-- 公开站点不展示任何学生隐私信息或行政材料。
-- 如需管理教学计划、教学日志、问卷、作业样本，统一放在 `private/` 或仓库外私有位置。
+### Build & Test Loop
 
-## 协作行为要求
+1. Make a small, focused change (e.g., add one lecture's PDF, update one notebook).
+2. Run `node scripts/build-site.mjs` locally to verify the build succeeds.
+3. If the build passes, commit with a descriptive Conventional Commits message and push.
+4. GitHub Actions will auto-deploy to GitHub Pages.
 
-- 在提出结构调整时，优先给出能直接落地到当前仓库的方案。
-- 修改课次标题、slug、编号时，必须同时考虑站点链接、导出文件名和历史兼容性。
-- 如果发现需求变化，例如增加课程、重新切分内容、调整复习策略，应先修改元数据与站点结构，再逐讲补内容。
-- 默认先做小而稳的演进，不在没有必要时引入额外框架。
+## Key Constraints
+
+- `private/` is gitignored — never leave sensitive files in tracked paths
+- All course content (slides, handouts, reference) goes in git
+- `hello-algo/` is a submodule — do not edit directly; pull updates from upstream
+- PDF filenames in `slides-pdf/` must match the canonical naming table above for consistent URL routing

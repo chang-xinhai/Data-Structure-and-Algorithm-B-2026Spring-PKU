@@ -1,20 +1,12 @@
 {
   "name": "data-structure-and-algorithm-b-2026spring-pku",
   "version": "0.1.0",
+  "description": "PKU Data Structure and Algorithm B small-class course website",
   "private": true,
-  "type": "module",
-  "description": "Course site and Slidev decks for Data Structure and Algorithm B, Spring 2026.",
   "scripts": {
-    "dev": "node scripts/dev-server.mjs",
-    "dev:slide": "slidev",
-    "build": "node scripts/lint.mjs && node scripts/build-site.mjs && node scripts/build-slides.mjs",
-    "export": "node scripts/lint.mjs && node scripts/build-site.mjs && node scripts/build-slides.mjs && node scripts/export-slides.mjs",
-    "lint": "node scripts/lint.mjs",
-    "new:lesson": "node scripts/new-lesson.mjs"
+    "build": "node scripts/build-site.mjs"
   },
-  "dependencies": {
-    "@slidev/cli": "0.50.0",
-    "@slidev/theme-seriph": "0.25.0",
-    "playwright-chromium": "1.58.2"
+  "engines": {
+    "node": ">=18"
   }
 }

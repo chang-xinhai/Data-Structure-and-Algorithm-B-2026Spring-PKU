@@ -1,11 +1,17 @@
-.DS_Store
-.git.broken-empty/
-node_modules/
-docs/
-dist/
-npm-debug.log*
-private/
-.cache/
-playwright-report/
-test-results/
+# Build output
+public/
 
+# Dependencies
+node_modules/
+
+# macOS
+.DS_Store
+
+# Private (admin, grading, personal notes)
+private/
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo

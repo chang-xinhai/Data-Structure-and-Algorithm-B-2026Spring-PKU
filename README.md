@@ -1,61 +1,99 @@
+<div align="center">
+
 # Data Structure and Algorithm B · 2026 Spring
 
-数据结构与算法 B 小班课仓库，采用 `Slidev` 维护课件，自动生成静态课程网站并导出 PDF，并通过统一元数据整合 `Hello 算法` 作为公开补强资源库。
+**北京大学 · 数据结构与算法 B · 小班课**
 
-## Local Preview
+Spring 2026 · PKU Course Website
+
+[![Deployment](https://img.shields.io/github/deployments/walkerchx/data-structure-and-algorithm-b-2026spring-pku/github-pages?style=flat-square)](https://github.com/walkerchx/data-structure-and-algorithm-b-2026spring-pku/deployments)
+[![Last Commit](https://img.shields.io/github/last-commit/walkerchx/data-structure-and-algorithm-b-2026spring-pku?style=flat-square)](https://github.com/walkerchx/data-structure-and-algorithm-b-2026spring-pku/commits/main)
+[![Submodule](https://img.shields.io/badge/submodule-hello--algo-fed?style=flat-square)](https://github.com/krahets/hello-algo)
+
+---
+
+</div>
+
+## 📅 授课计划
+
+| # | 周次 | 日期 | 时间 | 主题 |
+|:-:|------|------|------|------|
+| 01 | W3  | 3月21日（周六） | 18:40–20:30 | 基础、复杂度与线性表 |
+| 02 | W6  | 4月11日（周六） | 18:40–20:30 | 链表、串与线性结构应用 |
+| 03 | W8  | 4月25日（周六） | 18:40–20:30 | 排序、树与检索 |
+| 04 | W10 | 5月9日（周六）  | 18:40–20:30 | 图算法与综合收束 |
+| 05 | W13 | 5月30日（周六） | 18:40–20:30 | 期末上机复习 |
+| 06 | W14 | 6月6日（周六）  | 18:40–20:30 | 期末笔试复习 |
+
+---
+
+## 📚 课程资源
+
+### 授课 Slides
+
+| # | 讲次 | Slides | 状态 |
+|:-:|------|--------|------|
+| L01 | 基础、复杂度与线性表 | [PDF](slides/lecture-01-foundation-linear.pdf) | 📝 制作中 |
+| L02 | 链表、串与线性结构应用 | [PDF](slides/lecture-02-string-stack-queue.pdf) | 🔲 待制作 |
+| L03 | 排序、树与检索 | [PDF](slides/lecture-03-sorting-tree-search.pdf) | 🔲 待制作 |
+| L04 | 图算法与综合收束 | [PDF](slides/lecture-04-graph-wrap-up.pdf) | 🔲 待制作 |
+| L05 | 期末上机复习 | [PDF](slides/lecture-05-lab-review.pdf) | 🔲 待制作 |
+| L06 | 期末笔试复习 | [PDF](slides/lecture-06-written-review.pdf) | 🔲 待制作 |
+
+### 习题讲义
+
+每讲配套可运行 Jupyter Notebook，含例题与练习题。
+
+| # | 讲次 | Notebook | 浴谷 |
+|:-:|------|----------|------|
+| L01 | 基础、复杂度与线性表 | [practice.ipynb](handouts/lecture-01-foundation-linear/practice.ipynb) | 🔗 链接待补 |
+| L02 | 链表、串与线性结构应用 | [practice.ipynb](handouts/lecture-02-string-stack-queue/practice.ipynb) | 🔗 链接待补 |
+| L03 | 排序、树与检索 | [practice.ipynb](handouts/lecture-03-sorting-tree-search/practice.ipynb) | 🔗 链接待补 |
+| L04 | 图算法与综合收束 | [practice.ipynb](handouts/lecture-04-graph-wrap-up/practice.ipynb) | 🔗 链接待补 |
+| L05 | 期末上机复习 | [practice.ipynb](handouts/lecture-05-lab-review/practice.ipynb) | 🔗 链接待补 |
+| L06 | 期末笔试复习 | [practice.ipynb](handouts/lecture-06-written-review/practice.ipynb) | 🔗 链接待补 |
+
+---
+
+## 🗂️ 目录结构
+
+```
+hello-algo/          ← 算法学习资源 hub (submodule)
+slides/              ← WPS 手绘 Slides PDF（发布版）
+handouts/            ← 每讲配套 Jupyter Notebook 习题讲义
+reference/           ← 往年参考资料归档（仅供备课参考）
+scripts/             ← 构建脚本
+public/              ← GitHub Pages 部署目标（自动生成）
+private/              ← 行政文件、评分表等（不进 Git）
+```
+
+> ⚠️ `private/` 目录不进 Git，包含敏感行政文件。
+
+---
+
+## 🔧 本地构建
 
 ```bash
+# 安装依赖
 npm install
-npm run dev
-```
 
-默认会先重建课程网站和 6 讲在线课件，然后在 `http://localhost:4173` 提供本地预览。
-
-如果只想构建不启动服务：
-
-```bash
+# 本地构建（生成 public/）
 npm run build
+
+# 本地预览
+npm run preview
 ```
 
-## Structure
+---
 
-- `content/course.json`: 课程主页、公告、课次元数据
-- `slides/`: 每讲一个 Slidev 入口
-- `public/`: 课程站点静态资源
-- `scripts/`: 站点生成、课件构建、PDF 导出、脚手架
-- `resources/`: 由 `content/course.json` 的外部资源元数据生成
-- `materials/official/`: 本学期官方资料与工作规范
-- `reference/`: 往年教学资源归档，已按类别整理
-- `private/`: 私有管理材料，不纳入 Git
-- `docs/`: 构建产物目录，供 GitHub Pages 发布
+## 🙏 致谢
 
-## Commands
+课程内容参考 [hello-algo](https://github.com/krahets/hello-algo)，一个通俗易懂的算法学习项目。
 
-```bash
-npm install
-npm run dev
-npm run build
-npm run export
-npm run new:lesson -- 7 lecture-07-extra "Lecture 07 · 加课主题"
-```
+---
 
-## Course Plan
+<div align="center">
 
-1. `Lecture 01 · 基础、复杂度与线性表`
-2. `Lecture 02 · 链表、串与线性结构应用`
-3. `Lecture 03 · 排序、树与检索`
-4. `Lecture 04 · 图算法与综合收束`
-5. `Lecture 05 · 上机复习`
-6. `Lecture 06 · 笔试复习`
+Made with ❤️ for PKU DS&A Class B · 2026 Spring
 
-前 4 讲覆盖全部主课程大纲，最后 2 讲分别做上机复习和笔试复习。仓库按元数据驱动，后续可以增加 `Lecture 07+` 而不重构站点。
-
-## External Resource Strategy
-
-当前已接入 `Hello 算法`（[官网](https://www.hello-algo.com/) / [仓库](https://github.com/krahets/hello-algo)）：
-
-- 首页展示资源中枢入口与公开授权说明
-- `/resources/` 页面提供课程级说明和逐讲对照阅读入口
-- 每个课次页展示该讲最值得打开的外部资源链接与使用提示
-
-原则是“本仓库讲主线，外部资源补图解、补代码、补回看”，所有链接统一维护在 `content/course.json`，不在多个页面手工重复维护。
+</div>
