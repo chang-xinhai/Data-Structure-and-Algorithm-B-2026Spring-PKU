@@ -110,3 +110,28 @@ cp "slides-pptx/L2 栈、队列和递归.pptx" "slides-pptx/L3 排序、树与�
 ```
 
 PDF 归档到 `slides-pdf/` 目录。
+
+## 部署经验
+
+### GitHub Pages 部署流程
+- push → Actions 触发 `Deploy to GitHub Pages` workflow
+- `npm run build` 将 `slides-pdf/*.pdf` 和 `handouts/**/practice.ipynb` 复制到 `public/`
+- **HTML/CSS 源码在 `public/` 下，已经是 git 追踪的文件**，不需要构建复制
+- workflow 完成后 GitHub Pages 有缓存，浏览器需 `Cmd+Shift+R` 强制刷新
+
+### Shields.io Badge 注意事项
+- emoji 可能导致 badge 404，换用文字参数：
+  ```md
+  <!-- 错误: emoji 可能识别失败 -->
+  ![Website](https://img.shields.io/badge/website-🚀-?style=flat-square)
+
+  <!-- 正确 -->
+  ![Website](https://img.shields.io/website?down_message=offline&style=flat-square&up_message=online&url=...)
+  ```
+
+### 快速命令
+```bash
+npm run build   # 构建输出至 public/
+npm run preview # 本地预览（需先 build）
+git push        # 触发 CI → 自动部署
+```
