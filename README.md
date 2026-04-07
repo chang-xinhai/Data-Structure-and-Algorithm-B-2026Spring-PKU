@@ -39,12 +39,12 @@ Spring 2026 · PKU Course Website
 
 | # | 讲次 | Slides | 状态 |
 |:--:|:----:|--------|:-----|
-| L01 | 基础、复杂度与线性表 | [PDF](https://raw.githubusercontent.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/main/slides-pdf/L1%20基础、复杂度和线性表.pdf) | ✅ 已发布 |
-| L02 | 链表、串与线性结构应用 | [PDF](https://raw.githubusercontent.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/main/slides-pdf/) | 🔲 待制作 |
-| L03 | 排序、树与检索 | [PDF](https://raw.githubusercontent.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/main/slides-pdf/) | 🔲 待制作 |
-| L04 | 图算法与综合收束 | [PDF](https://raw.githubusercontent.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/main/slides-pdf/) | 🔲 待制作 |
-| L05 | 期末上机复习 | [PDF](https://raw.githubusercontent.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/main/slides-pdf/) | 🔲 待制作 |
-| L06 | 期末笔试复习 | [PDF](https://raw.githubusercontent.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/main/slides-pdf/) | 🔲 待制作 |
+| L01 | 基础、复杂度与线性表 | [PDF](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/raw/main/slides-pdf/L1%20基础、复杂度和线性表.pdf) | ✅ 已发布 |
+| L02 | 链表、串与线性结构应用 | [PDF](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/raw/main/slides-pdf/) | 🔲 待制作 |
+| L03 | 排序、树与检索 | [PDF](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/raw/main/slides-pdf/) | 🔲 待制作 |
+| L04 | 图算法与综合收束 | [PDF](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/raw/main/slides-pdf/) | 🔲 待制作 |
+| L05 | 期末上机复习 | [PDF](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/raw/main/slides-pdf/) | 🔲 待制作 |
+| L06 | 期末笔试复习 | [PDF](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/raw/main/slides-pdf/) | 🔲 待制作 |
 
 ### 习题讲义
 
