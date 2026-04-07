@@ -109,4 +109,4 @@ cp "slides-pptx/L1 基础、复杂度和线性表.pptx" "slides-pptx/L2 栈、�
 cp "slides-pptx/L2 栈、队列和递归.pptx" "slides-pptx/L3 排序、树与检索.pptx"
 ```
 
-PDF 归档到 `slides pdf/` 目录。
+PDF 归档到 `slides-pdf/` 目录。
