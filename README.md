@@ -11,10 +11,10 @@ Spring 2026 · PKU Course Website
     <img alt="Website" src="https://img.shields.io/badge/Website-DS%26A%20B-ff7f40?color=ff7f40&logoColor=white" style="display: inline-block; vertical-align: middle;"/>
   </a>
   <a href="https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/commits/main" target="_blank" style="margin: 2px;">
-    <img alt="Last Commit" src="https://img.shields.io/badge/Last%20Commit-main-e08c5a?color=e08c5a&logoColor=white" style="display: inline-block; vertical-align: middle;"/>
+    <img alt="Last Commit" src="https://img.shields.io/badge/Last%20Commit-main-30b860?color=30b860&logoColor=white" style="display: inline-block; vertical-align: middle;"/>
   </a>
   <a href="https://github.com/krahets/hello-algo" target="_blank" style="margin: 2px;">
-    <img alt="Reference" src="https://img.shields.io/badge/Reference-hello--algo-ff7f40?color=ff7f40&logoColor=white" style="display: inline-block; vertical-align: middle;"/>
+    <img alt="Reference" src="https://img.shields.io/badge/Reference-hello--algo-5b8dee?color=5b8dee&logoColor=white" style="display: inline-block; vertical-align: middle;"/>
   </a>
 </div>
 
