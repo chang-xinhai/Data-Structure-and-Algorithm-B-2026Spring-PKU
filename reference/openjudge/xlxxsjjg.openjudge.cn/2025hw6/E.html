@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>OpenJudge - E:Floyd求最短路</title>
+
+<link href="http://static.openjudge.cn/styles/global.css?1586031922.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.openjudge.cn/styles/styles.css?1470100812.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.openjudge.cn/styles/group.css?1634019818.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.openjudge.cn/styles/contest.css?1467854438.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.openjudge.cn/styles/favicon.ico?1467854438.ico" rel="shortcut icon" type="image/x-icon" />
+<!--[if IE]>
+   <script type="text/javascript" src="http://static.openjudge.cn/scripts/html5.js?1467854438.js"></script>
+<![endif]-->
+<!--[if lt IE 7]>
+	<link type="text/css" href="http://static.openjudge.cn/styles/ie6-deprecated.css?1467854438.css" rel="stylesheet" />
+<![endif]-->
+<!--[if IE 7]>
+	<link type="text/css" href="http://static.openjudge.cn/styles/ie7.css?1467854438.css" rel="stylesheet" />
+<![endif]-->
+<!--[if IE 8]>
+	<link type="text/css" href="http://static.openjudge.cn/styles/ie8.css?1467854438.css" rel="stylesheet" />
+<![endif]-->
+<script type="text/javascript" src="http://static.openjudge.cn/scripts/jquery-1.4.3.min.js?1467854438.js"></script>
+<script type="text/javascript" src="http://static.openjudge.cn/scripts/jquery.form.js?1467854438.js"></script>
+<script type="text/javascript" src="http://static.openjudge.cn/scripts/base-nc.js?1467854438.js"></script>
+<script type="text/javascript" src="http://static.openjudge.cn/scripts/api.js?1467854438.js"></script>
+<script type="text/javascript">
+    //<![CDATA[
+var web_root = '/',
+	static_root = 'http://static.openjudge.cn/',
+	script_root = 'http://static.openjudge.cn/scripts',
+	style_root = 'http://static.openjudge.cn/styles';
+    //]]>
+</script>    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?cba6845c6d8176f123f81538e1796b8a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+	<div id="headerTop">
+  <div class="wrapper">
+    <h1 class="logo"><a href="http://openjudge.cn/" title="首页" rel="home">OpenJudge</a></h1>
+    <ul id="userToolbar">
+            <li><a class="link" href="http://openjudge.cn/user/1289661/">TA-常欣海</a></li>
+      <li><a class="link" href="http://openjudge.cn/messages/">信箱</a></li>
+      <li class="account-link">
+      	<a class="link w_arr_down" href="http://openjudge.cn/settings/">账号</a>
+   		<div class="account-list">
+   			<dl>
+   				<dt><a href="http://openjudge.cn/user/1289661/" title="TA-常欣海"><img src="http://static.openjudge.cn/images/default_avatar_small.png" alt="TA-常欣海" width="50" height="50"/></a></dt>
+   				<dd><a href="http://openjudge.cn/user/1289661/">TA-常欣海</a></dd>
+   			</dl>
+   			<ul>
+   			    <li class="line"></li>
+   				<li><a href="http://openjudge.cn/settings/">个人信息</a></li>
+   				<li><a href="http://openjudge.cn/settings/account/">账户设置</a></li>
+   				<li><a href="http://openjudge.cn/settings/avatar/">头像设置</a></li>
+   				<li><a href="http://openjudge.cn/settings/contact/">联系信息</a></li>
+   				<li><a href="http://openjudge.cn/settings/preference/">偏好设置</a></li>
+   				<li class="line"></li>
+   				<li><a href="/auth/logout/" onclick="api.logout(local.redirect);return false;" title="登出">登出</a></li>
+   			</ul>
+   		</div>  	
+      </li>
+          </ul>
+    <div class="practice-search">
+		 <form class="search-form" action="/search/" method="get">
+	        <input name="q" type="text" value="题目ID, 标题, 描述" onclick="this.select()">
+	        <button type="submit"></button>
+	     </form>	
+	</div>
+    <div style="clear:both;"></div>
+  </div>
+</div>
+	
+	<div id="header">
+  <div class="wrapper">
+  	<div id="groupSmallLog">
+  		<a href="http://xlxxsjjg.openjudge.cn/"><img class="group-logo" src="http://static.openjudge.cn/images/default_logo_small.png" alt="数据结构与算法26春(段老师班)" width="50" height="50" /></a>    </div>
+	<div class="contest-title-tab">
+		 <h2><a href="http://xlxxsjjg.openjudge.cn/" title="首页" rel="home">数据结构与算法26春(段老师班)</a></h2>
+		 <span>/</span>
+		 <h2>2025第六次上机作业</h2>
+		<span style="font-size:14px;">已经结束</span>	</div>
+    <ul id="mainNav">
+        <li  class="current"><a href="/2025hw6/" class="first">题目</a></li>
+            <li ><a href="/2025hw6/ranking/">排名</a></li>
+                    <li ><a href="/2025hw6/status/">状态</a></li>
+	     
+        <li ><a href="/2025hw6/statistics/">统计</a></li>
+				        <li class="last"><a href="/2025hw6/clarify/" class="last">提问</a></li>
+        </ul>	 
+    <div style="clear:both;"></div>
+  </div>
+</div>
+	
+	<div id="pagebody">
+		<div class="wrapper">
+			<script type="text/javascript">
+$(function(e){
+  var b={1:"很水",2:"简单",3:"普通",4:"较难",5:"变态"},
+      g=$("#rate"),
+      c=$("#stars img"),
+      d=function(f){
+        var h=0||g.val();
+        c.each(function(k){
+          var i=this.src.replace(/\w*\.gif$/,((k<f)?"sth":((k<h)?"st":"nst"))+".gif");
+          this.src=i;
+        });
+        if(f)
+          $("#rate_description").text(b[f]);
+        else
+          $("#rate_description").text(h!=0?b[h]:"");
+      };
+      c.hover(function(){d(this.id.charAt(4));},function(){d();});
+      if(g.attr("value")){
+        c.click(function(){
+          var f=this.id.charAt(4);
+          g.val(f);
+          d(f);
+          //$('#form_diffculity_rating').submit();
+          $( "#dialog-form" ).dialog( "open" );
+			g();
+        });
+      }
+      d();
+  });
+$(document).ready(
+		function(){
+			$('#problem-tags').hide();
+			$('#tag-display').toggle(function() {
+											$('#problem-tags').show();
+											this.value = '隐藏标签';
+										}, function(){
+											$('#problem-tags').hide();
+											this.value = '显示标签';
+										}
+									);
+			});
+</script>
+
+<div id="pageTitle"><h2>E:Floyd求最短路</h2></div>
+<div id="topMenu">
+	<ul>
+		<li class="current-show"><a href="/2025hw6/E/">查看</a></li>
+		<li ><a href="/2025hw6/E/submit/">提交</a></li>
+				<li ><a href="/2025hw6/E/statistics/">统计</a></li>
+			
+		<li ><a href="/2025hw6/clarify/E/">提问</a></li>
+			
+	</ul>
+</div><div class="problem-page col-9">
+	<dl class="problem-params">
+		<dt>总时间限制: </dt>
+		<dd>10000ms</dd>
+			<dt>单个测试点时间限制: </dt>
+		<dd>1000ms</dd>
+			<dt>内存限制: </dt>
+		<dd>131072kB</dd>
+	</dl>
+	<dl class="problem-content">
+		<dt>描述</dt>
+		<dd><p>给定一个 <span id="MathJax-Element-1-Frame" class="MathJax" style="box-sizing: border-box; display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 16px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns="><span id="MathJax-Span-1" class="math" role="math"><span id="MathJax-Span-2" class="mrow"><span id="MathJax-Span-3" class="mi">n</span></span></span></span> 个点 <span id="MathJax-Element-2-Frame" class="MathJax" style="box-sizing: border-box; display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 16px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns="><span id="MathJax-Span-4" class="math" role="math"><span id="MathJax-Span-5" class="mrow"><span id="MathJax-Span-6" class="mi">m</span></span></span></span> 条边的有向图，图中可能存在重边和自环，边权可能为负数。</p>
+<p>再给定 <span id="MathJax-Element-3-Frame" class="MathJax" style="box-sizing: border-box; display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 16px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns="><span id="MathJax-Span-7" class="math" role="math"><span id="MathJax-Span-8" class="mrow"><span id="MathJax-Span-9" class="mi">k</span></span></span></span> 个询问，每个询问包含两个整 <span id="MathJax-Element-4-Frame" class="MathJax" style="box-sizing: border-box; display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 16px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns="><span id="MathJax-Span-10" class="math" role="math"><span id="MathJax-Span-11" class="mrow"><span id="MathJax-Span-12" class="mi">x</span></span></span></span> 和 <span id="MathJax-Element-5-Frame" class="MathJax" style="box-sizing: border-box; display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 16px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns="><span id="MathJax-Span-13" class="math" role="math"><span id="MathJax-Span-14" class="mrow"><span id="MathJax-Span-15" class="mi">y</span></span></span></span>，表示查询从点 <span id="MathJax-Element-6-Frame" class="MathJax" style="box-sizing: border-box; display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 16px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns="><span id="MathJax-Span-16" class="math" role="math"><span id="MathJax-Span-17" class="mrow"><span id="MathJax-Span-18" class="mi">x</span></span></span></span> 到点 <span id="MathJax-Element-7-Frame" class="MathJax" style="box-sizing: border-box; display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 16px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns="><span id="MathJax-Span-19" class="math" role="math"><span id="MathJax-Span-20" class="mrow"><span id="MathJax-Span-21" class="mi">y</span></span></span></span> 的最短路，如果路径不存在，则输出 &ldquo;impossible&rdquo;。</p>
+<p>数据保证图中不存在负权回路。</p>
+<p><span id="MathJax-Element-1-Frame" class="MathJax" style="box-sizing: border-box; display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 16px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns="></span></p></dd>
+				
+				
+				<dt>输入</dt>
+		<dd>第一行包含三个整数 n,m,k。<br /><br />接下来 m 行，每行包含三个整数 x,y,z，表示存在一条从点 x 到点 y 的有向边，边长为 z。<br /><br />接下来 k 行，每行包含两个整数 x,y，表示询问点 x 到点 y 的最短路径</dd>
+		<dt>输出</dt>
+		<dd>若干行，若询问两点间不存在路径，则输出 impossible。若存在路径，对每个询问输出2行：第1行是最短路径（"Path:A B C"表示A-B-C），第2行是路径长度（Cost:x表示最短路径长度为x）。（若两点之间存在多条最短路径，输出字典序最小的路径，例如路径“1 2 5”小于“1 5”的字典序）</dd>
+		<dt>样例输入</dt>
+		<dd><pre>3 3 2
+1 2 1
+2 3 2
+1 3 1
+2 1
+1 3</pre></dd>
+		<dt>样例输出</dt>
+		<dd><pre>impossible
+Path:1 3
+Cost:1</pre></dd>
+				<dt>提示</dt>
+		<dd>数据范围<br />1≤n≤200,<br />1≤k≤n^2,<br />1≤m≤20000,<br />图中涉及边长绝对值均不超过 10000。</dd>
+						</dl>
+	<ul class="bottomMenu">
+		<li class="current-show"><a href="/2025hw6/E/">查看</a></li>
+		<li ><a href="/2025hw6/E/submit/">提交</a></li>
+				<li ><a href="/2025hw6/E/statistics/">统计</a></li>
+			
+		<li ><a href="/2025hw6/clarify/E/">提问</a></li>
+			</ul>
+</div>
+
+<div class="problem-statistics col-3">
+       		<dl>
+		<dt>全局题号</dt>
+		<dd>28395</dd>
+				<dt>提交次数</dt>
+		<dd>308</dd>
+		<dt>尝试人数</dt>
+	    <dd>84</dd>
+	    <dt>通过人数</dt>
+	    <dd>81</dd>
+	</dl>
+		
+		
+					
+						<h4>你尚未尝试此题</h4>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+	<div class="wrapper">
+		<ul class="oj-info">
+			<li>&copy;2002-2022 POJ <a href="http://www.beian.miit.gov.cn">京ICP备20010980号-1</a></li>
+		</ul>
+		<ul class="debug-info">
+									<li>
+				<a style="color:red" href="javascript:void(0);" onclick="api.switchLanguage('en_US');">English</a></li>
+						<li><a href="http://openjudge.cn/help.html" rel="nofollow">帮助</a></li>
+			<li><a href="http://openjudge.cn/about.html" rel="nofollow">关于</a></li>
+		</ul>
+		<div style="clear:both;"></div>
+	</div>
+</div>
+	
+	</body>
+</html>
