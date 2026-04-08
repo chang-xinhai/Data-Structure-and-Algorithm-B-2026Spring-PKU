@@ -595,6 +595,19 @@ body {
 .icon-link.github { color: #444450; }
 .icon-link.github:hover { color: #1a1a20; }
 
+/* Luogu — macaron orange */
+.icon-link.luogu {
+  color: #e07c32;
+  background: rgba(224,124,50,0.08);
+  border-color: rgba(224,124,50,0.16);
+}
+.icon-link.luogu:hover {
+  background: rgba(224,124,50,0.15);
+  border-color: rgba(224,124,50,0.28);
+  box-shadow: 0 3px 12px rgba(224,124,50,0.16);
+  color: #e07c32;
+}
+
 /* ============================================
    ANIMATIONS
    ============================================ */
