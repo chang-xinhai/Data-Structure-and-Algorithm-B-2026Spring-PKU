@@ -1,6 +1,6 @@
 # OpenJudge Crawler
 
-爬取 OpenJudge 比赛和题目的工具。
+爬取 OpenJudge 比赛和题目的工具，支持增量爬取。
 
 ## 安装
 
@@ -15,7 +15,7 @@ python crawler.py --init  # 创建 config.json
 # 然后编辑 config.json，填入你的 cookie
 ```
 
-从浏览器开发者工具获取 `PHPSESSID` cookie 的值。
+从浏览器开发者工具获取 `PHPSESSID` cookie 的值（Chrome: F12 → Application → Cookies → PHPSESSID）。
 
 ## 使用
 
@@ -48,11 +48,13 @@ reference/openjudge/
 │   │   ├── A.html
 │   │   ├── B.html
 │   │   └── ...
-│   └── 2026hw4/
+│   ├── 2026hw2/
+│   └── 2026hw1/
 └── dsb12.openjudge.cn/
     └── 26hw5/
         ├── 1.html
-        └── 2.html
+        ├── 2.html
+        └── ...
 ```
 
 ## 增量爬取

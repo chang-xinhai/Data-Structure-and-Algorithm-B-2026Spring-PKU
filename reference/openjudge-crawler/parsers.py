@@ -56,9 +56,12 @@ def parse_contest_page(html: str, contest_id: str, base_url: str) -> List[Proble
         prob_text = match.group(2).strip()
 
         # Skip if not a problem (could be navigation etc.)
-        if prob_id in ('admin', 'api', 'problems', 'news'):
-            continue
-        if prob_text and prob_text.lower() in ('admin', 'problems', 'news', 'logout'):
+        SKIP_PATHS = {
+            'admin', 'api', 'problems', 'news', 'logout',
+            'status', 'clarify', 'ranking', 'statistics', 'tips',
+            'submit', 'solution', 'ranklist', 'editorial'
+        }
+        if prob_id.lower() in SKIP_PATHS:
             continue
 
         if prob_id not in seen:

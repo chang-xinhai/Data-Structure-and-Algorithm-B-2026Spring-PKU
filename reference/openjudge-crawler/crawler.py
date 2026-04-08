@@ -35,7 +35,7 @@ def crawl_contest(session: OpenJudgeSession, contest_id: str, storage: Storage,
         problem_path = f"/{contest_id}/{problem.problem_num}/"
 
         # Check if already exists (incremental)
-        if storage.problem_exists(problem) and not force:
+        if storage.problem_exists(problem, session.base_url) and not force:
             print(f"  [{i+1}/{len(problems)}] Skip (exists): {problem.problem_num}")
             continue
 
@@ -50,7 +50,7 @@ def crawl_contest(session: OpenJudgeSession, contest_id: str, storage: Storage,
         problem = parse_problem_page(resp.text, problem)
 
         # Save HTML (as requested)
-        storage.save_html(problem, resp.text, force=force)
+        storage.save_html(problem, resp.text, force=force, base_url=session.base_url)
 
         print(f" OK (saved)")
         time.sleep(delay)

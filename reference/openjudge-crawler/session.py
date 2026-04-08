@@ -14,7 +14,7 @@ class OpenJudgeSession:
     def __init__(self, base_url: str):
         self.base_url = base_url.rstrip('/')
         self.config = load_config()
-        self.cookie = get_cookie(base_url, self.config)
+        self.cookie = get_cookie(self.config)
         self.headers = get_headers(self.config)
         self.session = requests.Session()
         self.session.headers.update(self.headers)

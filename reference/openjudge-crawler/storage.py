@@ -19,13 +19,21 @@ class Storage:
         self.h.ignore_links = False
         self.h.body_width = 0  # Don't wrap
 
-    def get_problem_path(self, problem: Problem) -> Path:
+    def _get_domain(self, base_url: str) -> str:
+        """Extract domain from base_url."""
+        from urllib.parse import urlparse
+        return urlparse(base_url).netloc
+
+    def get_problem_path(self, problem: Problem, base_url: str = "") -> Path:
         """Get the full path for a problem file."""
+        if base_url:
+            domain = self._get_domain(base_url)
+            return self.base_path / domain / problem.contest_id / problem.filename
         return self.base_path / problem.contest_id / problem.filename
 
-    def problem_exists(self, problem: Problem) -> bool:
+    def problem_exists(self, problem: Problem, base_url: str = "") -> bool:
         """Check if problem file already exists."""
-        path = self.get_problem_path(problem)
+        path = self.get_problem_path(problem, base_url)
         return path.exists()
 
     def save_problem(self, problem: Problem, force: bool = False) -> bool:
@@ -75,9 +83,9 @@ class Storage:
 
         return True
 
-    def save_html(self, problem: Problem, html_content: str, force: bool = False) -> bool:
+    def save_html(self, problem: Problem, html_content: str, force: bool = False, base_url: str = "") -> bool:
         """Save raw HTML content."""
-        path = self.get_problem_path(problem)
+        path = self.get_problem_path(problem, base_url)
 
         if path.exists() and not force:
             return False
@@ -91,17 +99,20 @@ class Storage:
 
     def get_stats(self) -> dict:
         """Get storage statistics."""
-        stats = {"contests": 0, "problems": 0, "total_size": 0}
+        stats = {"domains": 0, "contests": 0, "problems": 0, "total_size": 0}
 
         if not self.base_path.exists():
             return stats
 
-        for contest_dir in self.base_path.iterdir():
-            if contest_dir.is_dir():
-                stats["contests"] += 1
-                for problem_file in contest_dir.iterdir():
-                    if problem_file.is_file():
-                        stats["problems"] += 1
-                        stats["total_size"] += problem_file.stat().st_size
+        for domain_dir in self.base_path.iterdir():
+            if domain_dir.is_dir():
+                stats["domains"] += 1
+                for contest_dir in domain_dir.iterdir():
+                    if contest_dir.is_dir():
+                        stats["contests"] += 1
+                        for problem_file in contest_dir.iterdir():
+                            if problem_file.is_file():
+                                stats["problems"] += 1
+                                stats["total_size"] += problem_file.stat().st_size
 
         return stats
