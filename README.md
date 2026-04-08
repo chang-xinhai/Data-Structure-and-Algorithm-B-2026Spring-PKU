@@ -16,6 +16,9 @@ Spring 2026 · PKU Course Website
   <a href="https://github.com/krahets/hello-algo" target="_blank" style="margin: 2px;">
     <img alt="Reference" src="https://img.shields.io/badge/Reference-hello--algo-3b82f6?color=3b82f6&logoColor=white" style="display: inline-block; vertical-align: middle;"/>
   </a>
+  <a href="https://www.luogu.com.cn/team/125649" target="_blank" style="margin: 2px;">
+    <img alt="Luogu OJ" src="https://img.shields.io/badge/Luogu-OJ-c10000?color=c10000&logoColor=white" style="display: inline-block; vertical-align: middle;"/>
+  </a>
 </div>
 
 ---
