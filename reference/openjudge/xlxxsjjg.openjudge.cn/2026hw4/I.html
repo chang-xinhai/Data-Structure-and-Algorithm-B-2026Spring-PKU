@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>OpenJudge - I:我的OpenJudge怎么不一样？！</title>
+
+<link href="http://static.openjudge.cn/styles/global.css?1586031922.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.openjudge.cn/styles/styles.css?1470100812.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.openjudge.cn/styles/group.css?1634019818.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.openjudge.cn/styles/contest.css?1467854438.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.openjudge.cn/styles/favicon.ico?1467854438.ico" rel="shortcut icon" type="image/x-icon" />
+<!--[if IE]>
+   <script type="text/javascript" src="http://static.openjudge.cn/scripts/html5.js?1467854438.js"></script>
+<![endif]-->
+<!--[if lt IE 7]>
+	<link type="text/css" href="http://static.openjudge.cn/styles/ie6-deprecated.css?1467854438.css" rel="stylesheet" />
+<![endif]-->
+<!--[if IE 7]>
+	<link type="text/css" href="http://static.openjudge.cn/styles/ie7.css?1467854438.css" rel="stylesheet" />
+<![endif]-->
+<!--[if IE 8]>
+	<link type="text/css" href="http://static.openjudge.cn/styles/ie8.css?1467854438.css" rel="stylesheet" />
+<![endif]-->
+<script type="text/javascript" src="http://static.openjudge.cn/scripts/jquery-1.4.3.min.js?1467854438.js"></script>
+<script type="text/javascript" src="http://static.openjudge.cn/scripts/jquery.form.js?1467854438.js"></script>
+<script type="text/javascript" src="http://static.openjudge.cn/scripts/base-nc.js?1467854438.js"></script>
+<script type="text/javascript" src="http://static.openjudge.cn/scripts/api.js?1467854438.js"></script>
+<script type="text/javascript">
+    //<![CDATA[
+var web_root = '/',
+	static_root = 'http://static.openjudge.cn/',
+	script_root = 'http://static.openjudge.cn/scripts',
+	style_root = 'http://static.openjudge.cn/styles';
+    //]]>
+</script>    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?cba6845c6d8176f123f81538e1796b8a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+	<div id="headerTop">
+  <div class="wrapper">
+    <h1 class="logo"><a href="http://openjudge.cn/" title="首页" rel="home">OpenJudge</a></h1>
+    <ul id="userToolbar">
+            <li><a class="link" href="/auth/login/">登入</a></li>
+      <li><a class="link" href="/register/">注册</a></li>
+          </ul>
+    <div class="practice-search">
+		 <form class="search-form" action="/search/" method="get">
+	        <input name="q" type="text" value="题目ID, 标题, 描述" onclick="this.select()">
+	        <button type="submit"></button>
+	     </form>	
+	</div>
+    <div style="clear:both;"></div>
+  </div>
+</div>
+	
+	<div id="header">
+  <div class="wrapper">
+  	<div id="groupSmallLog">
+  		<a href="http://xlxxsjjg.openjudge.cn/"><img class="group-logo" src="http://static.openjudge.cn/images/default_logo_small.png" alt="数据结构与算法26春(段老师班)" width="50" height="50" /></a>    </div>
+	<div class="contest-title-tab">
+		 <h2><a href="http://xlxxsjjg.openjudge.cn/" title="首页" rel="home">数据结构与算法26春(段老师班)</a></h2>
+		 <span>/</span>
+		 <h2>2026第四次上机作业</h2>
+		<span style="font-size:14px;">正在进行中</span>	</div>
+    <ul id="mainNav">
+        <li  class="current"><a href="/2026hw4/" class="first">题目</a></li>
+            <li ><a href="/2026hw4/ranking/">排名</a></li>
+                    <li ><a href="/2026hw4/status/">状态</a></li>
+	     
+        <li ><a href="/2026hw4/statistics/">统计</a></li>
+				        <li class="last"><a href="/2026hw4/clarify/" class="last">提问</a></li>
+        </ul>	 
+    <div style="clear:both;"></div>
+  </div>
+</div>
+	
+	<div id="pagebody">
+		<div class="wrapper">
+			<script type="text/javascript">
+$(function(e){
+  var b={1:"很水",2:"简单",3:"普通",4:"较难",5:"变态"},
+      g=$("#rate"),
+      c=$("#stars img"),
+      d=function(f){
+        var h=0||g.val();
+        c.each(function(k){
+          var i=this.src.replace(/\w*\.gif$/,((k<f)?"sth":((k<h)?"st":"nst"))+".gif");
+          this.src=i;
+        });
+        if(f)
+          $("#rate_description").text(b[f]);
+        else
+          $("#rate_description").text(h!=0?b[h]:"");
+      };
+      c.hover(function(){d(this.id.charAt(4));},function(){d();});
+      if(g.attr("value")){
+        c.click(function(){
+          var f=this.id.charAt(4);
+          g.val(f);
+          d(f);
+          //$('#form_diffculity_rating').submit();
+          $( "#dialog-form" ).dialog( "open" );
+			g();
+        });
+      }
+      d();
+  });
+$(document).ready(
+		function(){
+			$('#problem-tags').hide();
+			$('#tag-display').toggle(function() {
+											$('#problem-tags').show();
+											this.value = '隐藏标签';
+										}, function(){
+											$('#problem-tags').hide();
+											this.value = '显示标签';
+										}
+									);
+			});
+</script>
+
+<div id="pageTitle"><h2>I:我的OpenJudge怎么不一样？！</h2></div>
+<div id="topMenu">
+	<ul>
+		<li class="current-show"><a href="/2026hw4/I/">查看</a></li>
+		<li ><a href="/2026hw4/I/submit/">提交</a></li>
+				<li ><a href="/2026hw4/I/statistics/">统计</a></li>
+			
+		<li ><a href="/2026hw4/clarify/I/">提问</a></li>
+			
+	</ul>
+</div><div class="problem-page col-9">
+	<dl class="problem-params">
+		<dt>总时间限制: </dt>
+		<dd>10000ms</dd>
+			<dt>单个测试点时间限制: </dt>
+		<dd>1000ms</dd>
+			<dt>内存限制: </dt>
+		<dd>131072kB</dd>
+	</dl>
+	<dl class="problem-content">
+		<dt>描述</dt>
+		<dd><p>什么？我的 OpenJudge 怎么变得不一样了？！</p>
+<p>其实这就是 <strong>CSS (Cascading Style Sheets) </strong>的功劳，它可以修改网页的外观样式。由于 OpenJudge 题目没有防代码转译，在本题的&ldquo;提示&rdquo;部分实际上隐藏着大段的 CSS 代码，正是它们改变了这个页面的外观。</p>
+<p>在一个 HTML 页面中，所有的元素按照嵌套关系组成了一种树形结构，称为 DOM 树。记根结点为 <code>1</code> 号结点，每个结点表示一个 HTML 元素，并包含：</p>
+<ol>
+<li>一个标签名 <code>tag</code>，例如 <code>div</code>、<code>span</code>、<code>section</code></li>
+<li>一个类名 <code>class</code>，例如 <code>main</code>、<code>item</code>、<code>title</code></li>
+</ol>
+<p>为简化题目，每个结点最多只有一个类名。如果该结点没有类名，则记为 <code>-</code>。每个节点都有几个子节点，如此得到一个可以被浏览器识别的网页结构。</p>
+<p>CSS 的样式是按照一个叫做&ldquo;选择器&rdquo;的规则来匹配 HTML 元素的。我们考虑的选择器由若干段用 <code>&gt;</code> 连接而成，每一段内可能用 <code>.</code> 分隔，例如：</p>
+<pre class="language-text text" data-role="codeBlock" data-info="text"><code>div.main&gt;span.item&gt;a
+</code></pre>
+<p>它表示：</p>
+<ol>
+<li>找到一个标签名为 <code>div</code>、类名为 <code>main</code> 的元素</li>
+<li>它有一个直接子元素，标签名为 <code>span</code>、类名为 <code>item</code></li>
+<li>这个 <code>span</code> 又有一个直接子元素，标签名为 <code>a</code></li>
+</ol>
+<p>每一段选择器支持以下三种形式：</p>
+<ol>
+<li><code>tag</code>：例如 <code>div</code>，表示只要求标签名匹配</li>
+<li><code>.class</code>：例如 <code>.main</code>，表示只要求类名匹配</li>
+<li><code>tag.class</code>：例如 <code>div.main</code>，表示标签名和类名都必须匹配</li>
+</ol>
+<p>一个结点 <code>u</code> 被认为匹配整个选择器，当且仅当 <code>u</code> 本身匹配选择器的第一段，并且可以沿着寻找若干次直接子结点的关系，依次匹配后面的所有段</p>
+<p>一般来说，选择器会返回文档顺序下第一个匹配的结点。本题中顺序定义为从根结点开始，按照子结点给出的顺序进行深度优先先序遍历。请输出这个简化版选择器选中的结点编号；如果不存在匹配结点，输出 <code>-1</code>。</p></dd>
+				
+				
+				<dt>输入</dt>
+		<dd>第一行输入两个整数 <code>N, K</code>，分别表示结点个数与选择器中的段数。<br />第二行输入一个字符串，表示选择器。保证它恰好由 <code>K</code> 段选择器用 <code>></code> 连接而成。<br />接下来 <code>N</code> 行，第 <code>i</code> 行描述第 <code>i</code> 个结点，格式为：<br /><pre data-role="codeBlock" data-info="text" class="language-text text"><code>tag class c v1 v2 ... vc<br /></code></pre><br />其中：<br /><ul><li><code>tag</code> 表示该结点的标签名</li><li><code>class</code> 表示该结点的类名；若没有类名，则为 <code>-</code></li><li><code>c</code> 表示它的直接子结点个数</li><li><code>v1, v2, ..., vc</code> 按从左到右的顺序给出它的所有直接子结点编号</li></ul><br />输入保证这些结点恰好构成一棵以 <code>1</code> 为根的树。</dd>
+		<dt>输出</dt>
+		<dd>输出一个整数，表示被选中的结点编号；若不存在，输出 <code>-1</code></dd>
+		<dt>样例输入</dt>
+		<dd><pre>9 3
+div.main>span.item>a.link
+html - 2 2 3
+body page 2 4 5
+footer foot 0
+div main 1 6
+div box 2 7 8
+span item 1 9
+p text 0
+span note 0
+a link 0</pre></dd>
+		<dt>样例输出</dt>
+		<dd><pre>4
+</pre></dd>
+				<dt>提示</dt>
+		<dd>翻译成 HTML 代码如下：<br /><pre><code>&lt;html&gt; <span style="color:gray">&lt;!-- 1 --&gt;</span><br />   &lt;body class="page"&gt; <span style="color:gray">&lt;!-- 2 --&gt;</span><br />      &lt;div class="main"&gt; <span style="color:gray">&lt;!-- 4 --&gt;</span><br />         &lt;span class="item"&gt; <span style="color:gray">&lt;!-- 6 --&gt;</span><br />            &lt;a class="link"&gt;&lt;/a&gt; <span style="color:gray">&lt;!-- 9 --&gt;</span><br />         &lt;/span&gt;<br />      &lt;/div&gt;<br />      &lt;div class="box"&gt; <span style="color:gray">&lt;!-- 5 --&gt;</span><br />         &lt;p class="text"&gt;&lt;/p&gt; <span style="color:gray">&lt;!-- 7 --&gt;</span><br />         &lt;span class="note"&gt;&lt;/span&gt; <span style="color:gray">&lt;!-- 8 --&gt;</span><br />      &lt;/div&gt;<br />   &lt;/body&gt;<br />   &lt;footer class="foot"&gt;&lt;/footer&gt; <span style="color:gray">&lt;!-- 3 --&gt;</span><br />&lt;/html&gt;<br /></code></pre><br />按文档顺序遍历结点的顺序为：<br /><pre><code>1, 2, 4, 6, 9, 5, 7, 8, 3<br /></code></pre><br />其中 <code>4</code> 号结点为 <code>div.main</code>，它的直接子结点 <code>6</code> 为 <code>span.item</code>，<code>6</code> 的直接子结点<br /><code>9</code> 为 <code>a.link</code>，因此 <code>4</code> 号结点匹配该选择器。<br /><br />1 ≤ K ≤ N ≤ 100000, 所有标签名和类名均只包含小写英文字母，且长度不超过 10。<br /><br />对这个样式有兴趣吗？<a href="https://github.com/LeoDreamer2004/OpenJudge-Art">试试我重写的 OpenJudge-Art 样式！</a> <style> body { background-color: var(--gray-1) !important; } </style> <script>if (document.getElementById('OpenJudge-Art')) { console.log('OpenJudge Art is loaded, skipping custom script'); } else { const pres = document.querySelectorAll('.problem-content pre'); pres.forEach(pre => { const copyButton = document.createElement('button'); copyButton.className = 'copy-button'; copyButton.textContent = '复制'; copyButton.addEventListener('click', () => { let code = pre.textContent || ''; code = code.replace(/\u00A0/g, ' '); const textArea = document.createElement('textarea'); textArea.value = code; document.body.appendChild(textArea); textArea.select(); try { document.execCommand('copy'); copyButton.textContent = '已复制'; } catch (err) { console.error('Fallback: Could not copy text', err); copyButton.textContent = '复制失败'; } document.body.removeChild(textArea); setTimeout(() => { copyButton.textContent = '复制'; }, 2000); }); const wrapper = document.createElement('div'); wrapper.className = 'code-wrapper'; if (pre.parentNode) { pre.parentNode.insertBefore(wrapper, pre); wrapper.appendChild(pre); wrapper.appendChild(copyButton); } });}</script> <script>if (document.getElementById('OpenJudge-Art')) { console.log('OpenJudge Art is loaded, skipping custom script'); } else { const problemParams = document.querySelector('.problem-page .problem-params'); const problemContent = document.querySelector('.problem-page .problem-content'); if (problemContent && problemParams) { const dt = document.createElement('dt'); dt.textContent = '要求'; problemContent.appendChild(dt); const dd = document.createElement('dd'); dd.appendChild(problemParams); problemContent.appendChild(dd); }}</script> <style data-author="LeoDreamer" id="OpenJudge-Art-Raw">:root{--i-search: url(https://gitlab.eduxiji.net/pku2200010825/image-host/-/raw/master/svg/search.svg);--i-right: url(https://gitlab.eduxiji.net/pku2200010825/image-host/-/raw/master/svg/tick.svg);--i-wrong: url(https://gitlab.eduxiji.net/pku2200010825/image-host/-/raw/master/svg/cross.svg);--i-default-user: url(https://gitlab.eduxiji.net/pku2200010825/image-host/-/raw/master/svg/user-avatar.svg);--i-close: url(https://gitlab.eduxiji.net/pku2200010825/image-host/-/raw/master/svg/close.svg);--i-star-empty: url(https://gitlab.eduxiji.net/pku2200010825/image-host/-/raw/master/svg/star-empty.svg);--i-star-hover: url(https://gitlab.eduxiji.net/pku2200010825/image-host/-/raw/master/svg/star-hover.svg);--i-star-select: url(https://gitlab.eduxiji.net/pku2200010825/image-host/-/raw/master/svg/star-select.svg)}:root{--red-1: #FFECE8;--red-2: #FDCDC5;--red-3: #FBACA3;--red-4: #F98981;--red-5: #F76560;--red-6: #F53F3F;--red-7: #CB272D;--red-8: #A1151E;--red-9: #770813;--red-10: #4D000A;--orangered-1: #FFF3E8;--orangered-2: #FDDDC3;--orangered-3: #FCC59F;--orangered-4: #FAAC7B;--orangered-5: #F99057;--orangered-6: #F77234;--orangered-7: #CC5120;--orangered-8: #A23511;--orangered-9: #771F06;--orangered-10: #4D0E00;--orange-1: #FFF7E8;--orange-2: #FFE4BA;--orange-3: #FFCF8B;--orange-4: #FFB65D;--orange-5: #FF9A2E;--orange-6: #FF7D00;--orange-7: #D25F00;--orange-8: #A64500;--orange-9: #792E00;--orange-10: #4D1B00;--gold-1: #FFFCE8;--gold-2: #FDF4BF;--gold-3: #FCE996;--gold-4: #FADC6D;--gold-5: #F9CC45;--gold-6: #F7BA1E;--gold-7: #CC9213;--gold-8: #A26D0A;--gold-9: #774B04;--gold-10: #4D2D00;--yellow-1: #FEFFE8;--yellow-2: #FEFEBE;--yellow-3: #FDFA94;--yellow-4: #FCF26B;--yellow-5: #FBE842;--yellow-6: #FADC19;--yellow-7: #CFAF0F;--yellow-8: #A38408;--yellow-9: #785D03;--yellow-10: #4D3800;--lime-1: #FCFFE8;--lime-2: #EDF8BB;--lime-3: #DCF190;--lime-4: #C9E968;--lime-5: #B5E241;--lime-6: #9FDB1D;--lime-7: #7EB712;--lime-8: #5F940A;--lime-9: #437004;--lime-10: #2A4D00;--green-1: #E8FFEA;--green-2: #AFF0B5;--green-3: #7BE188;--green-4: #4CD263;--green-5: #23C343;--green-6: #00B42A;--green-7: #009A29;--green-8: #008026;--green-9: #006622;--green-10: #004D1C;--cyan-1: #E8FFFB;--cyan-2: #B7F4EC;--cyan-3: #89E9E0;--cyan-4: #5EDFD6;--cyan-5: #37D4CF;--cyan-6: #14C9C9;--cyan-7: #0DA5AA;--cyan-8: #07828B;--cyan-9: #03616C;--cyan-10: #00424D;--blue-1: #E8F7FF;--blue-2: #C3E7FE;--blue-3: #9FD4FD;--blue-4: #7BC0FC;--blue-5: #57A9FB;--blue-6: #3491FA;--blue-7: #206CCF;--blue-8: #114BA3;--blue-9: #063078;--blue-10: #001A4D;--arcoblue-1: #E8F3FF;--arcoblue-2: #BEDAFF;--arcoblue-3: #94BFFF;--arcoblue-4: #6AA1FF;--arcoblue-5: #4080FF;--arcoblue-6: #165DFF;--arcoblue-7: #0E42D2;--arcoblue-8: #072CA6;--arcoblue-9: #031A79;--arcoblue-10: #000D4D;--purple-1: #F5E8FF;--purple-2: #DDBEF6;--purple-3: #C396ED;--purple-4: #A871E3;--purple-5: #8D4EDA;--purple-6: #722ED1;--purple-7: #551DB0;--purple-8: #3C108F;--purple-9: #27066E;--purple-10: #16004D;--pinkpurple-1: #FFE8FB;--pinkpurple-2: #F7BAEF;--pinkpurple-3: #F08EE6;--pinkpurple-4: #E865DF;--pinkpurple-5: #E13EDB;--pinkpurple-6: #D91AD9;--pinkpurple-7: #B010B6;--pinkpurple-8: #8A0993;--pinkpurple-9: #650370;--pinkpurple-10: #42004D;--magenta-1: #FFE8F1;--magenta-2: #FDC2DB;--magenta-3: #FB9DC7;--magenta-4: #F979B7;--magenta-5: #F754A8;--magenta-6: #F5319D;--magenta-7: #CB1E83;--magenta-8: #A11069;--magenta-9: #77064F;--magenta-10: #4D0034;--gray-1: #f7f8fa;--gray-2: #f2f3f5;--gray-3: #e5e6eb;--gray-4: #c9cdd4;--gray-5: #a9aeb8;--gray-6: #86909c;--gray-7: #6b7785;--gray-8: #4e5969;--gray-9: #272e3b;--gray-10: #1d2129}:root{--cyan-1-tr: #E8FFFBE0;--cyan-2-tr: #B7F4ECE0;--cyan-3-tr: #89E9E0E0;--cyan-4-tr: #5EDFD6E0;--cyan-5-tr: #37D4CFE0;--cyan-6-tr: #14C9C9E0;--cyan-7-tr: #0DA5AAE0;--cyan-8-tr: #07828BE0;--cyan-9-tr: #03616CE0;--cyan-10-tr: #00424DE0;--gray-1-tr: #f7f8faE0;--gray-2-tr: #f2f3f5E0;--gray-3-tr: #e5e6ebE0;--gray-4-tr: #c9cdd4E0;--gray-5-tr: #a9aeb8E0;--gray-6-tr: #86909cE0;--gray-7-tr: #6b7785E0;--gray-8-tr: #4e5969E0;--gray-9-tr: #272e3bE0;--gray-10-tr: #1d2129E0}:root{--accent-1-bg: var(--cyan-1-tr);--accent-1-bg-dark: var(--cyan-2);--accent-1-bg-darker: var(--cyan-3);--accent-1-border: var(--cyan-2-tr);--accent-1-border-dark: var(--cyan-3-tr);--accent-1-text: var(--cyan-7);--accent-1-text-dark: var(--cyan-9);--accent-2-bg: var(--blue-1);--accent-2-bg-dark: var(--blue-2);--accent-2-bg-darker: var(--blue-3);--accent-2-border: var(--blue-2);--accent-2-border-dark: var(--blue-3);--accent-2-text: var(--blue-7);--accent-2-text-light: var(--blue-6);--accent-2-text-dark: var(--blue-9);--text: var(--gray-10);--text-weak: var(--gray-7);--text-weaker: var(--gray-6);--date-text: var(--orangered-7);--bg: var(--gray-1-tr);--card-bg: var(--gray-2-tr);--card-bg-dark: var(--gray-3-tr);--card-border: var(--gray-3-tr);--anchor: var(--blue-7);--anchor-hover: var(--blue-9);--button-bg: var(--blue-3);--button-bg-hover: var(--blue-4);--button-text: var(--blue-9);--font-mono: "Courier New", Courier, monospace}p,h1,h2,h3,h4,h5,h6,*{scrollbar-color:var(--gray-3) var(--gray-2);color:var(--text)}a{color:var(--anchor)}a:hover{color:var(--anchor-hover)}a:visited{color:var(--anchor)}table{border-collapse:separate;border-spacing:0;border:1px solid var(--gray-4);border-radius:5px;margin-bottom:1em}table thead tr{background-color:var(--accent-1-bg)!important}table thead tr td,table thead tr th{border-bottom:1px solid var(--gray-4)!important;padding:.3em .5em!important;color:var(--accent-1-text-dark);font-weight:700}table thead tr td:first-child,table thead tr th:first-child{border-top-left-radius:5px}table thead tr td:last-child,table thead tr th:last-child{border-top-right-radius:5px}table tbody tr td,table tbody tr th,table tfoot tr td,table tfoot tr th{border-bottom:1px dotted var(--gray-4)!important;padding:.2em .5em!important}table tbody tr:first-child td:first-child,table tbody tr:first-child th:first-child{border-top-left-radius:5px}table tbody tr:first-child td:last-child,table tbody tr:first-child th:last-child{border-top-right-radius:5px}table tbody tr:last-child td,table tbody tr:last-child th,table tfoot tr:last-child td,table tfoot tr:last-child th{border-bottom:none!important}table tbody tr:last-child td:first-child,table tbody tr:last-child th:first-child,table tfoot tr:last-child td:first-child,table tfoot tr:last-child th:first-child{border-bottom-left-radius:5px}table tbody tr:last-child td:last-child,table tbody tr:last-child th:last-child,table tfoot tr:last-child td:last-child,table tfoot tr:last-child th:last-child{border-bottom-right-radius:5px}table tr:nth-child(2n){background-color:var(--bg)}table tr:nth-child(odd){background-color:var(--card-bg)}table tr td:not(.result) a{color:var(--accent-1-text)}table tfoot tr td,table tfoot tr th{background-color:var(--accent-1-bg)!important;border-top:1px solid var(--gray-4)!important;font-weight:700}pre{background-color:var(--bg);border-radius:5px;border:1px solid var(--card-border);padding:.5em;overflow-x:auto;margin-bottom:.5em;font-family:var(--font-mono);color:var(--gray-8);box-shadow:0 0 5px #0000001a}input[type=text],input[type=password],input[type=email],select,textarea{margin-left:.2em;width:100%;max-width:300px;background-color:var(--card-bg);border:1px solid var(--card-border);border-radius:5px;outline:none;transition:all .3s ease-in-out;padding-left:.3em;padding-top:.5em;padding-bottom:.5em}input[type=text]:hover,input[type=password]:hover,input[type=email]:hover,select:hover,textarea:hover{background-color:var(--gray-3);border-color:var(--gray-4);box-shadow:0 0 3px var(--blue-6)}input[type=text]:focus,input[type=password]:focus,input[type=email]:focus,select:focus,textarea:focus{border-color:var(--blue-6);box-shadow:0 0 5px var(--blue-6)}input[type=radio]{width:20px!important;height:20px!important;-webkit-appearance:none;-moz-appearance:none;appearance:none;border:none!important;position:relative;padding:0!important;margin-right:.5em}input[type=radio]:before{content:"";width:20px;height:20px;border:1px solid var(--card-border);display:inline-block;border-radius:50%;vertical-align:middle}input[type=radio]:checked:before{transition:all .15s ease-in-out;content:"";width:20px;height:20px;border:1px solid var(--button-bg);background:var(--button-bg);display:inline-block;border-radius:50%;vertical-align:middle}input[type=radio]:checked:after{content:"";width:10px;height:5px;border:2px solid var(--button-text);border-top:transparent;border-right:transparent;text-align:center;display:block;position:absolute;top:5px;left:5px;transform:rotate(-45deg)}input[type=checkbox]{width:15px!important;height:15px!important;-webkit-appearance:none;-moz-appearance:none;appearance:none;border:none!important;position:relative;margin-right:.5em!important;padding:0!important}input[type=checkbox]:before{content:"";width:15px;height:15px;border:1px solid var(--card-border);display:inline-block;border-radius:3px;vertical-align:middle}input[type=checkbox]:checked:before{transition:all .15s ease-in-out;content:"";width:15px;height:15px;border:1px solid var(--button-bg);background:var(--button-bg);display:inline-block;border-radius:3px;vertical-align:middle}input[type=checkbox]:checked:after{content:"";width:10px;height:5px;border-left:2px solid var(--button-text);border-bottom:2px solid var(--button-text);text-align:center;display:block;position:absolute;top:3px;left:2px;transform:rotate(-45deg)}input[type=button],button{background-color:var(--button-bg);color:var(--button-text);border:none;padding:.5em 1em;border-radius:5px;cursor:pointer;transition:background-color .3s ease-in-out;font-weight:700}input[type=button]:hover,button:hover{background-color:var(--button-bg-hover);text-decoration:none}select option{background-color:var(--card-bg);color:var(--card-text)}.result-pending{color:var(--gray-7)!important}.result-right{color:var(--blue-6)!important}.result-wrong{color:var(--red-6)!important}.result-ce{color:var(--gold-6)!important}#error{background-color:var(--red-2);color:var(--red-8);border-left:5px solid var(--red-5);padding:1em;margin-bottom:1em}#error *{color:var(--red-8)}.wallpaper{position:fixed;width:100%;height:100%;background-color:var(--gray-1);background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed;z-index:-1}.wallpaper:before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;background-color:var(--gray-1-tr)}#siteBody,#pageBody,body{background:none;background-color:transparent;padding-bottom:20px}.page-bar .pages *{color:var(--accent-1-text);padding:.3em .7em;border-radius:3px;background-color:var(--accent-1-bg);border:none}.page-bar .pages a:hover{background-color:var(--accent-1-bg-dark);color:var(--accent-1-text-dark);transition:all .1s ease-in-out;text-decoration:none}.page-bar .pages span.current{color:var(--accent-1-text-dark);font-weight:700;background-color:var(--accent-1-bg-dark);border-bottom:2px solid var(--accent-1-border-dark)}#footer{display:none;height:auto}#footer li{color:var(--text-weak)}abbr.date{color:var(--text-weaker);text-decoration:none}img[src="http://static.openjudge.cn/images/default_avatar_large.png"],img[src="http://static.openjudge.cn/images/default_avatar_small.png"]{content:var(--i-default-user)}button#create-rating{background:none;background-color:var(--accent-1-bg-dark);color:var(--accent-1-text)!important;border:none;padding:.5em 1em;border-radius:5px;cursor:pointer;font-size:13px;font-weight:700}button#create-rating:hover{background-color:var(--accent-1-bg-darker);transition:background-color .3s ease-in-out}div[role=dialog]{padding:.5em;background:none;background-color:var(--bg);border-radius:10px;border:1px solid var(--card-border)}div[role=dialog] .ui-dialog-titlebar{background:none;border-radius:0;background-color:var(--card-bg);border:none;border-left:3px solid var(--card-border)}div[role=dialog] .ui-dialog-titlebar a.ui-dialog-titlebar-close{margin-top:-8px;padding:0}div[role=dialog] .ui-dialog-titlebar .ui-icon{transform:rotate(0);transition:transform .3s ease-in-out;background-position:0 0!important;background-image:var(--i-close);background-size:16px;margin:0!important}div[role=dialog] .ui-dialog-titlebar .ui-state-hover{background:none!important;border:none!important;right:.3em!important}div[role=dialog] .ui-dialog-titlebar .ui-state-hover .ui-icon{transform:rotate(180deg);transition:transform .3s ease-in-out}div[role=dialog] form .rating{padding:.5em;border-bottom:1px solid var(--card-border)}div[role=dialog] form .rating img{width:16px;height:16px}div[role=dialog] form .rating img[src="http://static.openjudge.cn/images/nst.gif"]{content:var(--i-star-empty)}div[role=dialog] form .rating img[src="http://static.openjudge.cn/images/st.gif"]{content:var(--i-star-select)}div[role=dialog] form .rating img[src="http://static.openjudge.cn/images/sth.gif"]{content:var(--i-star-hover)}div[role=dialog] form ul.interest_form{padding:.3em 0}div[role=dialog] form ul.interest_form li{padding:.5em}div[role=dialog] form ul.interest_form li:first-child{padding-bottom:0}div[role=dialog] form ul.interest_form li dl dt{color:var(--gray-8);padding-bottom:.5em}div[role=dialog] form ul.interest_form li dl dd span{border-radius:3px;background-color:var(--lime-2);color:var(--lime-8);border:none;transition:all .3s ease-in-out}div[role=dialog] form ul.interest_form li dl dd span.rdact{color:var(--gray-8);background-color:var(--card-bg)}div[role=dialog] .ui-dialog-buttonpane{padding:0 .5em;margin:0;border-top:1px solid var(--card-border);background:none;background-color:var(--bg)}div[role=dialog] .ui-dialog-buttonpane button{background:none;border:none;padding:.5em 1em;border-radius:5px;cursor:pointer;font-size:14px;transition:background-color .3s ease-in-out;font-weight:700}div[role=dialog] .ui-dialog-buttonpane button:hover{text-decoration:none}div[role=dialog] .ui-dialog-buttonpane button:first-child{background-color:var(--button-bg);color:var(--button-text)}div[role=dialog] .ui-dialog-buttonpane button:first-child:hover{background-color:var(--button-bg-hover)}div[role=dialog] .ui-dialog-buttonpane button:last-child{background-color:var(--card-bg);color:var(--gray-9)}div[role=dialog] .ui-dialog-buttonpane button:last-child:hover{background-color:var(--gray-3)}#headerTop{background:none}#headerTop .wrapper{min-width:800px;height:40px;width:100%;background-color:var(--card-bg)}#headerTop .wrapper .logo{margin:0;padding:8px;outline:none}#headerTop .wrapper .logo a{text-shadow:0 0 1px rgba(0,0,0,.2);font-size:20px;font-weight:400;font-family:Open Sans,sans-serif;color:var(--gray-5)}#headerTop .wrapper .logo a span{text-shadow:none;color:var(--gray-7)}#headerTop .wrapper .logo a:hover{text-shadow:0 0 8px rgba(0,0,0,.2);transition:all .3s;text-decoration:none}#headerTop .wrapper .logo{padding:5px 5px 5px 8px}#headerTop .wrapper #userToolbar{margin:5px}#headerTop .wrapper #userToolbar a{color:var(--gray-7)}#headerTop .wrapper #userToolbar a:hover{color:var(--gray-8);background-color:var(--gray-3);text-decoration:none}#headerTop .wrapper #userToolbar .account-link a.w_arr_down{color:var(--gray-7);background:none;background-color:var(--gray-1)}#headerTop .wrapper #userToolbar .account-link .account-list.dis{border-radius:5px;border:none;background:none;background-color:var(--card-bg);box-shadow:0 0 5px #0000001a;border:1px solid var(--card-border)}#headerTop .wrapper #userToolbar .account-link .account-list.dis dl a:hover{background-color:transparent}#headerTop .wrapper #userToolbar .account-link .account-list.dis dl dd a{line-height:3}#headerTop .wrapper #userToolbar .account-link .account-list.dis dl img{border-radius:50%}#headerTop .wrapper #userToolbar .account-link .account-list.dis .line{border-top:1px solid var(--gray-4);background-color:var(--gray-4);margin:.5em 0}#headerTop .wrapper .practice-search{margin:5px}#headerTop .wrapper .practice-search .search-form input{background-color:var(--card-bg);border:1px solid var(--card-border);border-radius:5px;padding:0 0 0 .5em;width:200px;color:var(--gray-7)}#headerTop .wrapper .practice-search .search-form button{border-radius:0;top:4px;right:0;padding:0;background:transparent;background-repeat:no-repeat;background-size:60%;background-image:var(--i-search)}#header{background-color:var(--accent-1-bg);padding-bottom:10px}#header #groupSmallLog img,#header #headerLine img{border-radius:5px;width:50px;height:50px;box-shadow:0 0 5px #0000001a}#header .contest-title-tab span,#header .contest-title-tab h2,#header #headerLine h1{color:var(--gray-8)}#header .contest-title-tab h2 a,#header #headerLine h1 a{color:var(--accent-1-text);font-weight:700}#header .contest-title-tab h2 a:hover,#header #headerLine h1 a:hover{color:var(--accent-1-text-dark);text-decoration:none}#header ul#mainNav li{border-radius:5px}#header ul#mainNav li a{color:var(--accent-1-text);padding:.3em .7em;background-color:var(--accent-1-bg-dark)}#header ul#mainNav li a:hover{background-color:var(--accent-1-bg-darker);transition:all .5s;text-decoration:none}#header ul#mainNav li:hover{transform:translateY(-2px);transition:all .3s}#header ul#mainNav li.current{border-bottom:2px solid var(--accent-1-border-dark)}#pageTitle{border:none;margin-bottom:.5em}#pageTitle h2{font-size:1.5em;color:var(--accent-1-text);padding:.5em;background-color:var(--accent-1-bg);border:1px solid var(--accent-1-border);border-radius:5px}#topMenu ul{padding:5px 10px 5px 5px}#topMenu ul li a{color:var(--accent-1-text-dark);font-size:13px}#topMenu ul li.current-show a{color:var(--accent-1-text);font-weight:700;background:transparent;border:none;border-bottom:2px solid var(--accent-1-text)}#topMenu ul li a:hover{color:var(--accent-1-text);background:transparent;border:none;border-bottom:2px solid var(--accent-1-text);transition:color .3s ease-in-out}.problem-page{max-width:620px;background-color:var(--card-bg);border:1px solid var(--card-border);padding:0 1em 1em;border-radius:10px;box-shadow:0 0 5px #0000001a;margin-bottom:1em}.problem-page dt{color:var(--accent-2-text);padding-left:.5em;margin:1em 0;line-height:1.5;border-left:3px solid var(--accent-2-text-light)}.problem-page .code-wrapper{position:relative}.problem-page pre{overflow-x:auto}.problem-page .copy-button{position:absolute;right:.5em;top:.5em;color:var(--gray-7);background-color:var(--card-bg);padding:.4em .6em;font-size:10px;border-radius:3px;cursor:pointer}.problem-page .copy-button:hover{background-color:var(--card-border);transition:background-color .3s ease-in-out}.problem-page .problem-params dt,.problem-page .problem-params dd{font-size:13px;color:var(--gray-8);padding:.5em .5em .5em 0;margin:1em 0;line-height:1.5;border:none;font-weight:700}.problem-page ul.bottomMenu li{display:inline-block;margin-right:10px;background-color:var(--button-bg);border-radius:5px;color:var(--button-text);border:none}.problem-page ul.bottomMenu li a:hover{text-decoration:none}.problem-page ul.bottomMenu li:hover{background-color:var(--button-bg-hover);transition:background-color .3s ease-in-out}.problem-statistics{background-color:var(--card-bg);padding:1em;border-radius:10px;border:1px solid var(--card-border);margin:0;box-shadow:0 0 5px #0000001a}.problem-statistics dl dt{color:var(--accent-1-text);font-weight:700}.problem-statistics dl dd{color:var(--accent-1-text-dark);margin-bottom:.5em}.problem-statistics .notification{color:var(--red-6);margin-bottom:1em}.problem-statistics h4{color:var(--accent-1-text);font-weight:700;margin-top:.5em}</style></dd>
+						<dt>来源</dt>
+		<dd>Yuan Zixuan</dd>
+				</dl>
+	<ul class="bottomMenu">
+		<li class="current-show"><a href="/2026hw4/I/">查看</a></li>
+		<li ><a href="/2026hw4/I/submit/">提交</a></li>
+				<li ><a href="/2026hw4/I/statistics/">统计</a></li>
+			
+		<li ><a href="/2026hw4/clarify/I/">提问</a></li>
+			</ul>
+</div>
+
+<div class="problem-statistics col-3">
+       		<dl>
+		<dt>全局题号</dt>
+		<dd>30676</dd>
+				<dt>提交次数</dt>
+		<dd>0</dd>
+		<dt>尝试人数</dt>
+	    <dd>0</dd>
+	    <dt>通过人数</dt>
+	    <dd>0</dd>
+	</dl>
+		
+		
+					
+	</div>
+		</div>
+	</div>
+	<div id="footer">
+	<div class="wrapper">
+		<ul class="oj-info">
+			<li>&copy;2002-2022 POJ <a href="http://www.beian.miit.gov.cn">京ICP备20010980号-1</a></li>
+		</ul>
+		<ul class="debug-info">
+									<li>
+				<a style="color:red" href="javascript:void(0);" onclick="api.switchLanguage('en_US');">English</a></li>
+						<li><a href="http://openjudge.cn/help.html" rel="nofollow">帮助</a></li>
+			<li><a href="http://openjudge.cn/about.html" rel="nofollow">关于</a></li>
+		</ul>
+		<div style="clear:both;"></div>
+	</div>
+</div>
+	
+	</body>
+</html>

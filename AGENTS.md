@@ -141,3 +141,25 @@ npm run build   # 构建输出至 public/
 npm run preview # 本地预览（需先 build）
 git push        # 触发 CI → 自动部署
 ```
+
+### OpenJudge 题库更新
+- 题库缓存目录：`reference/openjudge/`
+- 爬虫目录：`reference/openjudge-crawler/`
+- 配置文件：`reference/openjudge-crawler/config.json`（需填写有效的 `PHPSESSID` cookie）
+
+常用命令：
+```bash
+# 更新全部已配置的 OpenJudge 题库
+python3 reference/openjudge-crawler/crawler.py
+
+# 只抓取某个 base
+python3 reference/openjudge-crawler/crawler.py --base http://xlxxsjjg.openjudge.cn/
+
+# 只抓取某个比赛
+python3 reference/openjudge-crawler/crawler.py --contest 2026hw4
+```
+
+说明：
+- 默认增量抓取，已存在的题面会跳过
+- 如需强制覆盖，使用 `--force`
+- 更新后检查 `reference/openjudge/` 下新增目录或 HTML 文件即可
