@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>OpenJudge - E:D++</title>
+
+<link href="http://static.openjudge.cn/styles/global.css?1586031922.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.openjudge.cn/styles/styles.css?1470100812.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.openjudge.cn/styles/group.css?1634019818.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.openjudge.cn/styles/contest.css?1467854438.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.openjudge.cn/styles/favicon.ico?1467854438.ico" rel="shortcut icon" type="image/x-icon" />
+<!--[if IE]>
+   <script type="text/javascript" src="http://static.openjudge.cn/scripts/html5.js?1467854438.js"></script>
+<![endif]-->
+<!--[if lt IE 7]>
+	<link type="text/css" href="http://static.openjudge.cn/styles/ie6-deprecated.css?1467854438.css" rel="stylesheet" />
+<![endif]-->
+<!--[if IE 7]>
+	<link type="text/css" href="http://static.openjudge.cn/styles/ie7.css?1467854438.css" rel="stylesheet" />
+<![endif]-->
+<!--[if IE 8]>
+	<link type="text/css" href="http://static.openjudge.cn/styles/ie8.css?1467854438.css" rel="stylesheet" />
+<![endif]-->
+<script type="text/javascript" src="http://static.openjudge.cn/scripts/jquery-1.4.3.min.js?1467854438.js"></script>
+<script type="text/javascript" src="http://static.openjudge.cn/scripts/jquery.form.js?1467854438.js"></script>
+<script type="text/javascript" src="http://static.openjudge.cn/scripts/base-nc.js?1467854438.js"></script>
+<script type="text/javascript" src="http://static.openjudge.cn/scripts/api.js?1467854438.js"></script>
+<script type="text/javascript">
+    //<![CDATA[
+var web_root = '/',
+	static_root = 'http://static.openjudge.cn/',
+	script_root = 'http://static.openjudge.cn/scripts',
+	style_root = 'http://static.openjudge.cn/styles';
+    //]]>
+</script>    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?cba6845c6d8176f123f81538e1796b8a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+	<div id="headerTop">
+  <div class="wrapper">
+    <h1 class="logo"><a href="http://openjudge.cn/" title="首页" rel="home">OpenJudge</a></h1>
+    <ul id="userToolbar">
+            <li><a class="link" href="/auth/login/">登入</a></li>
+      <li><a class="link" href="/register/">注册</a></li>
+          </ul>
+    <div class="practice-search">
+		 <form class="search-form" action="/search/" method="get">
+	        <input name="q" type="text" value="题目ID, 标题, 描述" onclick="this.select()">
+	        <button type="submit"></button>
+	     </form>	
+	</div>
+    <div style="clear:both;"></div>
+  </div>
+</div>
+	
+	<div id="header">
+  <div class="wrapper">
+  	<div id="groupSmallLog">
+  		<a href="http://xlxxsjjg.openjudge.cn/"><img class="group-logo" src="http://static.openjudge.cn/images/default_logo_small.png" alt="数据结构与算法26春(段老师班)" width="50" height="50" /></a>    </div>
+	<div class="contest-title-tab">
+		 <h2><a href="http://xlxxsjjg.openjudge.cn/" title="首页" rel="home">数据结构与算法26春(段老师班)</a></h2>
+		 <span>/</span>
+		 <h2>2026期中模拟</h2>
+		<span style="font-size:14px;">正在进行中</span>	</div>
+    <ul id="mainNav">
+        <li  class="current"><a href="/2026midsim/" class="first">题目</a></li>
+            <li ><a href="/2026midsim/ranking/">排名</a></li>
+                    <li ><a href="/2026midsim/status/">状态</a></li>
+	     
+        <li ><a href="/2026midsim/statistics/">统计</a></li>
+				        <li class="last"><a href="/2026midsim/clarify/" class="last">提问</a></li>
+        </ul>	 
+    <div style="clear:both;"></div>
+  </div>
+</div>
+	
+	<div id="pagebody">
+		<div class="wrapper">
+			<script type="text/javascript">
+$(function(e){
+  var b={1:"很水",2:"简单",3:"普通",4:"较难",5:"变态"},
+      g=$("#rate"),
+      c=$("#stars img"),
+      d=function(f){
+        var h=0||g.val();
+        c.each(function(k){
+          var i=this.src.replace(/\w*\.gif$/,((k<f)?"sth":((k<h)?"st":"nst"))+".gif");
+          this.src=i;
+        });
+        if(f)
+          $("#rate_description").text(b[f]);
+        else
+          $("#rate_description").text(h!=0?b[h]:"");
+      };
+      c.hover(function(){d(this.id.charAt(4));},function(){d();});
+      if(g.attr("value")){
+        c.click(function(){
+          var f=this.id.charAt(4);
+          g.val(f);
+          d(f);
+          //$('#form_diffculity_rating').submit();
+          $( "#dialog-form" ).dialog( "open" );
+			g();
+        });
+      }
+      d();
+  });
+$(document).ready(
+		function(){
+			$('#problem-tags').hide();
+			$('#tag-display').toggle(function() {
+											$('#problem-tags').show();
+											this.value = '隐藏标签';
+										}, function(){
+											$('#problem-tags').hide();
+											this.value = '显示标签';
+										}
+									);
+			});
+</script>
+
+<div id="pageTitle"><h2>E:D++</h2></div>
+<div id="topMenu">
+	<ul>
+		<li class="current-show"><a href="/2026midsim/E/">查看</a></li>
+		<li ><a href="/2026midsim/E/submit/">提交</a></li>
+				<li ><a href="/2026midsim/E/statistics/">统计</a></li>
+			
+		<li ><a href="/2026midsim/clarify/E/">提问</a></li>
+			
+	</ul>
+</div><div class="problem-page col-9">
+	<dl class="problem-params">
+		<dt>总时间限制: </dt>
+		<dd>10000ms</dd>
+			<dt>单个测试点时间限制: </dt>
+		<dd>1000ms</dd>
+			<dt>内存限制: </dt>
+		<dd>131072kB</dd>
+	</dl>
+	<dl class="problem-content">
+		<dt>描述</dt>
+		<dd><p>小鱼正在学习一种新的编程语言 D++，他刚学会循环语句，写了好多程序并一一给出了他自己算出的时间复杂度，可惜他数算课基础不扎实，只能请教你来判断他的计算是否正确。你实在不想一个个看他写的程序，于是你考虑编写一个程序来判断小鱼对他的每个程序给出的时间复杂度是否正确。</p>
+<p>D++语言的循环结构如下：</p>
+<pre><code class="language-cpp hljs">F i x y
+&nbsp;&nbsp;&nbsp;&nbsp;循环体
+E
+</code></pre>
+<p>其中<code>F i x y</code>表示新建变量 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">i</span></span></span></span>（变量 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">i</span></span></span></span> 不可与未被销毁的变量重名）并初始化为 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">x</span></span></span></span>， 然后判断 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">i</span></span></span></span> 和 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">y</span></span></span></span> 的大小关系，若 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">i</span></span></span></span> 小于等于 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">y</span></span></span></span> 则进入循环，否则不进入。每次循环结束后 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">i</span></span></span></span> 都会被修改成 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">i</span><span class="mbin">+</span></span><span class="base"><span class="mord">1</span></span></span></span>，一旦 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">i</span></span></span></span> 大于 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">y</span></span></span></span> 终止循环。</p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">x</span></span></span></span> 和 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">y</span></span></span></span> 可以是正整数（<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">x</span></span></span></span> 和 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">y</span></span></span></span> 的大小关系不定）或变量 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">n</span></span></span></span>。<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord mathnormal">n</span></span></span></span> 是一个表示数据规模的变量，在时间复杂度计算中需保留该变量而不能将其视为常数，该数远大于 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="mord">100</span></span></span></span>。</p>
+<p><code>E</code> 表示循环体结束。循环体结束时，这个循环体新建的变量也被销毁。</p></dd>
+				
+				
+				<dt>输入</dt>
+		<dd>输入文件第一行一个正整数 t，表示有 t（t≤10）个程序需要计算时间复杂度。 每个程序我们只需抽取其中 F i x y 和 E 即可计算时间复杂度。注意：循环结构允许嵌套。<br /><br />接下来每个程序的第一行包含一个正整数 L 和一个字符串，L 代表程序行数，字符串表示这个程序的复杂度，O(1) 表示常数复杂度，O(n^w) 表示复杂度为n^w，其中 w 是一个小于 100 的正整数，输入保证复杂度只有 O(1) 和 O(n^w) 两种类型。<br /><br />接下来 L 行代表程序中循环结构中的F i x y或者 E。 程序行若以F开头，表示进入一个循环，之后有空格分离的三个字符（串）i x y， 其中 i 是一个小写字母（保证不为n），表示新建的变量名，x 和 y 可能是正整数或 n ，已知若为正整数则一定小于 100。<br /><br />程序行若以E开头，则表示循环体结束。</dd>
+		<dt>输出</dt>
+		<dd>输出文件共 t 行，对应输入的 t 个程序，每行输出 Yes 或 No 或者 ERR，若程序实际复杂度与输入给出的复杂度一致则输出 Yes，不一致则输出 No，若程序有语法错误（其中语法错误只有: ① F 和 E 不匹配 ②新建的变量与已经存在但未被销毁的变量重复两种情况），则输出 ERR。<br /><br />注意：即使在程序不会执行的循环体中出现了语法错误也会编译错误，要输出 ERR。</dd>
+		<dt>样例输入</dt>
+		<dd><pre>8
+2 O(1)
+F i 1 1
+E
+2 O(n^1)
+F x 1 n
+E
+1 O(1)
+F x 1 n
+4 O(n^2)
+F x 5 n
+F y 10 n
+E
+E
+4 O(n^2)
+F x 9 n
+E
+F y 2 n
+E
+4 O(n^1)
+F x 9 n
+F y n 4
+E
+E
+4 O(1)
+F y n 4
+F x 9 n
+E
+E
+4 O(n^2)
+F x 1 n
+F x 1 10
+E
+E</pre></dd>
+		<dt>样例输出</dt>
+		<dd><pre>Yes
+Yes
+ERR
+Yes
+No
+Yes
+Yes
+ERR</pre></dd>
+				<dt>提示</dt>
+		<dd>【输入输出样例解释】<br /><br />第一个程序 i 从 1 到 1 是常数复杂度。<br /><br />第二个程序 x 从 1 到 n 是 n 的一次方的复杂度。<br /><br />第三个程序有一个 F 开启循环却没有 E 结束，语法错误。<br /><br />第四个程序二重循环，n 的平方的复杂度。<br /><br />第五个程序两个一重循环，n 的一次方的复杂度。<br /><br />第六个程序第一重循环正常，但第二重循环开始即终止（因为 n 远大于 100，100 大于 4）。<br /><br />第七个程序第一重循环无法进入，故为常数复杂度。<br /><br />第八个程序第二重循环中的变量 x 与第一重循环中的变量重复，出现语法错误②，输出 ERR。<br /><br /><br />【数据规模与约定】<br /><br />L≤100。</dd>
+						</dl>
+	<ul class="bottomMenu">
+		<li class="current-show"><a href="/2026midsim/E/">查看</a></li>
+		<li ><a href="/2026midsim/E/submit/">提交</a></li>
+				<li ><a href="/2026midsim/E/statistics/">统计</a></li>
+			
+		<li ><a href="/2026midsim/clarify/E/">提问</a></li>
+			</ul>
+</div>
+
+<div class="problem-statistics col-3">
+       		<dl>
+		<dt>全局题号</dt>
+		<dd>29528</dd>
+				<dt>提交次数</dt>
+		<dd>143</dd>
+		<dt>尝试人数</dt>
+	    <dd>51</dd>
+	    <dt>通过人数</dt>
+	    <dd>47</dd>
+	</dl>
+		
+		
+					
+	</div>
+		</div>
+	</div>
+	<div id="footer">
+	<div class="wrapper">
+		<ul class="oj-info">
+			<li>&copy;2002-2022 POJ <a href="http://www.beian.miit.gov.cn">京ICP备20010980号-1</a></li>
+		</ul>
+		<ul class="debug-info">
+									<li>
+				<a style="color:red" href="javascript:void(0);" onclick="api.switchLanguage('en_US');">English</a></li>
+						<li><a href="http://openjudge.cn/help.html" rel="nofollow">帮助</a></li>
+			<li><a href="http://openjudge.cn/about.html" rel="nofollow">关于</a></li>
+		</ul>
+		<div style="clear:both;"></div>
+	</div>
+</div>
+	
+	</body>
+</html>
