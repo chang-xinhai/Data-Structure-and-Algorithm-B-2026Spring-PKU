@@ -1,0 +1,246 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{padding:1rem 0}
+.algo-tabs{display:flex;gap:6px;margin-bottom:14px}
+.atab{padding:5px 14px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);font-size:13px;cursor:pointer;background:transparent;color:var(--color-text-secondary);transition:all .2s}
+.atab.on{font-weight:500;border-color:transparent}
+.atab.on.kr{background:#E1F5EE;color:#085041}
+.atab.on.pr{background:#E6F1FB;color:#0C447C}
+.atab.on.bv{background:#FAECE7;color:#712B13}
+canvas{width:100%;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);background:var(--color-background-secondary);display:block}
+.ctrls{display:flex;align-items:center;gap:8px;margin-top:10px;flex-wrap:wrap}
+.btn{padding:5px 14px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);font-size:13px;cursor:pointer;background:transparent;color:var(--color-text-primary);transition:all .15s}
+.btn:hover{background:var(--color-background-secondary)}
+.btn.go{background:#E1F5EE;color:#085041;border-color:transparent}
+.rule-box{margin-top:10px;padding:10px 14px;border-radius:var(--border-radius-md);font-size:13px;line-height:1.6;min-height:52px;border-left-width:3px;border-left-style:solid}
+.rule-box.blue{background:var(--color-background-info);border-left-color:#185FA5;color:var(--color-text-info)}
+.rule-box.red{background:var(--color-background-danger);border-left-color:#A32D2D;color:var(--color-text-danger)}
+.rule-box.neutral{background:var(--color-background-secondary);border-left-color:var(--color-border-secondary);color:var(--color-text-secondary)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:12px;color:var(--color-text-secondary)}
+.li{display:flex;align-items:center;gap:5px}
+.ld{width:14px;height:3px;border-radius:2px}
+.edge-strip{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.eb{font-size:11px;padding:2px 8px;border-radius:20px;border:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary);transition:all .3s}
+.eb.blue{background:#E6F1FB;color:#0C447C;border-color:transparent;font-weight:500}
+.eb.red{background:#FCEBEB;color:#A32D2D;border-color:transparent;text-decoration:line-through;opacity:.7}
+.eb.cur{background:#FAEEDA;color:#633806;border-color:transparent;font-weight:500}
+</style>
+<div class="wrap">
+  <div class="algo-tabs">
+    <button class="atab on kr" onclick="setAlgo('kruskal',this)">Kruskal（蓝+红）</button>
+    <button class="atab pr" onclick="setAlgo('prim',this)">Prim（纯蓝）</button>
+    <button class="atab bv" onclick="setAlgo('boruvka',this)">Borůvka（纯蓝·并行）</button>
+  </div>
+  <canvas id="gc" height="260"></canvas>
+  <div class="ctrls">
+    <button class="btn go" onclick="step()">下一步 →</button>
+    <button class="btn" onclick="reset()">重置</button>
+    <button class="btn" onclick="autoPlay()" id="autobtn">自动播放</button>
+    <span style="font-size:12px;color:var(--color-text-secondary)" id="prog"></span>
+  </div>
+  <div class="rule-box neutral" id="rbox">选择算法后点击「下一步」开始演示。观察每步应用的是蓝色规则还是红色规则。</div>
+  <div id="estrip" class="edge-strip"></div>
+  <div class="legend">
+    <div class="li"><div class="ld" style="background:#185FA5;height:3px"></div>蓝色边（入 MST）</div>
+    <div class="li"><div class="ld" style="background:#A32D2D;height:2px;border-top:1px dashed #A32D2D"></div>红色边（排除）</div>
+    <div class="li"><div class="ld" style="background:#EF9F27"></div>当前考察</div>
+    <div class="li"><div class="ld" style="background:#888"></div>未处理</div>
+    <div class="li"><div class="ld" style="background:#534AB7;height:14px;width:14px;border-radius:50%"></div>Prim 起点 / 已在集合中</div>
+  </div>
+</div>
+<script>
+const N=[
+  {x:.18,y:.22,l:'A'},{x:.50,y:.08,l:'B'},{x:.82,y:.22,l:'C'},
+  {x:.28,y:.62,l:'D'},{x:.72,y:.62,l:'E'},{x:.50,y:.88,l:'F'}
+];
+const E=[
+  {u:0,v:1,w:4},{u:0,v:3,w:2},{u:1,v:2,w:3},{u:1,v:3,w:5},
+  {u:1,v:4,w:6},{u:2,v:4,w:1},{u:3,v:4,w:7},{u:3,v:5,w:3},
+  {u:4,v:5,w:2}
+];
+const PAD=32;
+let algo='kruskal', edgeSt, nodeSt, stepIdx, done, timer, uf, inMST, bvRound, bvCheapest;
+
+function xy(n,W,H){return[PAD+n.x*(W-2*PAD), PAD+n.y*(H-2*PAD)]}
+
+// union-find
+function makeUF(n){return{p:Array.from({length:n},(_,i)=>i),r:new Array(n).fill(0)}}
+function find(uf,x){if(uf.p[x]!==x)uf.p[x]=find(uf,uf.p[x]);return uf.p[x]}
+function union(uf,x,y){let px=find(uf,x),py=find(uf,y);if(px===py)return false;if(uf.r[px]<uf.r[py]){let t=px;px=py;py=t}uf.p[py]=px;if(uf.r[px]===uf.r[py])uf.r[px]++;return true}
+
+function reset(){
+  clearInterval(timer);timer=null;
+  document.getElementById('autobtn').textContent='自动播放';
+  edgeSt=new Array(E.length).fill('none');
+  nodeSt=new Array(6).fill('none');
+  stepIdx=0; done=false; bvRound=0; bvCheapest=null;
+  uf=makeUF(6); inMST=new Array(6).fill(false);
+  if(algo==='prim'){nodeSt[0]='mst';inMST[0]=true;}
+  if(algo==='boruvka'){uf=makeUF(6);}
+  draw(); setRbox('neutral','选择算法后点击「下一步」开始演示。');
+  document.getElementById('prog').textContent='';
+  renderStrip(-1,'');
+}
+
+function setAlgo(a,btn){
+  algo=a;
+  document.querySelectorAll('.atab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  reset();
+}
+
+// sorted edges for kruskal
+const sortedE=[...E].map((e,i)=>({...e,i})).sort((a,b)=>a.w-b.w);
+
+function step(){
+  if(done)return;
+  if(algo==='kruskal') stepKruskal();
+  else if(algo==='prim') stepPrim();
+  else stepBoruvka();
+  draw();
+  const blueCount=edgeSt.filter(s=>s==='blue').length;
+  document.getElementById('prog').textContent=`MST边: ${blueCount}/5`;
+  if(blueCount===5){done=true;setTimeout(()=>{setRbox('neutral','完成！MST构建完成，共选了5条蓝色边。');if(timer){clearInterval(timer);timer=null;document.getElementById('autobtn').textContent='自动播放';}},200)}
+}
+
+function stepKruskal(){
+  // clear previous current
+  edgeSt=edgeSt.map(s=>s==='cur'?'none':s);
+  if(stepIdx>=sortedE.length){done=true;return}
+  const e=sortedE[stepIdx++];
+  edgeSt[e.i]='cur';
+  renderStrip(e.i,'cur');
+  draw();
+  setTimeout(()=>{
+    if(union(uf,e.u,e.v)){
+      edgeSt[e.i]='blue';
+      nodeSt[e.u]='mst';nodeSt[e.v]='mst';
+      setRbox('blue',`蓝色规则：边 ${N[e.u].l}-${N[e.v].l}（权${e.w}）连接两个不同分量，是该割的最小穿越边 → 染蓝，加入 MST`);
+      renderStrip(e.i,'blue');
+    } else {
+      edgeSt[e.i]='red';
+      setRbox('red',`红色规则：边 ${N[e.u].l}-${N[e.v].l}（权${e.w}）两端已连通，加入会形成环，且它是该环上权最大的边（所有更小权边均已处理）→ 染红，排除`);
+      renderStrip(e.i,'red');
+    }
+    draw();
+  },350);
+}
+
+function stepPrim(){
+  // find min edge crossing cut (inMST vs not)
+  let best=null,bw=Infinity,bi=-1;
+  E.forEach((e,i)=>{
+    const uIn=inMST[e.u],vIn=inMST[e.v];
+    if(uIn!==vIn&&e.w<bw){bw=e.w;best=e;bi=i}
+  });
+  if(!best){done=true;return}
+  edgeSt=edgeSt.map(s=>s==='cur'?'blue':s);
+  edgeSt[bi]='cur'; draw();
+  setTimeout(()=>{
+    edgeSt[bi]='blue';
+    const nw=inMST[best.u]?best.v:best.u;
+    inMST[nw]=true;nodeSt[nw]='mst';
+    setRbox('blue',`蓝色规则：当前割边中权重最小的是 ${N[best.u].l}-${N[best.v].l}（权${best.w}）→ 染蓝，节点 ${N[nw].l} 加入 MST（红色规则无需显式应用，结构保证无环）`);
+    draw();
+  },350);
+}
+
+function stepBoruvka(){
+  // one full round
+  if(edgeSt.filter(s=>s==='blue').length>=5){done=true;return}
+  edgeSt=edgeSt.map(s=>s==='cur'?'blue':s);
+  // find cheapest edge for each component
+  const cheapest=new Array(6).fill(-1);
+  E.forEach((e,i)=>{
+    if(edgeSt[i]==='blue'||edgeSt[i]==='red')return;
+    const ru=find(uf,e.u),rv=find(uf,e.v);
+    if(ru===rv)return;
+    if(cheapest[ru]===-1||E[cheapest[ru]].w>e.w)cheapest[ru]=i;
+    if(cheapest[rv]===-1||E[cheapest[rv]].w>e.w)cheapest[rv]=i;
+  });
+  const toAdd=new Set(cheapest.filter(i=>i!==-1));
+  if(toAdd.size===0){done=true;return}
+  toAdd.forEach(i=>{edgeSt[i]='cur'});
+  draw();
+  bvRound++;
+  setTimeout(()=>{
+    let added=[];
+    toAdd.forEach(i=>{
+      if(union(uf,E[i].u,E[i].v)){
+        edgeSt[i]='blue';
+        nodeSt[E[i].u]='mst';nodeSt[E[i].v]='mst';
+        added.push(`${N[E[i].u].l}-${N[E[i].v].l}(${E[i].w})`);
+      } else edgeSt[i]='none';
+    });
+    setRbox('blue',`第 ${bvRound} 轮 Borůvka：各连通分量并行各施蓝色规则，同时找最小割边 → 本轮加入：${added.join('、')}（纯蓝色规则，无需红色规则）`);
+    draw();
+  },400);
+}
+
+function draw(){
+  const c=document.getElementById('gc');
+  const W=c.offsetWidth||680,H=260;
+  c.width=W;c.height=H;
+  const ctx=c.getContext('2d');
+  const dk=window.matchMedia('(prefers-color-scheme: dark)').matches;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle=dk?'#1a1a18':'#f5f4f0';ctx.fillRect(0,0,W,H);
+
+  E.forEach((e,i)=>{
+    const [x1,y1]=xy(N[e.u],W,H),[x2,y2]=xy(N[e.v],W,H);
+    const st=edgeSt[i];
+    let col=dk?'#3a3a38':'#ccc',lw=1.5,dash=[];
+    if(st==='blue'){col='#185FA5';lw=3.5}
+    else if(st==='red'){col='#A32D2D';lw=2;dash=[5,4]}
+    else if(st==='cur'){col='#EF9F27';lw=3.5}
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);
+    ctx.strokeStyle=col;ctx.lineWidth=lw;ctx.setLineDash(dash);ctx.stroke();ctx.setLineDash([]);
+    const mx=(x1+x2)/2,my=(y1+y2)/2;
+    const ang=Math.atan2(y2-y1,x2-x1);
+    const nx=mx-Math.sin(ang)*11,ny=my+Math.cos(ang)*11;
+    ctx.font='11px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillStyle=st==='blue'?'#185FA5':st==='red'?'#A32D2D':st==='cur'?'#633806':(dk?'#666':'#999');
+    ctx.fillText(e.w,nx,ny);
+  });
+
+  N.forEach((n,i)=>{
+    const [x,y]=xy(n,W,H);
+    const st=nodeSt[i];
+    let fill=dk?'#2a2a28':'#ddd',stroke=dk?'#444':'#aaa';
+    if(st==='mst'){fill='#185FA5';stroke='#0C447C';}
+    if(algo==='prim'&&i===0&&inMST[0]){fill='#534AB7';stroke='#3C3489';}
+    ctx.beginPath();ctx.arc(x,y,15,0,Math.PI*2);
+    ctx.fillStyle=fill;ctx.fill();
+    ctx.strokeStyle=stroke;ctx.lineWidth=1.5;ctx.stroke();
+    ctx.font='bold 12px sans-serif';ctx.fillStyle='#fff';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(n.l,x,y);
+  });
+}
+
+function setRbox(cls,msg){
+  const b=document.getElementById('rbox');
+  b.className='rule-box '+cls;b.textContent=msg;
+}
+
+function renderStrip(curIdx,curSt){
+  const el=document.getElementById('estrip');
+  el.innerHTML=sortedE.map(e=>{
+    let cls='eb';
+    if(e.i===curIdx&&curSt==='cur')cls+=' cur';
+    else if(edgeSt[e.i]==='blue')cls+=' blue';
+    else if(edgeSt[e.i]==='red')cls+=' red';
+    return`<span class="${cls}">${N[e.u].l}-${N[e.v].l}(${e.w})</span>`;
+  }).join('');
+}
+
+function autoPlay(){
+  if(timer){clearInterval(timer);timer=null;document.getElementById('autobtn').textContent='自动播放';return}
+  document.getElementById('autobtn').textContent='暂停';
+  timer=setInterval(()=>{if(done){clearInterval(timer);timer=null;document.getElementById('autobtn').textContent='自动播放';return}step();},1200);
+}
+
+reset();
+window.addEventListener('resize',draw);
+</script>
