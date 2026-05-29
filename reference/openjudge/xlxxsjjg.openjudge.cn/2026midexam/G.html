@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>OpenJudge - G:数据采集</title>
+
+<link href="http://static.openjudge.cn/styles/global.css?1586031922.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.openjudge.cn/styles/styles.css?1470100812.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.openjudge.cn/styles/group.css?1634019818.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.openjudge.cn/styles/contest.css?1467854438.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.openjudge.cn/styles/favicon.ico?1467854438.ico" rel="shortcut icon" type="image/x-icon" />
+<!--[if IE]>
+   <script type="text/javascript" src="http://static.openjudge.cn/scripts/html5.js?1467854438.js"></script>
+<![endif]-->
+<!--[if lt IE 7]>
+	<link type="text/css" href="http://static.openjudge.cn/styles/ie6-deprecated.css?1467854438.css" rel="stylesheet" />
+<![endif]-->
+<!--[if IE 7]>
+	<link type="text/css" href="http://static.openjudge.cn/styles/ie7.css?1467854438.css" rel="stylesheet" />
+<![endif]-->
+<!--[if IE 8]>
+	<link type="text/css" href="http://static.openjudge.cn/styles/ie8.css?1467854438.css" rel="stylesheet" />
+<![endif]-->
+<script type="text/javascript" src="http://static.openjudge.cn/scripts/jquery-1.4.3.min.js?1467854438.js"></script>
+<script type="text/javascript" src="http://static.openjudge.cn/scripts/jquery.form.js?1467854438.js"></script>
+<script type="text/javascript" src="http://static.openjudge.cn/scripts/base-nc.js?1467854438.js"></script>
+<script type="text/javascript" src="http://static.openjudge.cn/scripts/api.js?1467854438.js"></script>
+<script type="text/javascript">
+    //<![CDATA[
+var web_root = '/',
+	static_root = 'http://static.openjudge.cn/',
+	script_root = 'http://static.openjudge.cn/scripts',
+	style_root = 'http://static.openjudge.cn/styles';
+    //]]>
+</script>    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?cba6845c6d8176f123f81538e1796b8a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+	<div id="headerTop">
+  <div class="wrapper">
+    <h1 class="logo"><a href="http://openjudge.cn/" title="首页" rel="home">OpenJudge</a></h1>
+    <ul id="userToolbar">
+            <li><a class="link" href="/auth/login/">登入</a></li>
+      <li><a class="link" href="/register/">注册</a></li>
+          </ul>
+    <div class="practice-search">
+		 <form class="search-form" action="/search/" method="get">
+	        <input name="q" type="text" value="题目ID, 标题, 描述" onclick="this.select()">
+	        <button type="submit"></button>
+	     </form>	
+	</div>
+    <div style="clear:both;"></div>
+  </div>
+</div>
+	
+	<div id="header">
+  <div class="wrapper">
+  	<div id="groupSmallLog">
+  		<a href="http://xlxxsjjg.openjudge.cn/"><img class="group-logo" src="http://static.openjudge.cn/images/default_logo_small.png" alt="数据结构与算法26春(段老师班)" width="50" height="50" /></a>    </div>
+	<div class="contest-title-tab">
+		 <h2><a href="http://xlxxsjjg.openjudge.cn/" title="首页" rel="home">数据结构与算法26春(段老师班)</a></h2>
+		 <span>/</span>
+		 <h2>2026期中考试</h2>
+		<span style="font-size:14px;">已经结束</span>	</div>
+    <ul id="mainNav">
+        <li  class="current"><a href="/2026midexam/" class="first">题目</a></li>
+            <li ><a href="/2026midexam/ranking/">排名</a></li>
+                    <li ><a href="/2026midexam/status/">状态</a></li>
+	     
+        <li ><a href="/2026midexam/statistics/">统计</a></li>
+				        <li class="last"><a href="/2026midexam/clarify/" class="last">提问</a></li>
+        </ul>	 
+    <div style="clear:both;"></div>
+  </div>
+</div>
+	
+	<div id="pagebody">
+		<div class="wrapper">
+			<script type="text/javascript">
+$(function(e){
+  var b={1:"很水",2:"简单",3:"普通",4:"较难",5:"变态"},
+      g=$("#rate"),
+      c=$("#stars img"),
+      d=function(f){
+        var h=0||g.val();
+        c.each(function(k){
+          var i=this.src.replace(/\w*\.gif$/,((k<f)?"sth":((k<h)?"st":"nst"))+".gif");
+          this.src=i;
+        });
+        if(f)
+          $("#rate_description").text(b[f]);
+        else
+          $("#rate_description").text(h!=0?b[h]:"");
+      };
+      c.hover(function(){d(this.id.charAt(4));},function(){d();});
+      if(g.attr("value")){
+        c.click(function(){
+          var f=this.id.charAt(4);
+          g.val(f);
+          d(f);
+          //$('#form_diffculity_rating').submit();
+          $( "#dialog-form" ).dialog( "open" );
+			g();
+        });
+      }
+      d();
+  });
+$(document).ready(
+		function(){
+			$('#problem-tags').hide();
+			$('#tag-display').toggle(function() {
+											$('#problem-tags').show();
+											this.value = '隐藏标签';
+										}, function(){
+											$('#problem-tags').hide();
+											this.value = '显示标签';
+										}
+									);
+			});
+</script>
+
+<div id="pageTitle"><h2>G:数据采集</h2></div>
+<div id="topMenu">
+	<ul>
+		<li class="current-show"><a href="/2026midexam/G/">查看</a></li>
+		<li ><a href="/2026midexam/G/submit/">提交</a></li>
+				<li ><a href="/2026midexam/G/statistics/">统计</a></li>
+			
+		<li ><a href="/2026midexam/clarify/G/">提问</a></li>
+			
+	</ul>
+</div><div class="problem-page col-9">
+	<dl class="problem-params">
+		<dt>总时间限制: </dt>
+		<dd>10000ms</dd>
+			<dt>单个测试点时间限制: </dt>
+		<dd>1000ms</dd>
+			<dt>内存限制: </dt>
+		<dd>131072kB</dd>
+	</dl>
+	<dl class="problem-content">
+		<dt>描述</dt>
+		<dd><p data-path-to-node="5">课题组正在训练一个基于深度强化学习的智能体，用于控制一架高海拔长航时无人机在复杂气流环境中的平流层进行数据采集。</p>
+<p data-path-to-node="5">我们将无人机飞行的二维环境建模为一个 n&times;m 的离散状态空间网格。其中，<span class="math-inline" data-math="y" data-index-in-node="43">x</span> 轴表示水平位置（从 1 到 <span class="math-inline" data-math="m" data-index-in-node="64">m</span>），<span class="math-inline" data-math="x" data-index-in-node="67">y</span> 轴表示高度层（从 <span class="math-inline" data-math="1" data-index-in-node="81">1</span> 到 <span class="math-inline" data-math="n" data-index-in-node="85">n</span>）。</p>
+<p data-path-to-node="5">最底层（<span class="math-inline" data-math="x=1" data-index-in-node="93">y=1</span>）是无人机的<strong data-path-to-node="5" data-index-in-node="102">通信基准层</strong>，第 <span class="math-inline" data-math="n" data-index-in-node="116">n</span> 行（<span class="math-inline" data-math="x=n" data-index-in-node="120">y=n</span>）是<strong data-path-to-node="5" data-index-in-node="125">探测上限边界层</strong>。</p>
+<p data-path-to-node="6">智能体需要从基准层的 <span class="math-inline" data-math="(1, 1)" data-index-in-node="21">(1, 1)</span> 位置起飞，并最终到达目标位置 <span class="math-inline" data-math="(1, m)" data-index-in-node="51">(m, 1)</span>。无人机的初始垂直速度为 <span class="math-inline" data-math="0" data-index-in-node="80">0</span>。</p>
+<p data-path-to-node="7">在每个时间步，智能体的状态机和环境交互遵循以下马尔可夫决策过程：</p>
+<p data-path-to-node="8">假设当前时间步无人机位于 <span class="math-inline" data-math="(x, y)" data-index-in-node="13">(x, y)</span>，当前的垂直速度为 <span class="math-inline" data-math="v" data-index-in-node="29">v</span>。智能体可以通过策略网络输出一个<strong data-path-to-node="8" data-index-in-node="46">动作</strong> <span class="math-inline" data-math="a_t \in \{+1, -1, 0\}" data-index-in-node="57">a<sub>t</sub> &isin; {+1, -1, 0}</span>，即调节垂直加速度：</p>
+<ul data-path-to-node="9">
+<li>
+<p data-path-to-node="9,0,0">执行动作后，无人机的瞬时速度更新为 <span class="math-inline" data-math="v' = v + a_t" data-index-in-node="18">v' = v + a<sub>t</sub></span>。</p>
+</li>
+<li>
+<p data-path-to-node="9,1,0">随后环境发生状态转移，无人机在下一个时间步将移动到状态坐标 <span class="math-inline" data-math="(x + v', y + 1)" data-index-in-node="30">(x + 1, y + v')</span>。</p>
+</li>
+<li>
+<p data-path-to-node="9,2,0"><strong data-path-to-node="9,2,0" data-index-in-node="0">边界截断：</strong> 如果计算得出的下一高度层超越了探测上限（即 <span class="math-inline" data-math="x + v' &gt; n" data-index-in-node="28">y + v' &gt; n</span>），受通信限制，无人机必须贴着边界飞行，即状态转移至 <span class="math-inline" data-math="(n, y+1)" data-index-in-node="70">(x + 1, n)</span>。</p>
+</li>
+</ul>
+<p data-path-to-node="10">网格空间的每一个状态节点 <span class="math-inline" data-math="(x, y)" data-index-in-node="13">(x, y)</span> 上，都分布着以下两种环境特征之一：</p>
+<ul data-path-to-node="11">
+<li>
+<p data-path-to-node="11,0,0"><strong data-path-to-node="11,0,0" data-index-in-node="0">气流扰动（特征前缀 <code data-path-to-node="11,0,0" data-index-in-node="11">f</code>）：</strong> 具有属性值 <span class="math-inline" data-math="w" data-index-in-node="21">w</span>。当无人机转移到该状态节点时，环境会对其施加一个外部扰动，使得无人机当前的速度被强制叠加变为 <span class="math-inline" data-math="v' + w" data-index-in-node="69">v' + w</span>（注意：这不影响智能体在下一个时间步继续自主输出 <span class="math-inline" data-math="+1, -1, 0" data-index-in-node="100">+1, -1, 0</span> 的动作）。</p>
+</li>
+<li>
+<p data-path-to-node="11,1,0"><strong data-path-to-node="11,1,0" data-index-in-node="0">高价值数据（特征前缀 <code data-path-to-node="11,1,0" data-index-in-node="12">d</code>）：</strong> 具有属性值 <span class="math-inline" data-math="a" data-index-in-node="22">r</span>。当无人机转移到该状态节点时，智能体将获得 <span class="math-inline" data-math="a" data-index-in-node="45">r</span> 点<strong data-path-to-node="11,1,0" data-index-in-node="48">奖励值</strong>。</p>
+</li>
+</ul>
+<p data-path-to-node="12">为了确保飞行安全与任务顺利完成，算法引擎中硬编码了以下两个<strong data-path-to-node="12" data-index-in-node="29">安全约束</strong>：</p>
+<ol start="1" data-path-to-node="13">
+<li>
+<p data-path-to-node="13,0,0"><strong data-path-to-node="13,0,0" data-index-in-node="0">稳定态重置：</strong> 当无人机到达基准层，即处于状态 <span class="math-inline" data-math="(1, x)" data-index-in-node="23">(x, 1)</span> 时，飞行控制系统会强制将无人机的垂直速度重置为 <span class="math-inline" data-math="0" data-index-in-node="54">0</span>（在此状态下，气流扰动失效，下一个时间步的动作空间依然为 {<span class="math-inline" data-math="+1, -1, 0" data-index-in-node="77">+1, -1, 0}</span>）。</p>
+</li>
+<li>
+<p data-path-to-node="13,1,0"><strong data-path-to-node="13,1,0" data-index-in-node="0">储能通信瓶颈：</strong> 无人机不能在基准层以上的长时脱网环境中待太久。两次返回通信基准层的间隔时间不能超过 <span class="math-inline" data-math="k" data-index-in-node="63">k</span> 个时间步。</p>
+</li>
+</ol>
+<p data-path-to-node="14">作为项目负责人，你需要求解出该智能体从 <span class="math-inline" data-math="(1,1)" data-index-in-node="26">(1,1)</span> 到达 <span class="math-inline" data-math="(1,m)" data-index-in-node="35">(m, 1)</span> 所能获取的<strong data-path-to-node="14" data-index-in-node="46">最大累计奖励</strong>。</p>
+<p data-path-to-node="14"><img src="http://media.openjudge.cn/images/upload/2486/1778495035.png" alt="" width="364" height="339" /></p></dd>
+				
+				
+				<dt>输入</dt>
+		<dd>第一行包含三个整数 n, m, k，分别表示状态空间的高度层数、水平位置范围以及最大脱网时长。<br />第二行到第 n+1 行，每行包含 m 个字符串，第(i+1)行的第j个字符串表示环境中位于(j, n-i+1)状态节点的特征分布情况：首字母为 f，后接一个整数 w，表示该节点存在一个气流扰动器，扰动值为 w。首字母为 d，后接一个整数 r，表示该节点存在一个数据包，奖励值为 r。</dd>
+		<dt>输出</dt>
+		<dd>一行一个整数，表示智能体能够获得的最大累计奖励。</dd>
+		<dt>样例输入</dt>
+		<dd><pre>3 3 3
+f3 d-1 f-1
+d3 d19 f2
+d1 f1 d1</pre></dd>
+		<dt>样例输出</dt>
+		<dd><pre>2</pre></dd>
+				<dt>提示</dt>
+		<dd>【样例解释】输入样例所描述的空间状态如图所示。<br />【数据范围】1≤n≤100，1≤m≤1000，1≤k≤10，−20≤w≤20，−1000≤r≤1000。</dd>
+						</dl>
+	<ul class="bottomMenu">
+		<li class="current-show"><a href="/2026midexam/G/">查看</a></li>
+		<li ><a href="/2026midexam/G/submit/">提交</a></li>
+				<li ><a href="/2026midexam/G/statistics/">统计</a></li>
+			
+		<li ><a href="/2026midexam/clarify/G/">提问</a></li>
+			</ul>
+</div>
+
+<div class="problem-statistics col-3">
+       		<dl>
+		<dt>全局题号</dt>
+		<dd>30839</dd>
+				<dt>提交次数</dt>
+		<dd>24</dd>
+		<dt>尝试人数</dt>
+	    <dd>8</dd>
+	    <dt>通过人数</dt>
+	    <dd>0</dd>
+	</dl>
+		
+		
+					
+	</div>
+		</div>
+	</div>
+	<div id="footer">
+	<div class="wrapper">
+		<ul class="oj-info">
+			<li>&copy;2002-2022 POJ <a href="http://www.beian.miit.gov.cn">京ICP备20010980号-1</a></li>
+		</ul>
+		<ul class="debug-info">
+									<li>
+				<a style="color:red" href="javascript:void(0);" onclick="api.switchLanguage('en_US');">English</a></li>
+						<li><a href="http://openjudge.cn/help.html" rel="nofollow">帮助</a></li>
+			<li><a href="http://openjudge.cn/about.html" rel="nofollow">关于</a></li>
+		</ul>
+		<div style="clear:both;"></div>
+	</div>
+</div>
+	
+	</body>
+</html>

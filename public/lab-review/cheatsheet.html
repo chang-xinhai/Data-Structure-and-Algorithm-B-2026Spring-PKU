@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A4 Cheat Sheet · 期末上机复习</title>
+  <style>
+    @page { size: A4; margin: 9mm; }
+    :root { --ink:#151922; --muted:#5d6678; --line:#d8deea; --blue:#2f6fe4; --soft:#f3f7ff; --mono:"SF Mono", Menlo, Consolas, monospace; --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #edf3fb; color: var(--ink); font-family: var(--font); line-height: 1.28; }
+    .page { width: 210mm; min-height: 297mm; margin: 0 auto; background: white; padding: 10mm; box-shadow: 0 18px 60px rgba(30,50,90,.18); }
+    header { display:flex; justify-content:space-between; align-items:flex-end; border-bottom: 2px solid var(--ink); padding-bottom: 5mm; margin-bottom: 5mm; }
+    h1 { margin:0; font-size: 22pt; letter-spacing: -1.4pt; }
+    .sub { color: var(--muted); font-size: 8.5pt; font-weight: 650; }
+    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+    section { border: 1px solid var(--line); border-radius: 3mm; padding: 3mm; break-inside: avoid; background: #fff; }
+    h2 { margin: 0 0 2mm; color: var(--blue); font-size: 10pt; letter-spacing: -.2pt; }
+    h3 { margin: 2mm 0 1mm; font-size: 8.2pt; }
+    ul { margin: 0; padding-left: 4mm; color: var(--muted); font-size: 7.5pt; }
+    li { margin: .8mm 0; }
+    pre { margin: 1.4mm 0 0; padding: 2mm; overflow: hidden; border-radius: 2mm; background: #111827; color: #f8fbff; font: 6.7pt/1.26 var(--mono); white-space: pre-wrap; }
+    code { font-family: var(--mono); }
+    .mini { font-size: 7.3pt; color: var(--muted); }
+    .badge { display:inline-block; border:1px solid var(--line); border-radius:99px; padding:.6mm 1.5mm; margin:.5mm .5mm .5mm 0; font-size:6.8pt; color:var(--muted); }
+    .wide { grid-column: span 2; }
+    .danger { color:#c24141; font-weight:700; }
+    @media print { body { background:white; } .page { box-shadow:none; margin:0; width:auto; min-height:auto; padding:0; } a { color: inherit; text-decoration: none; } }
+    @media screen and (max-width: 820px) { .page { width: 100%; min-height: auto; padding: 18px; } .grid { grid-template-columns: 1fr; } .wide { grid-column: span 1; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div><h1>期末上机 Cheat Sheet</h1><div class="sub">DS&A B · Python · 先判题型，再套模板，最后查边界</div></div>
+      <div class="sub">A4 / 单页打印</div>
+    </header>
+
+    <div class="grid">
+      <section>
+        <h2>0. I/O 与复杂度</h2>
+        <ul>
+          <li><code>read()</code>：多行、空格密集、读到 EOF。</li>
+          <li><code>splitlines()</code>：保留行结构，适合句子反转。</li>
+          <li><code>O(n^2)</code>：n≈5000 勉强；n≈1e5 不行。</li>
+          <li>多组数据先看：第一行 T / EOF / 哨兵。</li>
+        </ul>
+<pre><code>import sys
+it = iter(sys.stdin.read().split())
+n = int(next(it))
+a = [int(next(it)) for _ in range(n)]</code></pre>
+      </section>
+
+      <section>
+        <h2>1. 栈 / 队列</h2>
+        <ul><li>表达式、括号、语法检查：优先想栈。</li><li>BFS 队列：入队时立刻标记 visited。</li></ul>
+<pre><code>from collections import deque
+q = deque([start])
+vis = {start}
+while q:
+    u = q.popleft()
+    for v in nxt(u):
+        if v not in vis:
+            vis.add(v); q.append(v)</code></pre>
+      </section>
+
+      <section>
+        <h2>2. 排序 key</h2>
+        <ul><li>多关键字：把规则写成 tuple。</li><li>降序用负号，字符串默认字典序。</li></ul>
+<pre><code>a.sort(key=lambda x: (-x.score, x.name))
+# 奇数在前；奇数降序，偶数升序
+a.sort(key=lambda x: (x % 2 == 0, -x if x % 2 else x))</code></pre>
+      </section>
+
+      <section>
+        <h2>3. DFS / Flood Fill</h2>
+        <ul><li>矩阵四方向：先判边界，再判条件。</li><li>递归深度大时改 BFS 或设 recursionlimit。</li></ul>
+<pre><code>DIR = [(1,0),(-1,0),(0,1),(0,-1)]
+def ok(x,y):
+    return 0 <= x < n and 0 <= y < m and grid[x][y] == old</code></pre>
+      </section>
+
+      <section>
+        <h2>4. 二叉树</h2>
+        <ul><li>层序：队列保存 <code>(node, depth)</code>。</li><li>重建：后序最后一个 / 前序第一个是根。</li></ul>
+<pre><code>def depth(u):
+    if u == 0: return 0
+    return 1 + max(depth(left[u]), depth(right[u]))</code></pre>
+      </section>
+
+      <section>
+        <h2>5. 并查集</h2>
+<pre><code>fa = list(range(n + 1))
+def find(x):
+    while fa[x] != x:
+        fa[x] = fa[fa[x]]
+        x = fa[x]
+    return x
+def union(a,b):
+    fa[find(a)] = find(b)</code></pre>
+      </section>
+
+      <section class="wide">
+        <h2>6. DP 识别</h2>
+        <span class="badge">递推：当前只依赖前几项</span><span class="badge">背包：选/不选 + 容量</span><span class="badge">区间：先算短区间</span><span class="badge">树形：答案在子树合并</span>
+<pre><code># 01 背包：容量倒序
+for w, val in items:
+    for c in range(C, w - 1, -1):
+        dp[c] = max(dp[c], dp[c - w] + val)
+
+# 最大子段和
+best = cur = a[0]
+for x in a[1:]:
+    cur = max(x, cur + x)
+    best = max(best, cur)</code></pre>
+      </section>
+
+      <section>
+        <h2>7. 传递闭包</h2>
+        <ul><li>“能推出 A 比 B 高/先于/可达”：Floyd 布尔版。</li></ul>
+<pre><code>for k in range(n):
+  for i in range(n):
+    if reach[i][k]:
+      for j in range(n):
+        reach[i][j] |= reach[k][j]</code></pre>
+      </section>
+
+      <section>
+        <h2>8. Dijkstra</h2>
+<pre><code>import heapq
+pq = [(0, s)]; dist[s] = 0
+while pq:
+    d, u = heapq.heappop(pq)
+    if d != dist[u]: continue
+    for v, w in g[u]:
+        if d + w < dist[v]:
+            dist[v] = d + w
+            heapq.heappush(pq, (dist[v], v))</code></pre>
+      </section>
+
+      <section>
+        <h2>9. 考场 Checklist</h2>
+        <ul>
+          <li>先做会写题；15 分钟没进展换题。</li>
+          <li>检查 0/1 下标、空列表、单节点树。</li>
+          <li>BFS 是否入队即标记？DP 初值是否正确？</li>
+          <li class="danger">输出格式：空格、换行、多组之间不要乱加空行。</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

@@ -46,7 +46,7 @@ Spring 2026 · PKU Course Website
 | L02 | 链表、串与线性结构应用 | [PDF](https://chang-xinhai.github.io/Data-Structure-and-Algorithm-B-2026Spring-PKU/slides/) | 🔲 待制作 |
 | L03 | 排序、树与检索 | [PDF](https://chang-xinhai.github.io/Data-Structure-and-Algorithm-B-2026Spring-PKU/slides/) | 🔲 待制作 |
 | L04 | 图算法与综合收束 | [PDF](https://chang-xinhai.github.io/Data-Structure-and-Algorithm-B-2026Spring-PKU/slides/L4%20图算法与综合收束.pdf) | ✅ 已发布 |
-| L05 | 期末上机复习 | [PDF](https://chang-xinhai.github.io/Data-Structure-and-Algorithm-B-2026Spring-PKU/slides/) | 🔲 待制作 |
+| L05 | 期末上机复习 | [专题网页](https://chang-xinhai.github.io/Data-Structure-and-Algorithm-B-2026Spring-PKU/lab-review/) · [A4 Cheat Sheet](https://chang-xinhai.github.io/Data-Structure-and-Algorithm-B-2026Spring-PKU/lab-review/cheatsheet.html) | ✅ 已发布 |
 | L06 | 期末笔试复习 | [PDF](https://chang-xinhai.github.io/Data-Structure-and-Algorithm-B-2026Spring-PKU/slides/) | 🔲 待制作 |
 
 ### 习题讲义
@@ -59,7 +59,7 @@ Spring 2026 · PKU Course Website
 | H02 | 链表、串与线性结构应用 | 🔗 待补 | [practice.ipynb](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/handouts/lecture-02-string-stack-queue/practice.ipynb) |
 | H03 | 排序、树与检索 | [🔗 L03 OJ](https://www.luogu.com.cn/training/1013992#problems) | [practice.ipynb](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/handouts/lecture-03-sorting-tree-search/practice.ipynb) |
 | H04 | 图算法与综合收束 | [🔗 L04 OJ](https://www.luogu.com.cn/training/1017748#problems) | [practice.ipynb](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/handouts/lecture-04-graph-wrap-up/practice.ipynb) |
-| H05 | 期末上机复习 | 🔗 待补 | [practice.ipynb](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/handouts/lecture-05-lab-review/practice.ipynb) |
+| H05 | 期末上机复习 | Luogu 题单待建 | [practice.ipynb](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/handouts/lecture-05-lab-review/practice.ipynb) |
 | H06 | 期末笔试复习 | 🔗 待补 | [practice.ipynb](https://github.com/chang-xinhai/Data-Structure-and-Algorithm-B-2026Spring-PKU/blob/main/handouts/lecture-06-written-review/practice.ipynb) |
 
 ---

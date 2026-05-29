@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>期末上机复习 · 数据结构与算法 B</title>
+  <meta name="description" content="数据结构与算法 B 期末上机复习：真实模拟卷拆解、题型识别、代码模板、练习路线与 A4 cheat sheet。" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  <link rel="stylesheet" href="lab-review.css?v=20260529-pattern-summary" />
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script defer src="lab-review.js?v=20260529-pattern-summary"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="返回课程首页"><span class="brand-mark">DS</span><span>DS&A B <em>Lab Review</em></span></a>
+      <nav class="nav" aria-label="页面导航">
+        <a href="#agenda">复习路线</a>
+        <a href="#exam">模拟卷拆解</a>
+        <a href="#patterns">题型地图</a>
+        <a href="#cases">代表题</a>
+        <a href="#templates">模板库</a>
+        <a href="#practice">练习题单</a>
+        <a href="cheatsheet.html">A4</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Lecture 05 · 期末上机复习</div>
+          <h1>期末上机复习：题型识别与模板整理</h1>
+          <p class="lead">从真实模拟卷出发，整理上机考试常见题型、题面信号、常用模板与临场策略。目标是让每道题都能被归入一个清晰模型，再选择稳定实现。</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#agenda">开始复习路线</a>
+            <a class="btn" href="cheatsheet.html">打开 A4 Cheat Sheet</a>
+            <a class="btn ghost" href="../handouts/lecture-05-lab-review/practice.ipynb">Notebook</a>
+          </div>
+        </div>
+        <aside class="brief-card">
+          <div class="brief-title">复习目标</div>
+          <div class="brief-row"><b>识别</b><span>看到题面关键词，判断它属于哪类模型。</span></div>
+          <div class="brief-row"><b>选择</b><span>从模板库中选出最稳的写法，而不是临场发明。</span></div>
+          <div class="brief-row"><b>实现</b><span>用 Python 处理输入、边界、复杂度和调试。</span></div>
+          <div class="brief-row"><b>取舍</b><span>知道哪些题必须拿，哪些题可以放到最后。</span></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="agenda">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">Review Route</div><h2>复习路线</h2></div>
+          <p>按“真实卷面—题型地图—代表题—模板库”的顺序复习。</p>
+        </div>
+        <div class="timeline">
+          <article><span>00–08</span><h3>上机考试不是背算法表</h3><p>说明做题顺序：先扫题、先拿稳分、卡题换题。建立“题型识别优先”的复习目标。</p></article>
+          <article><span>08–18</span><h3>真实模拟卷结构拆解</h3><p>用 <span class="inline-code">26preexam</span> 解释一套卷子的梯度：字符串、递推、树、图搜索、关系推断。</p></article>
+          <article><span>18–30</span><h3>基础盘：I/O、线性扫描、栈模拟</h3><p>讲多行输入、哨兵、排序 key、表达式/语法检查，强调简单题也会因为输入翻车。</p></article>
+          <article><span>30–45</span><h3>中档盘：树与图搜索</h3><p>讲二叉树层序、树重建、Flood Fill、网格 BFS，强调状态、边界、visited。</p></article>
+          <article><span>45–55</span><h3>综合盘：DP 与关系图</h3><p>讲最大子段、背包、传递闭包、树形 DP 的识别信号，不追求把压轴题全写完。</p></article>
+          <article><span>55–60</span><h3>临场 checklist</h3><p>用 A4 cheat sheet 收束：复杂度、模板入口、常见坑、最后 10 分钟检查项。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="exam">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">Exam Deconstruction</div><h2>真实模拟卷拆解</h2></div>
+          <p>下面三套题是本页的主参考。建议先思考：“如果现在开考，应该从哪道开始？”</p>
+        </div>
+        <div class="source-tabs" role="tablist" aria-label="OpenJudge 来源">
+          <button class="tab active" data-target="preexam">dsb12 26preexam</button>
+          <button class="tab" data-target="midexam">xlxxsjjg 2026midexam</button>
+          <button class="tab" data-target="midsim">xlxxsjjg 2026midsim</button>
+        </div>
+
+        <div class="tab-panel active" id="preexam">
+          <div class="problem-table">
+            <article><b><a href="http://dsb12.openjudge.cn/26preexam/A/" target="_blank" rel="noopener">A 句子反转</a></b><span>多行输入、字符串 split/join</span><em>要点：保留行结构，正确处理 EOF。</em></article>
+            <article><b><a href="http://dsb12.openjudge.cn/26preexam/B/" target="_blank" rel="noopener">B 斐波那契数</a></b><span>递推、预处理多询问</span><em>要点：使用递推或预处理回答多次询问。</em></article>
+            <article><b><a href="http://dsb12.openjudge.cn/26preexam/C/" target="_blank" rel="noopener">C stone game</a></b><span>博弈 DP / 找规律</span><em>要点：定义必胜/必败状态并分析转移。</em></article>
+            <article><b><a href="http://dsb12.openjudge.cn/26preexam/D/" target="_blank" rel="noopener">D 结点数量最多的层</a></b><span>二叉树层序、层计数</span><em>要点：用队列维护层次并统计每层结点数。</em></article>
+            <article><b><a href="http://dsb12.openjudge.cn/26preexam/E/" target="_blank" rel="noopener">E 图像渲染</a></b><span>Flood Fill、矩阵 BFS</span><em>要点：四方向扩展，访问标记避免重复处理。</em></article>
+            <article><b><a href="http://dsb12.openjudge.cn/26preexam/F/" target="_blank" rel="noopener">F 成绩排序</a></b><span>传递闭包、排名确定</span><em>要点：用传递闭包判断与其他所有人的关系。</em></article>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="midexam">
+          <div class="problem-table">
+            <article><b><a href="http://xlxxsjjg.openjudge.cn/2026midexam/A/" target="_blank" rel="noopener">A 5月14日</a></b><span>基础循环与累加</span><em>基础：检查循环、条件判断与输出格式。</em></article>
+            <article><b><a href="http://xlxxsjjg.openjudge.cn/2026midexam/B/" target="_blank" rel="noopener">B 云服务</a></b><span>线性扫描、差额累加</span><em>要点：把业务约束转化为逐项差额累加。</em></article>
+            <article><b><a href="http://xlxxsjjg.openjudge.cn/2026midexam/C/" target="_blank" rel="noopener">C 索菲的血瓶</a></b><span>差分序列 + KMP/哈希</span><em>要点：利用整体平移不变量，转化为差分序列匹配。</em></article>
+            <article><b><a href="http://xlxxsjjg.openjudge.cn/2026midexam/D/" target="_blank" rel="noopener">D 队列pk</a></b><span>线性结构 + 贪心构造</span><em>要点：分析操作限制下的字典序最优构造。</em></article>
+            <article><b><a href="http://xlxxsjjg.openjudge.cn/2026midexam/E/" target="_blank" rel="noopener">E 算力集群部署</a></b><span>区间 DP</span><em>要点：识别连续区间覆盖与后操作覆盖前操作。</em></article>
+            <article><b><a href="http://xlxxsjjg.openjudge.cn/2026midexam/F/" target="_blank" rel="noopener">F 二叉树作业</a></b><span>树编码解析 + 树形 DP</span><em>要点：处理树编码解析、递归深度与树形状态。</em></article>
+            <article><b><a href="http://xlxxsjjg.openjudge.cn/2026midexam/G/" target="_blank" rel="noopener">G 数据采集</a></b><span>网格状态 DP</span><em>要点：状态维度多，需要谨慎定义位置、速度与时间。</em></article>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="midsim">
+          <div class="problem-table">
+            <article><b><a href="http://xlxxsjjg.openjudge.cn/2026midsim/A/" target="_blank" rel="noopener">A 数字串倒序</a></b><span>哨兵输入、列表反转</span><em>基础：哨兵输入与序列反向输出。</em></article>
+            <article><b><a href="http://xlxxsjjg.openjudge.cn/2026midsim/B/" target="_blank" rel="noopener">B 喝喝喝</a></b><span>线性扫描、首尾定位</span><em>要点：用首尾位置描述最小连续区间。</em></article>
+            <article><b><a href="http://xlxxsjjg.openjudge.cn/2026midsim/C/" target="_blank" rel="noopener">C 二叉树修剪</a></b><span>树形 DP / 树上背包</span><em>要点：树形背包，分配保留边数以最大化收益。</em></article>
+            <article><b><a href="http://xlxxsjjg.openjudge.cn/2026midsim/D/" target="_blank" rel="noopener">D 猴子当文豪</a></b><span>KMP、期望、重叠</span><em>进阶：字符串重叠匹配与期望计算。</em></article>
+            <article><b><a href="http://xlxxsjjg.openjudge.cn/2026midsim/E/" target="_blank" rel="noopener">E D++</a></b><span>栈模拟、复杂度解析</span><em>要点：维护嵌套结构、变量作用域与复杂度指数。</em></article>
+            <article><b><a href="http://xlxxsjjg.openjudge.cn/2026midsim/F/" target="_blank" rel="noopener">F 无尽迷宫</a></b><span>BFS、周期网格、逃逸</span><em>进阶：周期网格上的 BFS 与逃逸判定。</em></article>
+            <article><b><a href="http://xlxxsjjg.openjudge.cn/2026midsim/G/" target="_blank" rel="noopener">G 量子态制备序列</a></b><span>组合计数、DP</span><em>进阶：组合计数与状态转移。</em></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="patterns">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">Pattern Map</div><h2>考点地图与题型对应</h2></div>
+          <p>这一部分足够讲 20 分钟。每张卡片都可以先让学生判断“用什么结构”，再揭示模板。</p>
+        </div>
+
+        <div class="knowledge-overview">
+          <div class="knowledge-copy">
+            <div class="mini-kicker">Knowledge Tree</div>
+            <h3>知识点、模型与题目的对应关系</h3>
+            <p>左边是上机复习的知识树：基础能力、结构模板、图与树、动态规划、综合区分题。右边每一层都对应到下面的可展开卡片和练习题单。</p>
+            <div class="map-legend"><span>基础盘</span><span>中档盘</span><span>区分盘</span></div>
+          </div>
+          <div class="mindmap-wrap">
+            <div class="knowledge-tree" aria-label="期末上机复习知识树">
+              <div class="tree-root">期末上机复习</div>
+              <div class="tree-columns">
+                <section class="tree-branch base"><h4>基础能力</h4><p>I/O 与边界</p><p>线性扫描</p><p>排序 key</p><small>句子反转 · 云服务 · 喝喝喝</small></section>
+                <section class="tree-branch structure"><h4>结构模板</h4><p>栈与模拟器</p><p>二叉树基础</p><p>DFS / BFS</p><small>D++ · 层序 · 图像渲染</small></section>
+                <section class="tree-branch graph"><h4>图与集合</h4><p>传递闭包</p><p>并查集</p><p>最短路 / MST</p><small>成绩排序 · 食物链 · 兔子与星空</small></section>
+                <section class="tree-branch dp"><h4>动态规划</h4><p>基础 DP</p><p>树形 DP</p><p>区间 / 状态 DP</p><small>采药 · 二叉树修剪 · 数据采集</small></section>
+                <section class="tree-branch string"><h4>字符串专题</h4><p>KMP</p><p>差分匹配</p><p>哈希</p><small>索菲的血瓶 · 古代密码</small></section>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pattern-grid expanded-map">
+          <article class="pattern-card must open">
+            <button class="pattern-toggle" type="button" aria-expanded="true"><span class="level">L0</span><strong>I/O 与边界</strong><em>多行、EOF、哨兵、格式</em><i>展开</i></button>
+            <div class="pattern-summary"><p><b>信号：</b>多行输入、读到 EOF、以某个值结束、每行是一条记录、输出格式严格。</p><p><b>思考：</b>为什么 <span class="inline-code">read().split()</span> 会把“每行一句话”的结构破坏掉？</p></div>
+            <div class="pattern-detail">
+              <div class="detail-grid rich">
+                <section><h4>知识点</h4><ul><li><span class="inline-code">input()</span> 适合结构清楚、行数固定的小输入。</li><li><span class="inline-code">sys.stdin.read().split()</span> 适合纯 token 流，例如全是整数。</li><li><span class="inline-code">splitlines()</span> 保留行结构，适合“每行一句话”“每行一个记录”。</li><li>哨兵输入要先判断结束值，再决定是否加入答案。</li><li>输出建议先组装列表，再用 <span class="inline-code">join</span> 控制空格。</li></ul></section>
+                <section><h4>数学 / 不变量</h4><p>输入处理的不变量是：题面定义的记录边界必须在程序中保留。若第 \(i\) 行是一条记录，可记为 \(R_i=\text{line}_i\)，程序不能把所有 token 混成 \(T=\bigcup_i R_i\)。</p><p>哨兵序列中，若结束标记为 \(0\)，有效序列是第一次出现 \(0\) 之前的所有元素。</p></section>
+                <section><h4>例题迁移</h4><ul><li>句子反转：按行读，每行内部 split。</li><li>数字串倒序：纯数字 token 流，遇到 \(0\) 停止。</li><li>多组矩阵题：先读 \(T\)，每组按固定行列读取。</li><li>图题边表：通常是 token 流，适合统一读入。</li></ul></section>
+              </div>
+              <pre class="code-panel"><code class="language-python">import sys
+
+# 示例 1：每一行是一条句子记录
+text = "I love PKU\nsingleword\n"
+for line in text.splitlines():
+    words = line.split()
+    print(' '.join(words[::-1]))
+
+# 示例 2：哨兵输入，0 不参与答案
+nums = [3, 10, 20, 30, 0]
+ans = []
+for x in nums:
+    if x == 0:
+        break
+    ans.append(x)
+print(ans[::-1])</code></pre>
+              <div class="sample-output"><span>示例结果</span><code>PKU love I<br>singleword<br>[30, 20, 10]</code></div>
+            </div>
+          </article>
+
+          <article class="pattern-card must">
+            <button class="pattern-toggle" type="button" aria-expanded="false"><span class="level">L1</span><strong>线性扫描</strong><em>计数、最小区间、前后缀</em><i>展开</i></button>
+            <div class="pattern-summary"><p><b>信号：</b>只问总数、最小连续区间、逐项费用、最长/最大连续片段、前后缀关系。</p><p><b>思考：</b>为什么 \(n=10^5\) 时，很多自然的两层循环都不能接受？</p></div>
+            <div class="pattern-detail">
+              <div class="detail-grid rich">
+                <section><h4>知识点</h4><ul><li>扫描时维护“到当前位置为止”的摘要信息。</li><li>连续片段问题常维护“以当前位置结尾”的最优值。</li><li>首尾定位题通常不需要真正枚举区间。</li><li>差额累加题先写出单项贡献，再求和。</li><li>排序 key 是线性扫描后的结构化比较。</li></ul></section>
+                <section><h4>数学 / 不变量</h4><p>最大子段和维护 \(cur_i=\max(a_i,cur_{i-1}+a_i)\)，其中 \(cur_i\) 表示必须以 \(i\) 结尾的最大和，答案为 \(\max_i cur_i\)。</p><p>云服务的单项额外费用为 \(\max(0,a_i-r_i)\cdot c\)，总费用为 \(c\sum_i\max(0,a_i-r_i)\)。</p></section>
+                <section><h4>例题迁移</h4><ul><li>云服务：逐类计算超出专用节点容量的任务数。</li><li>喝喝喝：找第一个和最后一个 \(1\)，答案是区间长度。</li><li>最大子段和：线性 DP。</li><li>奇偶权值排序：把规则写入排序 key。</li></ul></section>
+              </div>
+              <pre class="code-panel"><code class="language-python"># 云服务：差额累加
+capacity = [3, 2, 5]
+demand = [4, 1, 8]
+cost_per_task = 7
+extra = sum(max(0, a - r) for a, r in zip(demand, capacity))
+print(extra * cost_per_task)
+
+# 最大子段和
+arr = [-2, 3, -1, 5, -4]
+best = cur = arr[0]
+for x in arr[1:]:
+    cur = max(x, cur + x)
+    best = max(best, cur)
+print(best)</code></pre>
+              <div class="sample-output"><span>示例结果</span><code>28<br>7</code></div>
+            </div>
+          </article>
+
+          <article class="pattern-card must">
+            <button class="pattern-toggle" type="button" aria-expanded="false"><span class="level">L2</span><strong>栈与模拟器</strong><em>表达式、括号、嵌套作用域</em><i>展开</i></button>
+            <div class="pattern-summary"><p><b>信号：</b>括号、表达式、嵌套循环、开始/结束标记、作用域、最近打开的结构。</p><p><b>思考：</b>后缀表达式和复杂度解析为什么都可以用栈？</p></div>
+            <div class="pattern-detail">
+              <div class="detail-grid rich">
+                <section><h4>知识点</h4><ul><li>栈用于维护“已经开始但尚未结束”的结构。</li><li>后缀表达式：数字入栈，运算符弹出两个操作数。</li><li>括号匹配：左括号入栈，右括号检查栈顶。</li><li>模拟器题要同时维护多个状态，例如变量集合、当前深度、错误标记。</li><li>语法错误通常优先于运行结果。</li></ul></section>
+                <section><h4>数学 / 不变量</h4><p>扫描到位置 \(i\) 时，栈中从底到顶保存所有未闭合结构；栈顶就是最近需要匹配的对象。若所有前缀都合法，任何时刻栈深度都不应为负。</p></section>
+                <section><h4>例题迁移</h4><ul><li>后缀表达式：求值栈。</li><li>D++：循环层栈 + 活跃变量集合。</li><li>括号匹配：括号类型栈。</li><li>队列 pk：虽然题名有队列，也要判断是否真的需要栈/队列模拟。</li></ul></section>
+              </div>
+              <pre class="code-panel"><code class="language-python"># 后缀表达式：3 4 + 5 * = 35
+tokens = ['3', '4', '+', '5', '*']
+stack = []
+for token in tokens:
+    if token.isdigit():
+        stack.append(int(token))
+    else:
+        b = stack.pop()
+        a = stack.pop()
+        if token == '+': stack.append(a + b)
+        elif token == '-': stack.append(a - b)
+        elif token == '*': stack.append(a * b)
+        elif token == '/': stack.append(int(a / b))
+print(stack[-1])
+
+# 括号匹配
+s = '([])'
+pairs = {')': '(', ']': '['}
+st = []
+ok = True
+for ch in s:
+    if ch in '([':
+        st.append(ch)
+    elif not st or st.pop() != pairs[ch]:
+        ok = False
+print(ok and not st)</code></pre>
+              <div class="sample-output"><span>示例结果</span><code>35<br>True</code></div>
+            </div>
+          </article>
+
+          <article class="pattern-card must">
+            <button class="pattern-toggle" type="button" aria-expanded="false"><span class="level">L3</span><strong>二叉树基础</strong><em>层序、深度、重建、编码</em><i>展开</i></button>
+            <div class="pattern-summary"><p><b>信号：</b>左右孩子编号、层、深度、前序/中序/后序、树的字符串编码。</p><p><b>思考：</b>树题的难点是算法本身，还是把结构存对？</p></div>
+            <div class="pattern-detail">
+              <div class="detail-grid rich">
+                <section><h4>知识点</h4><ul><li>编号树可用 \(left[u],right[u]\) 或邻接表存储。</li><li>层相关问题优先 BFS，例如层序遍历、每层结点数。</li><li>子树相关问题优先 DFS，例如深度、子树规模、树形 DP。</li><li>中序 + 前序或中序 + 后序可以唯一重建普通二叉树。</li><li>树编码解析要维护当前位置指针。</li></ul></section>
+                <section><h4>数学 / 不变量</h4><p>若根在中序序列中的位置为 \(k\)，左子树规模为 \(k-l\)，右子树规模为 \(r-k\)。前序第一个是根，后序最后一个是根。</p><p>深度递推：\(depth(u)=1+\max(depth(left_u),depth(right_u))\)。</p></section>
+                <section><h4>例题迁移</h4><ul><li>最多结点层：队列保存 \((node,depth)\)。</li><li>P4913：递归或迭代求深度。</li><li>P1030：由中序与后序输出前序。</li><li>二叉树作业：树编码解析 + DP。</li></ul></section>
+              </div>
+              <pre class="code-panel"><code class="language-python">from collections import deque
+
+children = {
+    1: (2, 3),
+    2: (4, 0),
+    3: (0, 0),
+    4: (0, 0),
+}
+q = deque([(1, 0)])
+cnt = []
+while q:
+    u, d = q.popleft()
+    if d == len(cnt):
+        cnt.append(0)
+    cnt[d] += 1
+    for v in children[u]:
+        if v:
+            q.append((v, d + 1))
+print(cnt)
+print(max(range(len(cnt)), key=lambda i: cnt[i]))</code></pre>
+              <div class="sample-output"><span>示例结果</span><code>[1, 2, 1]<br>1</code></div>
+            </div>
+          </article>
+
+          <article class="pattern-card must">
+            <button class="pattern-toggle" type="button" aria-expanded="false"><span class="level">L4</span><strong>DFS / BFS</strong><em>矩阵、连通块、最短路</em><i>展开</i></button>
+            <div class="pattern-summary"><p><b>信号：</b>矩阵四方向、连通块、最短步数、能否到达、从某个点扩散。</p><p><b>思考：</b>为什么 BFS 的访问标记通常要在入队时完成？</p></div>
+            <div class="pattern-detail">
+              <div class="detail-grid rich">
+                <section><h4>知识点</h4><ul><li>BFS 适合无权最短路；DFS 适合遍历、连通块、回溯枚举。</li><li>矩阵常用四方向：上、下、左、右。</li><li>状态不一定只是坐标，也可能是 \((x,y,key,step)\)。</li><li>Flood Fill 中“改色”本身可以作为访问标记。</li><li>路径恢复需要保存前驱。</li></ul></section>
+                <section><h4>数学 / 不变量</h4><p>无权图 BFS 队列按距离非降序弹出。第一次到达状态 \(v\) 时，得到的就是最短距离 \(dist[v]\)。入队即标记可以保证每个状态最多入队一次。</p></section>
+                <section><h4>例题迁移</h4><ul><li>图像渲染：从起点扩展同色连通块。</li><li>迷宫问题：BFS 求最短路径或恢复路径。</li><li>Pots：状态是两个水壶的水量。</li><li>无尽迷宫：周期网格上的可达性判定。</li></ul></section>
+              </div>
+              <pre class="code-panel"><code class="language-python">from collections import deque
+
+grid = [
+    'S..',
+    '.#.',
+    '..T',
+]
+n, m = 3, 3
+sx, sy = 0, 0
+dist = [[-1] * m for _ in range(n)]
+q = deque([(sx, sy)])
+dist[sx][sy] = 0
+while q:
+    x, y = q.popleft()
+    for dx, dy in ((1,0),(-1,0),(0,1),(0,-1)):
+        nx, ny = x + dx, y + dy
+        if 0 <= nx < n and 0 <= ny < m and grid[nx][ny] != '#':
+            if dist[nx][ny] == -1:
+                dist[nx][ny] = dist[x][y] + 1
+                q.append((nx, ny))
+print(dist[2][2])</code></pre>
+              <div class="sample-output"><span>示例结果</span><code>4</code></div>
+            </div>
+          </article>
+
+          <article class="pattern-card">
+            <button class="pattern-toggle" type="button" aria-expanded="false"><span class="level">L5</span><strong>基础 DP</strong><em>递推、背包、最优子结构</em><i>展开</i></button>
+            <div class="pattern-summary"><p><b>信号：</b>最优值、选或不选、到达当前位置、前缀状态、限制容量。</p><p><b>思考：</b>什么时候一个局部最优选择不够，需要保留状态？</p></div>
+            <div class="pattern-detail">
+              <div class="detail-grid rich">
+                <section><h4>知识点</h4><ul><li>先定义状态，再写转移，最后决定循环顺序。</li><li>递推题通常只依赖前若干项。</li><li>01 背包容量倒序，完全背包容量正序。</li><li>不可达状态要与值为 \(0\) 的合法状态区分。</li><li>状态压缩前要确认转移依赖方向。</li></ul></section>
+                <section><h4>数学 / 不变量</h4><p>01 背包中，\(dp[c]\) 表示容量不超过 \(c\) 时的最大价值。对物品 \((w,v)\)，转移为 \(dp[c]=\max(dp[c],dp[c-w]+v)\)。倒序枚举保证每件物品只用一次。</p></section>
+                <section><h4>例题迁移</h4><ul><li>Fibonacci：预处理多询问。</li><li>最大子段和：一维状态压缩。</li><li>采药：01 背包。</li><li>数字三角形：从上方或下方递推。</li></ul></section>
+              </div>
+              <pre class="code-panel"><code class="language-python"># 01 背包示例
+capacity = 5
+items = [(2, 3), (3, 4), (4, 5)]
+dp = [0] * (capacity + 1)
+for weight, value in items:
+    for c in range(capacity, weight - 1, -1):
+        dp[c] = max(dp[c], dp[c - weight] + value)
+print(dp[capacity])
+
+# Fibonacci 预处理
+fib = [0, 1]
+for _ in range(2, 8):
+    fib.append(fib[-1] + fib[-2])
+print(fib[7])</code></pre>
+              <div class="sample-output"><span>示例结果</span><code>7<br>13</code></div>
+            </div>
+          </article>
+
+          <article class="pattern-card">
+            <button class="pattern-toggle" type="button" aria-expanded="false"><span class="level">L6</span><strong>字符串匹配</strong><em>KMP、哈希、差分匹配</em><i>展开</i></button>
+            <div class="pattern-summary"><p><b>信号：</b>模式串、重复出现、整体平移、前后缀重叠、子串快速比较。</p><p><b>思考：</b>“整体升高或降低都算匹配”为什么要转成差分？</p></div>
+            <div class="pattern-detail">
+              <div class="detail-grid rich">
+                <section><h4>知识点</h4><ul><li>KMP 用前缀函数避免重复比较。</li><li>若允许整体加同一常数，应比较相邻差分。</li><li>字符串哈希可快速比较片段，但有冲突风险。</li><li>重叠出现次数与最长公共前后缀有关。</li><li>模式串长度为 \(1\) 时常需单独处理。</li></ul></section>
+                <section><h4>数学 / 不变量</h4><p>两个长度为 \(w\) 的序列允许整体平移匹配，当且仅当差分序列相等：\(a_i-b_i=C \iff a_{i+1}-a_i=b_{i+1}-b_i\)。KMP 中 \(\pi[i]\) 表示前缀与后缀的最长相等长度。</p></section>
+                <section><h4>例题迁移</h4><ul><li>索菲的血瓶：差分后做模式匹配。</li><li>KMP 模板：查找所有出现位置。</li><li>古代密码：排序或计数比较字符结构。</li><li>猴子当文豪：前后缀重叠影响最大出现次数。</li></ul></section>
+              </div>
+              <pre class="code-panel"><code class="language-python">def prefix_function(s):
+    pi = [0] * len(s)
+    for i in range(1, len(s)):
+        j = pi[i - 1]
+        while j and s[i] != s[j]:
+            j = pi[j - 1]
+        if s[i] == s[j]:
+            j += 1
+        pi[i] = j
+    return pi
+
+text = 'ababa'
+pattern = 'aba'
+combined = pattern + '#' + text
+pi = prefix_function(combined)
+positions = []
+for i, v in enumerate(pi):
+    if v == len(pattern):
+        positions.append(i - 2 * len(pattern))
+print(positions)</code></pre>
+              <div class="sample-output"><span>示例结果</span><code>[0, 2]</code></div>
+            </div>
+          </article>
+
+          <article class="pattern-card">
+            <button class="pattern-toggle" type="button" aria-expanded="false"><span class="level">L7</span><strong>关系图推断</strong><em>传递闭包、排名确定</em><i>展开</i></button>
+            <div class="pattern-summary"><p><b>信号：</b>A 高于 B、先后关系、能推出、排名确定、传递性。</p><p><b>思考：</b>为什么“成绩排序”不是直接排序，而是关系推断？</p></div>
+            <div class="pattern-detail">
+              <div class="detail-grid rich">
+                <section><h4>知识点</h4><ul><li>把“高于/先于/可推出”建成有向边。</li><li>传递闭包判断任意两点关系是否可推出。</li><li>Floyd 布尔版适合 \(n\le 100\) 左右。</li><li>某个点与其他所有点关系都可判，排名才确定。</li><li>注意边方向：\(i\to j\) 的含义必须统一。</li></ul></section>
+                <section><h4>数学 / 不变量</h4><p>Floyd 后，\(reach[i][j]\) 表示存在从 \(i\) 到 \(j\) 的有向路径。排名可确定条件为 \(\sum_{j\ne i}[reach[i][j]\lor reach[j][i]]=n-1\)。</p></section>
+                <section><h4>例题迁移</h4><ul><li>成绩排序：由回答推断名次。</li><li>Cow Contest：牛之间胜负关系。</li><li>课程先修关系：可达性表示先后约束。</li><li>若有环，需结合题意判断是否矛盾或等价。</li></ul></section>
+              </div>
+              <pre class="code-panel"><code class="language-python">n = 4
+relations = [(0, 1), (1, 2), (2, 3)]  # 0 高于 1，高于关系可传递
+reach = [[False] * n for _ in range(n)]
+for a, b in relations:
+    reach[a][b] = True
+
+for k in range(n):
+    for i in range(n):
+        if reach[i][k]:
+            for j in range(n):
+                reach[i][j] |= reach[k][j]
+
+ans = 0
+for i in range(n):
+    known = sum(reach[i][j] or reach[j][i] for j in range(n) if i != j)
+    ans += known == n - 1
+print(ans)</code></pre>
+              <div class="sample-output"><span>示例结果</span><code>4</code></div>
+            </div>
+          </article>
+
+          <article class="pattern-card">
+            <button class="pattern-toggle" type="button" aria-expanded="false"><span class="level">L8</span><strong>并查集 / MST</strong><em>集合、连通、最小连接</em><i>展开</i></button>
+            <div class="pattern-summary"><p><b>信号：</b>集合合并、连通性查询、等价关系、最小连接代价、避免成环。</p><p><b>思考：</b>并查集维护的是图的什么信息，又丢掉了什么信息？</p></div>
+            <div class="pattern-detail">
+              <div class="detail-grid rich">
+                <section><h4>知识点</h4><ul><li>并查集维护连通块，支持快速合并和查询。</li><li>路径压缩让多次查询接近常数复杂度。</li><li>带权或扩展并查集可维护关系类型。</li><li>Kruskal 将边按权重排序，依次加入不成环的边。</li><li>MST 需要图连通，否则可能无解。</li></ul></section>
+                <section><h4>数学 / 不变量</h4><p>普通并查集中，\(find(x)=find(y)\) 当且仅当 \(x\) 与 \(y\) 当前连通。Kruskal 的不变量是：已选边始终不成环，并且在当前可选边中尽量小。</p></section>
+                <section><h4>例题迁移</h4><ul><li>宗教信仰：统计连通块数量。</li><li>食物链：带关系的并查集。</li><li>修复公路：按时间合并，直到全连通。</li><li>兔子与星空：最小生成树。</li></ul></section>
+              </div>
+              <pre class="code-panel"><code class="language-python">parent = list(range(5))
+
+def find(x):
+    while parent[x] != x:
+        parent[x] = parent[parent[x]]
+        x = parent[x]
+    return x
+
+def union(a, b):
+    ra, rb = find(a), find(b)
+    if ra != rb:
+        parent[ra] = rb
+
+union(1, 2)
+union(3, 4)
+print(find(1) == find(2))
+print(find(1) == find(3))</code></pre>
+              <div class="sample-output"><span>示例结果</span><code>True<br>False</code></div>
+            </div>
+          </article>
+
+          <article class="pattern-card hard">
+            <button class="pattern-toggle" type="button" aria-expanded="false"><span class="level">L9</span><strong>高阶 DP</strong><em>树形、区间、状态维度</em><i>展开</i></button>
+            <div class="pattern-summary"><p><b>信号：</b>子树合并、区间覆盖、操作覆盖、状态含速度/时间/资源。</p><p><b>思考：</b>压轴题即使不能完整写出，如何先判断它属于什么模型？</p></div>
+            <div class="pattern-detail">
+              <div class="detail-grid rich">
+                <section><h4>知识点</h4><ul><li>树形 DP：每个子树先求局部最优，再向父节点合并。</li><li>树形背包：把容量或保留边数分配给不同孩子。</li><li>区间 DP：先算短区间，再算长区间。</li><li>状态 DP：影响未来决策的信息必须进入状态。</li><li>压轴题先估计状态数与转移复杂度，避免盲写。</li></ul></section>
+                <section><h4>数学 / 不变量</h4><p>树形背包中，\(dp[u][k]\) 表示在 \(u\) 的子树中使用 \(k\) 条边或容量时的最大收益。合并孩子 \(v\) 时：\(dp_u[i+j+1]=\max(dp_u[i+j+1],dp_u[i]+dp_v[j]+w)\)。</p></section>
+                <section><h4>例题迁移</h4><ul><li>二叉树修剪：保留 \(Q\) 条边的最大苹果数。</li><li>二叉树作业：颜色状态与子树 DP。</li><li>算力集群部署：区间覆盖最少操作次数。</li><li>数据采集：位置、速度、离线时长共同构成状态。</li></ul></section>
+              </div>
+              <pre class="code-panel"><code class="language-python"># 极简树形背包示意：根有两个孩子，每条边有收益
+child_dp = [
+    [0, 3],  # 第一个孩子：不选 0，选 1 条边得 3
+    [0, 4],  # 第二个孩子：不选 0，选 1 条边得 4
+]
+Q = 2
+dp = [0] + [-10**9] * Q
+for sub in child_dp:
+    new = dp[:]
+    for used in range(Q + 1):
+        for take in range(1, len(sub)):
+            if used + take <= Q:
+                new[used + take] = max(new[used + take], dp[used] + sub[take])
+    dp = new
+print(dp[2])</code></pre>
+              <div class="sample-output"><span>示例结果</span><code>7</code></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cases">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">Representative Cases</div><h2>代表题：从题面到代码</h2></div>
+          <p>每个代表题都包含识别信号、解题要点、代码模板与常见误区。</p>
+        </div>
+
+        <article class="case-card">
+          <div class="case-copy"><span class="case-no">Case 01</span><h3>句子反转：先把输入处理讲清楚</h3><p>这是送分题，但非常适合开场：如果学生用 <span class="inline-code">read().split()</span>，就会把所有行混在一起。这里要强调“按行处理”和“按词处理”是两层结构。</p><ul><li>题面信号：输入包含多行，每行一个句子。</li><li>关键动作：<span class="inline-code">splitlines()</span> 保留行，<span class="inline-code">split()</span> 拆词，<span class="inline-code">[::-1]</span> 反转词序。</li><li>思考：如果一行里有多个空格，输出应如何处理？</li></ul></div>
+          <pre class="code-panel"><code class="language-python">import sys
+
+for line in sys.stdin.read().splitlines():
+    words = line.split()
+    print(' '.join(words[::-1]))</code></pre>
+        </article>
+
+        <article class="case-card">
+          <div class="case-copy"><span class="case-no">Case 02</span><h3>D++ / 后缀表达式：栈模拟的共同骨架</h3><p>表达式求值、括号匹配、复杂度解析都属于“最近打开的结构先关闭”。后缀表达式与 D++ 复杂度解析共享同一个栈模拟骨架，只是栈元素含义不同。</p><ul><li>题面信号：嵌套、开始符、结束符、作用域。</li><li>关键动作：遇到开始入栈，遇到结束出栈；同时维护额外状态。</li><li>常见坑：语法错误即使在不会执行的循环中也要检查。</li></ul></div>
+          <pre class="code-panel"><code class="language-python">stack = []
+for token in tokens:
+    if token.isdigit():
+        stack.append(int(token))
+    else:
+        b = stack.pop()
+        a = stack.pop()
+        if token == '+': stack.append(a + b)
+        if token == '-': stack.append(a - b)
+        if token == '*': stack.append(a * b)
+        if token == '/': stack.append(int(a / b))</code></pre>
+        </article>
+
+        <article class="case-card">
+          <div class="case-copy"><span class="case-no">Case 03</span><h3>结点数量最多的层：树题转成 BFS 层统计</h3><p>这题不需要复杂树算法。只要把节点编号、左右孩子和深度放进队列，就可以逐层统计。关键是把题面里的树结构转成数组或邻接表。</p><ul><li>题面信号：左右孩子编号、根节点为 1、问某一层。</li><li>关键动作：队列保存 \((node, depth)\)。</li><li>并列最大：选择第一次出现的深度。</li></ul></div>
+          <pre class="code-panel"><code class="language-python">from collections import deque
+
+q = deque([(1, 0)])
+cnt = []
+while q:
+    u, depth = q.popleft()
+    if depth == len(cnt):
+        cnt.append(0)
+    cnt[depth] += 1
+    for v in children[u]:
+        if v:
+            q.append((v, depth + 1))
+
+answer = max(range(len(cnt)), key=lambda d: cnt[d])</code></pre>
+        </article>
+
+        <article class="case-card">
+          <div class="case-copy"><span class="case-no">Case 04</span><h3>图像渲染：Flood Fill 的四个检查</h3><p>这类题最适合强调代码顺序：先记录旧颜色，再判断是否无需修改，然后 BFS/DFS，最后输出矩阵。\(old = color\) 是很多人会漏掉的边界。</p><ul><li>题面信号：从一个点开始，修改相邻同色区域。</li><li>关键动作：四方向扩展，入队时立刻改色/标记。</li><li>常见坑：修改原图后忘记旧颜色，导致判断条件变化。</li></ul></div>
+          <pre class="code-panel"><code class="language-python">from collections import deque
+
+def fill(image, sr, sc, color):
+    n, m = len(image), len(image[0])
+    old = image[sr][sc]
+    if old == color:
+        return image
+    q = deque([(sr, sc)])
+    image[sr][sc] = color
+    while q:
+        x, y = q.popleft()
+        for dx, dy in ((1,0),(-1,0),(0,1),(0,-1)):
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < n and 0 <= ny < m and image[nx][ny] == old:
+                image[nx][ny] = color
+                q.append((nx, ny))
+    return image</code></pre>
+        </article>
+
+        <article class="case-card">
+          <div class="case-copy"><span class="case-no">Case 05</span><h3>成绩排序：排名确定 = 与所有人关系可判</h3><p>这题不是排序，而是关系推断。若能推出某人比哪些人高、比哪些人低，且总数为 \(n-1\)，则排名确定。\(n\le 50\) 直接用 Floyd 传递闭包。</p><ul><li>题面信号：回答 A 是否比 B 高，信息具有传递性。</li><li>关键动作：建有向图，求所有点对可达。</li><li>思考：为什么只知道入度/出度不够？</li></ul></div>
+          <pre class="code-panel"><code class="language-python">for k in range(n):
+    for i in range(n):
+        if reach[i][k]:
+            for j in range(n):
+                reach[i][j] = reach[i][j] or reach[k][j]
+
+ans = 0
+for i in range(n):
+    known = 0
+    for j in range(n):
+        if i != j and (reach[i][j] or reach[j][i]):
+            known += 1
+    if known == n - 1:
+        ans += 1</code></pre>
+        </article>
+
+        <article class="case-card">
+          <div class="case-copy"><span class="case-no">Case 06</span><h3>二叉树修剪：树形 DP 不一定要现场写完</h3><p>这是典型区分题样板。核心是看出：每个子树保留若干条边时的最大苹果数，需要把左右子树的边数分配合并。</p><ul><li>题面信号：树上保留 Q 条边，最大收益。</li><li>状态：\(dp[u][k]\) 表示在 u 的子树内保留 k 条边的最大收益。</li><li>复杂度意识：节点数约 100，可以接受子树背包合并。</li></ul></div>
+          <pre class="code-panel"><code class="language-python"># 伪代码：树形背包合并
+for child, w in tree[u]:
+    dfs(child)
+    new = dp[u][:]
+    for used in range(size[u] + 1):
+        for take in range(size[child] + 1):
+            new[used + take + 1] = max(
+                new[used + take + 1],
+                dp[u][used] + dp[child][take] + w
+            )
+    dp[u] = new</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="templates">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">Code Library</div><h2>代码模板库</h2></div>
+          <p>代码块现在带语法高亮、标题栏和复制按钮；可直接用于复习模板的迁移方式。</p>
+        </div>
+        <div class="template-grid">
+          <article class="template-card"><h3>快速读入</h3><pre class="code-panel"><code class="language-python">import sys
+
+data = sys.stdin.buffer.read().split()
+it = iter(data)
+n = int(next(it))
+a = [int(next(it)) for _ in range(n)]</code></pre></article>
+          <article class="template-card"><h3>网格 BFS 距离</h3><pre class="code-panel"><code class="language-python">from collections import deque
+
+dist = [[-1] * m for _ in range(n)]
+q = deque([(sx, sy)])
+dist[sx][sy] = 0
+while q:
+    x, y = q.popleft()
+    for dx, dy in ((1,0),(-1,0),(0,1),(0,-1)):
+        nx, ny = x + dx, y + dy
+        if 0 <= nx < n and 0 <= ny < m and grid[nx][ny] != '#':
+            if dist[nx][ny] == -1:
+                dist[nx][ny] = dist[x][y] + 1
+                q.append((nx, ny))</code></pre></article>
+          <article class="template-card"><h3>并查集</h3><pre class="code-panel"><code class="language-python">parent = list(range(n + 1))
+
+def find(x):
+    while parent[x] != x:
+        parent[x] = parent[parent[x]]
+        x = parent[x]
+    return x
+
+def union(a, b):
+    ra, rb = find(a), find(b)
+    if ra != rb:
+        parent[ra] = rb</code></pre></article>
+          <article class="template-card"><h3>01 背包</h3><pre class="code-panel"><code class="language-python">dp = [0] * (capacity + 1)
+for weight, value in items:
+    for c in range(capacity, weight - 1, -1):
+        dp[c] = max(dp[c], dp[c - weight] + value)
+print(max(dp))</code></pre></article>
+          <article class="template-card"><h3>Dijkstra</h3><pre class="code-panel"><code class="language-python">import heapq
+INF = 10**30
+dist = [INF] * (n + 1)
+dist[start] = 0
+heap = [(0, start)]
+while heap:
+    d, u = heapq.heappop(heap)
+    if d != dist[u]:
+        continue
+    for v, w in graph[u]:
+        nd = d + w
+        if nd < dist[v]:
+            dist[v] = nd
+            heapq.heappush(heap, (nd, v))</code></pre></article>
+          <article class="template-card"><h3>KMP 前缀函数</h3><pre class="code-panel"><code class="language-python">def prefix_function(s):
+    pi = [0] * len(s)
+    for i in range(1, len(s)):
+        j = pi[i - 1]
+        while j and s[i] != s[j]:
+            j = pi[j - 1]
+        if s[i] == s[j]:
+            j += 1
+        pi[i] = j
+    return pi</code></pre></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="practice">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">Luogu Practice</div><h2>练习题单</h2></div>
+          <p>建议按“必做—进阶—挑战”的顺序完成；先补齐模板，再处理综合题。</p>
+        </div>
+        <div class="practice-grid">
+          <a href="https://www.luogu.com.cn/problem/P1177"><b>P1177 排序</b><span>必做 · 复杂度底线</span></a>
+          <a href="https://www.luogu.com.cn/problem/P1449"><b>P1449 后缀表达式</b><span>必做 · 栈模拟</span></a>
+          <a href="https://www.luogu.com.cn/problem/P4913"><b>P4913 二叉树深度</b><span>必做 · 树遍历</span></a>
+          <a href="https://www.luogu.com.cn/problem/P1030"><b>P1030 求先序排列</b><span>必做 · 树重建</span></a>
+          <a href="https://www.luogu.com.cn/problem/P1162"><b>P1162 填涂颜色</b><span>必做 · Flood Fill</span></a>
+          <a href="https://www.luogu.com.cn/problem/P1746"><b>P1746 离开中山路</b><span>必做 · 网格 BFS</span></a>
+          <a href="https://www.luogu.com.cn/problem/P1115"><b>P1115 最大子段和</b><span>必做 · 线性 DP</span></a>
+          <a href="https://www.luogu.com.cn/problem/P2419"><b>P2419 Cow Contest</b><span>必做 · 传递闭包</span></a>
+          <a href="https://www.luogu.com.cn/problem/B3611"><b>B3611 传递闭包</b><span>进阶 · Floyd 布尔版</span></a>
+          <a href="https://www.luogu.com.cn/problem/P3367"><b>P3367 并查集</b><span>进阶 · 集合维护</span></a>
+          <a href="https://www.luogu.com.cn/problem/P1048"><b>P1048 采药</b><span>进阶 · 01 背包</span></a>
+          <a href="https://www.luogu.com.cn/problem/P3375"><b>P3375 KMP</b><span>挑战 · 字符串匹配</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="checklist">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">Final Checklist</div><h2>考前检查清单</h2></div>
+          <p>建议考前对照检查输入、边界、复杂度、初始化与输出格式。</p>
+        </div>
+        <div class="check-grid">
+          <article><h3>输入</h3><p>是否有 T？是否读到 EOF？是否有空行或整行字符串？</p></article>
+          <article><h3>下标</h3><p>节点编号从 0 还是 1？矩阵坐标是否需要转换？</p></article>
+          <article><h3>复杂度</h3><p>\(n=10^5\) 不写 \(O(n^2)\)；\(n\le 50\) 可以 Floyd。</p></article>
+          <article><h3>初始化</h3><p>DP 的负无穷、不可达、空集、单元素是否处理？</p></article>
+          <article><h3>访问标记</h3><p>BFS 入队即标记；Flood Fill 先保存原颜色。</p></article>
+          <article><h3>输出</h3><p>空格、换行、大小写、<span class="inline-code">Yes/No</span> 与 <span class="inline-code">YES/NO</span>。</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>数据结构与算法 B · 2026 Spring · L05 期末上机复习</span>
+      <a href="cheatsheet.html">打印 A4 Cheat Sheet</a>
+    </div>
+  </footer>
+</body>
+</html>
