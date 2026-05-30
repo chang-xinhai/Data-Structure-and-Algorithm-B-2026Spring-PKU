@@ -7,12 +7,12 @@
   <meta name="description" content="数据结构与算法 B 期末上机复习：真实模拟卷拆解、题型识别、代码模板、练习路线与 A4 cheat sheet。" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
-  <link rel="stylesheet" href="lab-review.css?v=20260529-pattern-summary" />
+  <link rel="stylesheet" href="lab-review.css?v=20260530-knowledge-pattern-map" />
   <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script defer src="lab-review.js?v=20260529-pattern-summary"></script>
+  <script defer src="lab-review.js?v=20260530-knowledge-pattern-map"></script>
 </head>
 <body>
   <header class="site-header">
@@ -123,28 +123,123 @@
       <div class="container">
         <div class="section-head">
           <div><div class="kicker">Pattern Map</div><h2>考点地图与题型对应</h2></div>
-          <p>这一部分足够讲 20 分钟。每张卡片都可以先让学生判断“用什么结构”，再揭示模板。</p>
+          <p>先用“知识点地图”建立复习框架，再用“题型地图”训练考场识别；下面的展开卡片继续给出模板与迁移例题。</p>
         </div>
 
-        <div class="knowledge-overview">
-          <div class="knowledge-copy">
-            <div class="mini-kicker">Knowledge Tree</div>
-            <h3>知识点、模型与题目的对应关系</h3>
-            <p>左边是上机复习的知识树：基础能力、结构模板、图与树、动态规划、综合区分题。右边每一层都对应到下面的可展开卡片和练习题单。</p>
-            <div class="map-legend"><span>基础盘</span><span>中档盘</span><span>区分盘</span></div>
-          </div>
-          <div class="mindmap-wrap">
-            <div class="knowledge-tree" aria-label="期末上机复习知识树">
-              <div class="tree-root">期末上机复习</div>
-              <div class="tree-columns">
-                <section class="tree-branch base"><h4>基础能力</h4><p>I/O 与边界</p><p>线性扫描</p><p>排序 key</p><small>句子反转 · 云服务 · 喝喝喝</small></section>
-                <section class="tree-branch structure"><h4>结构模板</h4><p>栈与模拟器</p><p>二叉树基础</p><p>DFS / BFS</p><small>D++ · 层序 · 图像渲染</small></section>
-                <section class="tree-branch graph"><h4>图与集合</h4><p>传递闭包</p><p>并查集</p><p>最短路 / MST</p><small>成绩排序 · 食物链 · 兔子与星空</small></section>
-                <section class="tree-branch dp"><h4>动态规划</h4><p>基础 DP</p><p>树形 DP</p><p>区间 / 状态 DP</p><small>采药 · 二叉树修剪 · 数据采集</small></section>
-                <section class="tree-branch string"><h4>字符串专题</h4><p>KMP</p><p>差分匹配</p><p>哈希</p><small>索菲的血瓶 · 古代密码</small></section>
+        <div class="map-stack">
+          <article class="wide-map knowledge-map-panel">
+            <div class="wide-map-head">
+              <div>
+                <div class="mini-kicker">Knowledge-First Map</div>
+                <h3>先从基本知识出发：把考纲整理成一棵结构树</h3>
+              </div>
+              <p>复习时先问“这题属于哪类结构”，再落到具体模板；上机题往往只是把同一个知识点换一种题面包装。</p>
+            </div>
+            <div class="concept-tree" aria-label="基于知识点的期末上机复习结构树">
+              <div class="concept-root">数据结构与算法 B · 上机复习知识树</div>
+              <div class="concept-grid">
+                <section class="concept-branch base">
+                  <h4>基础能力</h4>
+                  <div><b>复杂度与输入输出</b><span>EOF、多组数据、哨兵、边界与格式控制</span></div>
+                  <div><b>线性表 / 顺序表</b><span>扫描、计数、前后缀、区间摘要、排序 key</span></div>
+                  <small>对应：句子反转、数字串倒序、云服务、喝喝喝</small>
+                </section>
+                <section class="concept-branch linear">
+                  <h4>线性结构</h4>
+                  <div><b>链表</b><span>指针关系、反转、合并、删除与游标模拟</span></div>
+                  <div><b>栈</b><span>括号、表达式、嵌套结构、递归转迭代</span></div>
+                  <div><b>队列</b><span>BFS 层序、滑动窗口、模拟过程</span></div>
+                  <small>对应：D++、后缀表达式、队列 pk、层序遍历</small>
+                </section>
+                <section class="concept-branch string">
+                  <h4>字符串</h4>
+                  <div><b>基础处理</b><span>split / join、翻转、排序、字符计数</span></div>
+                  <div><b>匹配算法</b><span>KMP、前缀函数、差分匹配、哈希</span></div>
+                  <small>对应：句子反转、不完整的纸条、索菲的血瓶、古代密码</small>
+                </section>
+                <section class="concept-branch tree">
+                  <h4>树</h4>
+                  <div><b>基本树 / 二叉树</b><span>遍历、层序、深度、重建、子树统计</span></div>
+                  <div><b>应用结构</b><span>二叉堆、BST、AVL、Huffman 树、并查集</span></div>
+                  <div><b>树上算法</b><span>树形 DP、树形背包、祖先与子树合并</span></div>
+                  <small>对应：最多结点层、二叉树修剪、食物链、哈夫曼编码</small>
+                </section>
+                <section class="concept-branch graph">
+                  <h4>图</h4>
+                  <div><b>图的基本问题</b><span>建图、DFS / BFS、连通块、传递闭包</span></div>
+                  <div><b>图的应用算法</b><span>MST：Prim / Kruskal；最短路：Dijkstra / Floyd</span></div>
+                  <div><b>有向无环图</b><span>拓扑排序、关键路径、先修关系</span></div>
+                  <small>对应：图像渲染、成绩排序、兔子与星空、课程排序</small>
+                </section>
+                <section class="concept-branch dp">
+                  <h4>动态规划</h4>
+                  <div><b>基础 DP</b><span>递推、最大子段和、01 背包、完全背包</span></div>
+                  <div><b>高阶 DP</b><span>树形 DP、区间 DP、状态 DP、状态压缩</span></div>
+                  <small>对应：采药、数字三角形、二叉树修剪、数据采集</small>
+                </section>
               </div>
             </div>
+          </article>
+
+          <div class="map-bridge" aria-label="知识点到题型的对应提示">
+            <span>线性表 → 扫描 / 排序 / 边界题</span>
+            <span>栈队列 → 模拟 / BFS 题</span>
+            <span>树 → 遍历 / 结构维护 / 树形 DP</span>
+            <span>图 → 连通 / 最短路 / MST / 拓扑</span>
+            <span>字符串 → 匹配 / 周期 / 差分</span>
+            <span>DP → 最优值 / 方案数 / 资源分配</span>
           </div>
+
+          <article class="wide-map pattern-map-panel">
+            <div class="wide-map-head">
+              <div>
+                <div class="mini-kicker">Pattern-First Map</div>
+                <h3>再从题型出发：考试时快速识别“该用哪套模板”</h3>
+              </div>
+              <p>做题时反过来读题面信号：它问的是记录边界、最近未闭合结构、连通性、最优值，还是模式匹配。</p>
+            </div>
+            <div class="type-tree" aria-label="基于题型的期末上机复习结构树">
+              <div class="type-root">期末上机题型识别树</div>
+              <div class="type-lanes">
+                <section class="type-lane must">
+                  <h4>基础实现题</h4>
+                  <p>多行 / EOF / 哨兵 / 输出格式</p>
+                  <p>线性扫描 / 前后缀 / 排序 key</p>
+                  <small>句子反转 · 数字串倒序 · 云服务 · 喝喝喝</small>
+                </section>
+                <section class="type-lane must">
+                  <h4>结构模拟题</h4>
+                  <p>栈：表达式、括号、嵌套作用域</p>
+                  <p>队列：层序、BFS、过程模拟</p>
+                  <small>D++ · 后缀表达式 · 最多结点层 · 图像渲染</small>
+                </section>
+                <section class="type-lane middle">
+                  <h4>关系与连通题</h4>
+                  <p>传递闭包：排名、先后、可推出</p>
+                  <p>并查集：合并、等价、带权关系</p>
+                  <small>成绩排序 · Cow Contest · 宗教信仰 · 食物链</small>
+                </section>
+                <section class="type-lane middle">
+                  <h4>图算法题</h4>
+                  <p>最短路径：Dijkstra / Floyd</p>
+                  <p>最小生成树：Prim / Kruskal；拓扑 / 关键路径</p>
+                  <small>兔子与星空 · 修复公路 · 课程排序 · 工程调度</small>
+                </section>
+                <section class="type-lane hard">
+                  <h4>DP 区分题</h4>
+                  <p>基础 DP：选或不选、前缀最优、容量约束</p>
+                  <p>高阶 DP：子树合并、区间、状态维度</p>
+                  <small>采药 · 数字三角形 · 二叉树修剪 · 数据采集</small>
+                </section>
+                <section class="type-lane hard">
+                  <h4>字符串专题题</h4>
+                  <p>KMP：前后缀、周期、所有出现位置</p>
+                  <p>差分 / 哈希：整体平移、子串快速比较</p>
+                  <small>不完整的纸条 · 索菲的血瓶 · 古代密码</small>
+                </section>
+              </div>
+            </div>
+          </article>
         </div>
         <div class="pattern-grid expanded-map">
           <article class="pattern-card must open">

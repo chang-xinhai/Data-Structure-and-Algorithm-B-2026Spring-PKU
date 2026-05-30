@@ -5,149 +5,392 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>A4 Cheat Sheet · 期末上机复习</title>
   <style>
-    @page { size: A4; margin: 9mm; }
-    :root { --ink:#151922; --muted:#5d6678; --line:#d8deea; --blue:#2f6fe4; --soft:#f3f7ff; --mono:"SF Mono", Menlo, Consolas, monospace; --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif; }
+    @page { size: A4; margin: 7mm; }
+    :root {
+      --ink: #182030;
+      --muted: #596477;
+      --faint: #8d96a8;
+      --line: #d9e0ec;
+      --line-soft: #e9edf5;
+      --blue: #2f6fe4;
+      --blue-soft: #eef4ff;
+      --green: #14865a;
+      --green-soft: #edf8f2;
+      --orange: #b55d19;
+      --orange-soft: #fff3e7;
+      --red: #b83e3e;
+      --paper: #ffffff;
+      --wash: #f6f8fc;
+      --code: #f7f9fd;
+      --mono: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    }
     * { box-sizing: border-box; }
-    body { margin: 0; background: #edf3fb; color: var(--ink); font-family: var(--font); line-height: 1.28; }
-    .page { width: 210mm; min-height: 297mm; margin: 0 auto; background: white; padding: 10mm; box-shadow: 0 18px 60px rgba(30,50,90,.18); }
-    header { display:flex; justify-content:space-between; align-items:flex-end; border-bottom: 2px solid var(--ink); padding-bottom: 5mm; margin-bottom: 5mm; }
-    h1 { margin:0; font-size: 22pt; letter-spacing: -1.4pt; }
-    .sub { color: var(--muted); font-size: 8.5pt; font-weight: 650; }
-    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
-    section { border: 1px solid var(--line); border-radius: 3mm; padding: 3mm; break-inside: avoid; background: #fff; }
-    h2 { margin: 0 0 2mm; color: var(--blue); font-size: 10pt; letter-spacing: -.2pt; }
-    h3 { margin: 2mm 0 1mm; font-size: 8.2pt; }
-    ul { margin: 0; padding-left: 4mm; color: var(--muted); font-size: 7.5pt; }
-    li { margin: .8mm 0; }
-    pre { margin: 1.4mm 0 0; padding: 2mm; overflow: hidden; border-radius: 2mm; background: #111827; color: #f8fbff; font: 6.7pt/1.26 var(--mono); white-space: pre-wrap; }
-    code { font-family: var(--mono); }
-    .mini { font-size: 7.3pt; color: var(--muted); }
-    .badge { display:inline-block; border:1px solid var(--line); border-radius:99px; padding:.6mm 1.5mm; margin:.5mm .5mm .5mm 0; font-size:6.8pt; color:var(--muted); }
-    .wide { grid-column: span 2; }
-    .danger { color:#c24141; font-weight:700; }
-    @media print { body { background:white; } .page { box-shadow:none; margin:0; width:auto; min-height:auto; padding:0; } a { color: inherit; text-decoration: none; } }
-    @media screen and (max-width: 820px) { .page { width: 100%; min-height: auto; padding: 18px; } .grid { grid-template-columns: 1fr; } .wide { grid-column: span 1; } }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(circle at 10% 0%, #dbe8ff 0, transparent 34%), #edf2fa;
+      font-family: var(--font);
+      line-height: 1.22;
+    }
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      background: var(--paper);
+      padding: 7mm;
+      box-shadow: 0 18px 58px rgba(24, 32, 48, .16);
+    }
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 6mm;
+      padding-bottom: 3mm;
+      border-bottom: 1.4pt solid var(--ink);
+      margin-bottom: 3mm;
+    }
+    h1 { margin: 0; font-size: 17pt; line-height: .98; letter-spacing: -1pt; }
+    .sub { margin-top: 1.6mm; color: var(--muted); font-size: 6.8pt; font-weight: 650; }
+    .tagline { text-align: right; color: var(--blue); font-size: 7pt; font-weight: 800; letter-spacing: .2pt; }
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.8mm;
+      margin-bottom: 2.5mm;
+    }
+    .step {
+      border: .5pt solid var(--line);
+      background: linear-gradient(180deg, #fff, var(--wash));
+      border-radius: 2.2mm;
+      padding: 1.8mm 2mm;
+      font-size: 6.6pt;
+      color: var(--muted);
+    }
+    .step b { display: block; color: var(--ink); font-size: 7.2pt; margin-bottom: .6mm; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2mm; align-items: start; }
+    section {
+      border: .55pt solid var(--line);
+      border-radius: 2.4mm;
+      padding: 2mm;
+      background: #fff;
+      break-inside: avoid;
+      overflow: hidden;
+    }
+    .span2 { grid-column: span 2; }
+    h2 {
+      margin: 0 0 1.5mm;
+      padding-bottom: 1mm;
+      border-bottom: .45pt solid var(--line-soft);
+      color: var(--blue);
+      font-size: 8.1pt;
+      line-height: 1.05;
+      letter-spacing: -.18pt;
+    }
+    h3 { margin: 1.5mm 0 .8mm; color: var(--ink); font-size: 6.9pt; line-height: 1.1; }
+    ul { margin: 0; padding-left: 3.2mm; color: var(--muted); font-size: 6.35pt; }
+    li { margin: .55mm 0; }
+    p { margin: .7mm 0; color: var(--muted); font-size: 6.35pt; }
+    code, pre { font-family: var(--mono); }
+    code.inline {
+      color: var(--blue);
+      background: var(--blue-soft);
+      border: .4pt solid #dce8ff;
+      border-radius: 1mm;
+      padding: 0 .7mm;
+      white-space: nowrap;
+    }
+    pre {
+      margin: 1.15mm 0 0;
+      padding: 1.45mm 1.55mm;
+      border: .45pt solid var(--line-soft);
+      border-left: 1.6pt solid var(--blue);
+      border-radius: 1.7mm;
+      background: var(--code);
+      color: #243047;
+      font: 5.25pt/1.22 var(--mono);
+      white-space: pre-wrap;
+      overflow: hidden;
+    }
+    .rule {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1mm;
+      align-items: start;
+      margin: .75mm 0;
+      font-size: 6.25pt;
+      color: var(--muted);
+    }
+    .rule b { color: var(--ink); white-space: nowrap; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: .8mm; margin: 1mm 0; }
+    .pill {
+      display: inline-flex;
+      border: .45pt solid var(--line);
+      border-radius: 99px;
+      padding: .55mm 1.25mm;
+      color: var(--muted);
+      background: var(--wash);
+      font-size: 5.8pt;
+      font-weight: 700;
+    }
+    .ok { color: var(--green); background: var(--green-soft); border-color: #cfeadc; }
+    .warn { color: var(--orange); background: var(--orange-soft); border-color: #f3dcc4; }
+    .bad { color: var(--red); font-weight: 800; }
+    .table { display: grid; grid-template-columns: auto 1fr; gap: .65mm 1.2mm; font-size: 6.05pt; color: var(--muted); }
+    .table b { color: var(--ink); }
+    .compact { font-size: 6pt; }
+    footer {
+      margin-top: 2mm;
+      padding-top: 1.5mm;
+      border-top: .5pt solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      color: var(--faint);
+      font-size: 5.8pt;
+    }
+    @media print {
+      body { background: white; }
+      .page { box-shadow: none; margin: 0; width: auto; min-height: auto; padding: 0; }
+      a { color: inherit; text-decoration: none; }
+    }
+    @media screen and (max-width: 900px) {
+      .page { width: 100%; min-height: auto; padding: 18px; }
+      header, .workflow, .grid { grid-template-columns: 1fr; }
+      .span2 { grid-column: span 1; }
+      .tagline { text-align: left; }
+    }
   </style>
 </head>
 <body>
   <main class="page">
     <header>
-      <div><h1>期末上机 Cheat Sheet</h1><div class="sub">DS&A B · Python · 先判题型，再套模板，最后查边界</div></div>
-      <div class="sub">A4 / 单页打印</div>
+      <div>
+        <h1>期末上机复习 Cheat Sheet</h1>
+        <div class="sub">数据结构与算法 B · Python · 一页版：先识别结构，再写最短可靠模板</div>
+      </div>
+      <div class="tagline">A4 单页 · 考前 15 分钟速扫</div>
     </header>
+
+    <div class="workflow">
+      <div class="step"><b>1. 看输入规模</b>n 到底是 1e2、1e4 还是 1e5；先排除不可能复杂度。</div>
+      <div class="step"><b>2. 找结构信号</b>线性表 / 栈队列 / 树 / 图 / 字符串 / DP，不被题面故事带跑。</div>
+      <div class="step"><b>3. 写不变量</b>BFS 第一次到达最短；并查集只维护连通；DP 状态必须覆盖未来。</div>
+      <div class="step"><b>4. 最后查边界</b>空输入、单点树、0/1 下标、输出空格、多组数据与 EOF。</div>
+    </div>
 
     <div class="grid">
       <section>
-        <h2>0. I/O 与复杂度</h2>
-        <ul>
-          <li><code>read()</code>：多行、空格密集、读到 EOF。</li>
-          <li><code>splitlines()</code>：保留行结构，适合句子反转。</li>
-          <li><code>O(n^2)</code>：n≈5000 勉强；n≈1e5 不行。</li>
-          <li>多组数据先看：第一行 T / EOF / 哨兵。</li>
-        </ul>
-<pre><code>import sys
-it = iter(sys.stdin.read().split())
-n = int(next(it))
-a = [int(next(it)) for _ in range(n)]</code></pre>
+        <h2>0. I/O + 复杂度</h2>
+        <div class="rule"><b>纯 token</b><span><code class="inline">read().split()</code>：整数流、图边表、哨兵。</span></div>
+        <div class="rule"><b>保留行</b><span><code class="inline">splitlines()</code>：每行一句、每行一条记录。</span></div>
+        <div class="rule"><b>多组</b><span>第一行 T / 读到 EOF / 遇哨兵；先判断再加入答案。</span></div>
+        <div class="table">
+          <b>n≤100</b><span>Floyd / 区间 DP / O(n³)</span>
+          <b>n≈1e3</b><span>O(n²) 常可</span>
+          <b>n≈1e5</b><span>O(n log n) / O(n)</span>
+        </div>
+<pre>import sys
+it = iter(sys.stdin.buffer.read().split())
+n = int(next(it)); a = [int(next(it)) for _ in range(n)]</pre>
       </section>
 
       <section>
-        <h2>1. 栈 / 队列</h2>
-        <ul><li>表达式、括号、语法检查：优先想栈。</li><li>BFS 队列：入队时立刻标记 visited。</li></ul>
-<pre><code>from collections import deque
-q = deque([start])
-vis = {start}
+        <h2>1. 线性表 / 排序</h2>
+        <ul>
+          <li>扫描维护“到当前位置”的摘要：计数、最值、前缀、首尾位置。</li>
+          <li>连续最优常是“必须以 i 结尾”的状态。</li>
+          <li>排序规则写成 tuple；降序用负号。</li>
+        </ul>
+<pre># 最大子段和
+best = cur = a[0]
+for x in a[1:]:
+    cur = max(x, cur + x)
+    best = max(best, cur)
+
+arr.sort(key=lambda x: (-x.score, x.name))</pre>
+      </section>
+
+      <section>
+        <h2>2. 栈 / 队列</h2>
+        <div class="pill-row"><span class="pill ok">表达式</span><span class="pill ok">括号</span><span class="pill ok">嵌套作用域</span><span class="pill ok">层序 / BFS</span></div>
+        <ul>
+          <li>栈：最近打开的结构先关闭；语法错误通常优先。</li>
+          <li>队列：BFS / 层序 / 最短步数；<b>入队即标记</b>。</li>
+        </ul>
+<pre>from collections import deque
+q = deque([s]); vis = {s}
 while q:
     u = q.popleft()
     for v in nxt(u):
         if v not in vis:
-            vis.add(v); q.append(v)</code></pre>
+            vis.add(v); q.append(v)</pre>
       </section>
 
       <section>
-        <h2>2. 排序 key</h2>
-        <ul><li>多关键字：把规则写成 tuple。</li><li>降序用负号，字符串默认字典序。</li></ul>
-<pre><code>a.sort(key=lambda x: (-x.score, x.name))
-# 奇数在前；奇数降序，偶数升序
-a.sort(key=lambda x: (x % 2 == 0, -x if x % 2 else x))</code></pre>
-      </section>
-
-      <section>
-        <h2>3. DFS / Flood Fill</h2>
-        <ul><li>矩阵四方向：先判边界，再判条件。</li><li>递归深度大时改 BFS 或设 recursionlimit。</li></ul>
-<pre><code>DIR = [(1,0),(-1,0),(0,1),(0,-1)]
-def ok(x,y):
-    return 0 <= x < n and 0 <= y < m and grid[x][y] == old</code></pre>
-      </section>
-
-      <section>
-        <h2>4. 二叉树</h2>
-        <ul><li>层序：队列保存 <code>(node, depth)</code>。</li><li>重建：后序最后一个 / 前序第一个是根。</li></ul>
-<pre><code>def depth(u):
+        <h2>3. 树：基本与应用</h2>
+        <ul>
+          <li>层相关：BFS；子树相关：DFS；编号树用左右孩子数组。</li>
+          <li>重建：前序首 / 后序末是根；用中序切左右子树。</li>
+          <li>堆：优先队列；BST/AVL：有序维护；Huffman：小根堆合并。</li>
+        </ul>
+<pre>def depth(u):
     if u == 0: return 0
-    return 1 + max(depth(left[u]), depth(right[u]))</code></pre>
+    return 1 + max(depth(L[u]), depth(R[u]))
+
+# 层序：q 保存 (node, dep)，按 dep 计数</pre>
+      </section>
+
+      <section class="span2">
+        <h2>4. 图：搜索、闭包、最短路、MST、拓扑</h2>
+        <div class="pill-row"><span class="pill">DFS/BFS：连通块</span><span class="pill">Floyd：传递闭包/全源最短路</span><span class="pill">Dijkstra：非负权单源</span><span class="pill">Kruskal/Prim：MST</span><span class="pill">拓扑：DAG 先后约束</span></div>
+        <div class="grid compact" style="grid-template-columns:1fr 1fr;gap:1.5mm">
+<pre># Floyd 布尔闭包：排名/先后可推出
+for k in range(n):
+  for i in range(n):
+    if reach[i][k]:
+      for j in range(n):
+        reach[i][j] |= reach[k][j]</pre>
+<pre># Dijkstra：边权非负
+import heapq
+pq=[(0,s)]; dist[s]=0
+while pq:
+    d,u=heapq.heappop(pq)
+    if d!=dist[u]: continue
+    for v,w in g[u]:
+        nd=d+w
+        if nd&lt;dist[v]:
+            dist[v]=nd; heapq.heappush(pq,(nd,v))</pre>
+<pre># Kruskal：边按权排序 + 并查集判环
+ans = cnt = 0
+for w,u,v in sorted(edges):
+    if find(u) != find(v):
+        union(u,v); ans += w; cnt += 1
+# cnt == n-1 才连通</pre>
+<pre># 拓扑：入度为 0 的点先进队
+q = deque([i for i in range(n) if indeg[i]==0])
+order=[]
+while q:
+    u=q.popleft(); order.append(u)
+    for v in g[u]:
+        indeg[v]-=1
+        if indeg[v]==0: q.append(v)</pre>
+        </div>
       </section>
 
       <section>
         <h2>5. 并查集</h2>
-<pre><code>fa = list(range(n + 1))
+        <ul>
+          <li>维护连通块 / 等价类；不能回答路径细节。</li>
+          <li>食物链类：维护“到根的关系/距离”，普通并查集不够。</li>
+        </ul>
+<pre>fa = list(range(n+1))
 def find(x):
     while fa[x] != x:
         fa[x] = fa[fa[x]]
         x = fa[x]
     return x
 def union(a,b):
-    fa[find(a)] = find(b)</code></pre>
+    ra, rb = find(a), find(b)
+    if ra != rb: fa[ra] = rb</pre>
       </section>
 
-      <section class="wide">
-        <h2>6. DP 识别</h2>
-        <span class="badge">递推：当前只依赖前几项</span><span class="badge">背包：选/不选 + 容量</span><span class="badge">区间：先算短区间</span><span class="badge">树形：答案在子树合并</span>
-<pre><code># 01 背包：容量倒序
+      <section>
+        <h2>6. 字符串</h2>
+        <ul>
+          <li>基础：split/join、反转、计数、排序。</li>
+          <li>KMP：模式串、周期、前后缀重叠、所有出现位置。</li>
+          <li>整体平移匹配：转相邻差分；哈希可快比子串但有冲突。</li>
+        </ul>
+<pre>def pi(s):
+    p=[0]*len(s)
+    for i in range(1,len(s)):
+        j=p[i-1]
+        while j and s[i]!=s[j]: j=p[j-1]
+        if s[i]==s[j]: j+=1
+        p[i]=j
+    return p</pre>
+      </section>
+
+      <section class="span2">
+        <h2>7. 动态规划：真正要背的是“状态定义”</h2>
+        <div class="pill-row"><span class="pill ok">递推：前几项</span><span class="pill ok">01 背包：倒序容量</span><span class="pill ok">完全背包：正序容量</span><span class="pill warn">树形 DP：子树合并</span><span class="pill warn">区间 DP：长度从小到大</span><span class="pill warn">状态 DP：把影响未来的信息放进状态</span></div>
+        <div class="grid compact" style="grid-template-columns:1fr 1fr;gap:1.5mm">
+<pre># 01 背包：每件最多一次
 for w, val in items:
-    for c in range(C, w - 1, -1):
-        dp[c] = max(dp[c], dp[c - w] + val)
-
-# 最大子段和
-best = cur = a[0]
-for x in a[1:]:
-    cur = max(x, cur + x)
-    best = max(best, cur)</code></pre>
+    for c in range(C, w-1, -1):
+        dp[c] = max(dp[c], dp[c-w] + val)</pre>
+<pre># 树形背包：给孩子分配容量/边数
+for v,w in child[u]:
+    dfs(v); new = dp[u][:]
+    for i in range(size[u]+1):
+      for j in range(size[v]+1):
+        new[i+j+1] = max(new[i+j+1], dp[u][i]+dp[v][j]+w)
+    dp[u] = new</pre>
+        </div>
+        <p><b>检查：</b>初值是否表示不可达？循环方向是否会重复使用物品？答案是 <code class="inline">dp[n]</code>、<code class="inline">max(dp)</code> 还是某个子树状态？</p>
       </section>
 
       <section>
-        <h2>7. 传递闭包</h2>
-        <ul><li>“能推出 A 比 B 高/先于/可达”：Floyd 布尔版。</li></ul>
-<pre><code>for k in range(n):
-  for i in range(n):
-    if reach[i][k]:
-      for j in range(n):
-        reach[i][j] |= reach[k][j]</code></pre>
-      </section>
-
-      <section>
-        <h2>8. Dijkstra</h2>
-<pre><code>import heapq
-pq = [(0, s)]; dist[s] = 0
-while pq:
-    d, u = heapq.heappop(pq)
-    if d != dist[u]: continue
-    for v, w in g[u]:
-        if d + w < dist[v]:
-            dist[v] = d + w
-            heapq.heappush(pq, (dist[v], v))</code></pre>
+        <h2>8. 矩阵 / Flood Fill</h2>
+        <ul>
+          <li>四方向先判边界，再判障碍/颜色/访问。</li>
+          <li>改色题先保存旧颜色；旧色等于新色直接返回。</li>
+          <li>最短步数用 BFS；枚举连通块可 DFS/BFS。</li>
+        </ul>
+<pre>DIR=((1,0),(-1,0),(0,1),(0,-1))
+for dx,dy in DIR:
+    nx, ny = x+dx, y+dy
+    if 0&lt;=nx&lt;n and 0&lt;=ny&lt;m and not vis[nx][ny]:
+        ...</pre>
       </section>
 
       <section>
         <h2>9. 考场 Checklist</h2>
         <ul>
-          <li>先做会写题；15 分钟没进展换题。</li>
-          <li>检查 0/1 下标、空列表、单节点树。</li>
-          <li>BFS 是否入队即标记？DP 初值是否正确？</li>
-          <li class="danger">输出格式：空格、换行、多组之间不要乱加空行。</li>
+          <li>先扫全卷：A/B 稳拿，难题先写模型不死磕。</li>
+          <li>15 分钟没形成代码结构就换题，最后回收。</li>
+          <li>递归深：<code class="inline">setrecursionlimit</code> 或改迭代。</li>
+          <li>下标统一：输入 1-based 就数组开 <code class="inline">n+1</code>。</li>
+          <li class="bad">输出格式最后查：空格、换行、大小写、空答案。</li>
         </ul>
       </section>
+
+      <section class="span2">
+        <h2>10. 题型 → 模板速配</h2>
+        <div class="table">
+          <b>多行句子 / EOF</b><span>按行读；不要把所有词混成 token 流。</span>
+          <b>最小区间 / 总费用</b><span>线性扫描；写单项贡献或维护首尾。</span>
+          <b>括号 / 表达式 / D++</b><span>栈模拟 + 额外状态：作用域、错误标记、当前复杂度。</span>
+          <b>层 / 最短步数 / 扩散</b><span>BFS；队列元素放完整状态；入队即标记。</span>
+          <b>排名确定 / 先后可推</b><span>建有向图 + 传递闭包；与所有人关系可判才确定。</span>
+          <b>最小连接代价</b><span>Kruskal 或 Prim；先判断图是否连通。</span>
+          <b>选或不选 / 容量</b><span>背包；01 倒序、完全正序。</span>
+          <b>子树保留若干资源</b><span>树形 DP / 树形背包，孩子逐个合并。</span>
+        </div>
+      </section>
+
+      <section class="span2">
+        <h2>11. 关键算法选择表 + Python 小件</h2>
+        <div class="table">
+          <b>堆 / Huffman</b><span><code class="inline">heapq</code> 维护最小值；Huffman 每次合并两个最小权。</span>
+          <b>BST / AVL</b><span>核心是有序性；AVL 多考概念与旋转，不一定手写完整树。</span>
+          <b>Prim vs Kruskal</b><span>稠密图可 Prim；边表清楚、需判连通时 Kruskal 更顺手。</span>
+          <b>Floyd vs Dijkstra</b><span>n 小且问任意两点用 Floyd；非负权单源用 Dijkstra。</span>
+          <b>关键路径</b><span>DAG 上拓扑序做最长路；最早/最迟时间差为 0 是关键活动。</span>
+          <b>递归树题</b><span><code class="inline">sys.setrecursionlimit(10**6)</code>，链很长时仍优先迭代。</span>
+        </div>
+<pre>import heapq, sys
+from collections import deque, defaultdict
+from bisect import bisect_left, bisect_right
+INF = 10**18
+sys.setrecursionlimit(10**6)</pre>
+      </section>
     </div>
+
+    <footer>
+      <span>DS&A B · Lecture 05 · Lab Review</span>
+      <span>口诀：输入边界先保命，结构模型定方向，模板写短，边界查满。</span>
+    </footer>
   </main>
 </body>
 </html>
