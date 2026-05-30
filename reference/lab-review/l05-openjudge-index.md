@@ -1,12 +1,12 @@
 # L05 期末上机复习 · OpenJudge 题池索引
 
-更新时间：2026-05-29
+更新时间：2026-05-30
 
 本索引基于最新增量爬取结果整理，重点参考：
 
 - <http://dsb12.openjudge.cn/26preexam/>
 - <http://xlxxsjjg.openjudge.cn/2026midexam/>
-- <http://xlxxsjjg.openjudge.cn/2026midsim/>
+- <http://xlxxsjjg.openjudge.cn/2025midtest/>
 - `reference/openjudge/dsb12.openjudge.cn/26hwpractice/`
 - `reference/openjudge/xlxxsjjg.openjudge.cn/2026hw6/`
 - `reference/openjudge/xlxxsjjg.openjudge.cn/2026hw7/`
@@ -37,17 +37,17 @@
 | F | 二叉树作业 | 树编码解析、树形 DP、大输入 | 高阶树题，强调递归深度 |
 | G | 数据采集 | 状态 DP、网格、速度约束 | 压轴难题，不作为课堂主线 |
 
-### xlxxsjjg · 2026 期中模拟
+### xlxxsjjg · 2025 期中测试
 
 | 题号 | 题目 | 考点 | L05 价值 |
 |---|---|---|---|
 | A | 数字串的倒序输出 | 哨兵输入、栈/列表 | 送分题 |
 | B | 喝喝喝 | 线性扫描、首尾定位 | 送分题变体 |
-| C | 二叉树修剪 | 树形 DP / 树上背包 | 树 DP 代表题 |
-| D | 只要功夫深，猴子当文豪 | KMP、期望、重叠匹配 | 挑战题 |
-| E | D++ | 栈模拟、复杂度解析、语法检查 | 很适合复习“模拟器题” |
-| F | 无尽迷宫 | BFS、周期网格、逃逸判定 | 图搜索进阶 |
-| G | 量子态制备序列 | 组合计数、DP | 挑战题 |
+| C | 不完整的纸条 | KMP、最短周期、字符串 border | 字符串代表题 |
+| D | 二叉树修剪 | 树形 DP / 树上背包 | 树 DP 代表题 |
+| E | 物流仓储选址 | 一维选址 DP、中位数、区间代价 | DP 进阶题 |
+| F | D++ | 栈模拟、复杂度解析、语法检查 | 很适合复习“模拟器题” |
+| G | 填数争分 | 数独搜索、位运算、剪枝 | 搜索压轴题 |
 
 ## 二、上机考点更新版
 
