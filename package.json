@@ -4,7 +4,8 @@
   "description": "PKU Data Structure and Algorithm B small-class course website",
   "private": true,
   "scripts": {
-    "build": "node scripts/build-site.mjs"
+    "build": "node scripts/build-site.mjs",
+    "preview": "python3 -m http.server 4173 --directory public"
   },
   "engines": {
     "node": ">=18"
